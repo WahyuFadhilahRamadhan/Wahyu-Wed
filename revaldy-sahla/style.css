@@ -1,6 +1,27 @@
-/* Page-specific customization for Revaldy & Sahla — same palette as the
-   shared theme, with floral accents layered on top. Kept out of
-   assets/css/invitation.css so /demo/ and every other couple stay plain. */
+/* Page-specific theme for Revaldy & Sahla — soft blue palette with
+   floral accents and an ambient falling-petals animation. Scoped to this
+   page only, so /demo/ and every other couple stay on the default theme. */
+
+:root {
+  --color-bg: #eef5f9;
+  --color-surface: #ffffff;
+  --color-primary: #4a7a9c;
+  --color-secondary: #bcdcec;
+  --color-accent: #7fa8a0;
+  --color-text: #2c3e46;
+  --color-text-light: #62808f;
+  --color-border: #d7e8f0;
+}
+
+body.invitation-body {
+  background: linear-gradient(180deg, #dceaf2 0%, #eef5f9 40%);
+}
+
+.cover {
+  background: linear-gradient(160deg, #eaf4fa 0%, #dcebf3 55%, #cfe3ee 100%);
+}
+
+/* Floral corner accents on the cover, with a slow ambient sway */
 
 .cover__frame {
   position: relative;
@@ -14,6 +35,8 @@
   height: 92px;
   background: url("images/floral-corner.svg") no-repeat center / contain;
   pointer-events: none;
+  animation: floralSway 6s ease-in-out infinite;
+  transform-origin: top left;
 }
 
 .cover__frame::before {
@@ -25,6 +48,22 @@
   bottom: -20px;
   right: -20px;
   transform: rotate(180deg);
+  transform-origin: bottom right;
+  animation-delay: -3s;
+}
+
+@keyframes floralSway {
+  0%, 100% { transform: rotate(-3deg); }
+  50% { transform: rotate(3deg); }
+}
+
+.cover__frame::after {
+  animation-name: floralSwayReverse;
+}
+
+@keyframes floralSwayReverse {
+  0%, 100% { transform: rotate(180deg) rotate(-3deg); }
+  50% { transform: rotate(180deg) rotate(3deg); }
 }
 
 .ornament {
@@ -33,10 +72,60 @@
   background: url("images/floral-divider.svg") no-repeat center / contain;
 }
 
-.section__header {
-  position: relative;
-}
-
 .couple-card__photo {
   border-width: 5px;
+}
+
+/* Ambient falling petals ---------------------------------------------------
+   Fixed layer of small flower petals drifting down the whole page. Built
+   with transform/opacity-only CSS keyframes (GPU-friendly, no layout
+   thrashing) and populated by a handful of elements from index.html, so
+   there's no per-frame JS work at all. */
+
+.petals {
+  position: fixed;
+  inset: 0;
+  z-index: 55;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.petal {
+  position: absolute;
+  top: -10vh;
+  left: var(--x, 50%);
+  width: var(--size, 22px);
+  height: var(--size, 22px);
+  background: url("images/petal-flower.svg") no-repeat center / contain;
+  opacity: 0;
+  animation: petalFall var(--duration, 12s) linear infinite;
+  animation-delay: var(--delay, 0s);
+  will-change: transform, opacity;
+}
+
+@keyframes petalFall {
+  0% {
+    transform: translate3d(0, 0, 0) rotate(0deg);
+    opacity: 0;
+  }
+  8% {
+    opacity: 0.85;
+  }
+  92% {
+    opacity: 0.85;
+  }
+  100% {
+    transform: translate3d(var(--drift, 30px), 120vh, 0) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .petals {
+    display: none;
+  }
+  .cover__frame::before,
+  .cover__frame::after {
+    animation: none;
+  }
 }
