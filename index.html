@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Mounstory — Undangan Pernikahan Digital</title>
+  <meta name="description" content="Mounstory membuat undangan pernikahan digital yang elegan, personal, dan mudah dibagikan." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/css/base.css" />
+  <link rel="stylesheet" href="assets/css/portfolio.css" />
+</head>
+<body>
+
+  <header class="navbar">
+    <div class="navbar__inner container">
+      <a href="/" class="navbar__logo">Moun<span>story</span></a>
+      <a href="#showcase" class="btn btn-outline" style="padding: 0.55em 1.3em; font-size: 0.85rem;">Lihat Demo</a>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <span class="eyebrow hero__eyebrow reveal">Undangan Pernikahan Digital</span>
+      <h1 class="hero__title reveal reveal-delay-1">Cerita cinta kalian, dikemas <em>elegan</em> &amp; personal</h1>
+      <p class="hero__subtitle reveal reveal-delay-2">
+        Mounstory membuatkan undangan pernikahan digital — cepat dibuka, indah dilihat,
+        dan mudah dibagikan ke siapa pun, kapan pun.
+      </p>
+      <div class="hero__actions reveal reveal-delay-3">
+        <a href="demo/" class="btn btn-primary">Lihat Undangan Demo</a>
+        <a href="#cta" class="btn btn-outline">Pesan Undangan</a>
+      </div>
+    </section>
+
+    <section class="features">
+      <div class="features__grid">
+        <div class="feature-card reveal">
+          <svg class="feature-card__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>
+          <h3>Sapaan Personal</h3>
+          <p>Nama tamu otomatis tampil dari tautan yang dibagikan.</p>
+        </div>
+        <div class="feature-card reveal reveal-delay-1">
+          <svg class="feature-card__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="4" width="18" height="17" rx="2"/><path d="M8 2v4M16 2v4M3 10h18"/></svg>
+          <h3>Countdown Real-time</h3>
+          <p>Hitung mundur menuju hari bahagia dengan animasi halus.</p>
+        </div>
+        <div class="feature-card reveal reveal-delay-2">
+          <svg class="feature-card__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 21s-7-4.5-9.5-9A5.5 5.5 0 0112 5a5.5 5.5 0 019.5 7c-2.5 4.5-9.5 9-9.5 9z"/></svg>
+          <h3>RSVP &amp; Ucapan</h3>
+          <p>Tamu dapat konfirmasi kehadiran dan mengirim doa langsung dari undangan.</p>
+        </div>
+        <div class="feature-card reveal reveal-delay-3">
+          <svg class="feature-card__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="4" y="2" width="16" height="20" rx="2"/><path d="M9 22v-4h6v4"/></svg>
+          <h3>Fully Responsive</h3>
+          <p>Tampil rapi di HP, tablet, maupun desktop layaknya kartu undangan.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="showcase" id="showcase">
+      <div class="section__header reveal">
+        <p class="eyebrow">Contoh</p>
+        <h2 class="section__title">Undangan yang Pernah Dibuat</h2>
+      </div>
+      <div class="showcase__grid" style="margin-top: 2rem;">
+        <a class="showcase-card reveal" href="demo/">
+          <div class="showcase-card__thumb">Kevin &amp; Aisyah</div>
+          <div class="showcase-card__body">
+            <span class="showcase-card__tag">Template Demo</span>
+            <h3>Kevin &amp; Aisyah</h3>
+            <p>Contoh undangan lengkap — cover, countdown, RSVP, galeri, hingga amplop digital.</p>
+          </div>
+        </a>
+      </div>
+    </section>
+
+    <section class="cta" id="cta">
+      <div class="cta__box reveal">
+        <h2>Ingin dibuatkan undangan serupa?</h2>
+        <p>Hubungi kami untuk membuat undangan pernikahan digital khusus untuk hari bahagiamu.</p>
+        <a class="btn btn-primary" href="mailto:hello@mounstory.com">Hubungi Mounstory</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>&copy; <span id="year"></span> Mounstory. Dibuat dengan cinta untuk hari bahagiamu.</p>
+  </footer>
+
+  <script src="assets/js/animations.js"></script>
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+    Mounstory.initScrollReveal();
+  </script>
+</body>
+</html>

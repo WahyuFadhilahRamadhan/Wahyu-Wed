@@ -1,0 +1,225 @@
+/* ==========================================================================
+   Mounstory — base.css
+   Shared reset, design tokens, typography and small utilities used by
+   every page (portfolio landing page + every couple's invitation page).
+   ========================================================================== */
+
+:root {
+  /* Palette — soft / pastel, overridable per couple via a page-level
+     <style> block or a small per-folder stylesheet loaded after this one. */
+  --color-bg: #fbf7f2;
+  --color-surface: #ffffff;
+  --color-primary: #c9a66b;      /* muted gold accent */
+  --color-primary-dark: #a9865065;
+  --color-secondary: #e8c9c9;    /* blush pink */
+  --color-accent: #93a591;       /* soft sage */
+  --color-text: #4a4238;
+  --color-text-light: #8a7f72;
+  --color-border: #ece2d6;
+  --color-success: #7a9c7e;
+  --color-danger: #c98787;
+
+  --font-serif: "Playfair Display", "Georgia", serif;
+  --font-sans: "Poppins", "Segoe UI", sans-serif;
+
+  --radius-sm: 8px;
+  --radius-md: 16px;
+  --radius-lg: 28px;
+
+  --shadow-card: 0 10px 40px rgba(74, 66, 56, 0.08);
+  --shadow-soft: 0 4px 16px rgba(74, 66, 56, 0.06);
+
+  --transition-fast: 250ms ease-in-out;
+  --transition-base: 400ms ease-in-out;
+  --transition-slow: 600ms ease-in-out;
+
+  --card-max-width: 600px;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-sans);
+  font-size: clamp(0.95rem, 0.9rem + 0.3vw, 1.05rem);
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--font-serif);
+  font-weight: 600;
+  margin: 0 0 0.5em;
+  color: var(--color-text);
+}
+
+p {
+  margin: 0 0 1em;
+}
+
+a {
+  color: inherit;
+}
+
+button {
+  font-family: inherit;
+}
+
+ul, ol {
+  padding-left: 1.2em;
+}
+
+/* Buttons ---------------------------------------------------------------- */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5em;
+  border: none;
+  cursor: pointer;
+  border-radius: 999px;
+  padding: 0.85em 1.9em;
+  font-size: clamp(0.85rem, 0.8rem + 0.2vw, 0.95rem);
+  font-family: var(--font-sans);
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  text-decoration: none;
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast),
+    opacity var(--transition-fast), background-color var(--transition-fast);
+  will-change: transform;
+}
+
+.btn:active {
+  transform: scale(0.96);
+}
+
+.btn:hover {
+  transform: translateY(-2px) scale(1.02);
+}
+
+.btn-primary {
+  background: var(--color-primary);
+  color: #fff;
+  box-shadow: var(--shadow-soft);
+}
+
+.btn-primary:hover {
+  box-shadow: 0 8px 22px rgba(201, 166, 107, 0.35);
+}
+
+.btn-outline {
+  background: transparent;
+  color: var(--color-primary);
+  border: 1.5px solid var(--color-primary);
+}
+
+.btn-outline:hover {
+  background: rgba(201, 166, 107, 0.08);
+}
+
+.btn-block {
+  width: 100%;
+}
+
+.btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* Scroll reveal ------------------------------------------------------------
+   Elements start hidden + offset, JS toggles .is-visible via
+   IntersectionObserver when they enter the viewport. */
+
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity var(--transition-slow), transform var(--transition-slow);
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.reveal-delay-1 { transition-delay: 80ms; }
+.reveal-delay-2 { transition-delay: 160ms; }
+.reveal-delay-3 { transition-delay: 240ms; }
+.reveal-delay-4 { transition-delay: 320ms; }
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .reveal,
+  .btn,
+  * {
+    transition-duration: 1ms !important;
+    animation-duration: 1ms !important;
+  }
+}
+
+/* Small helpers ------------------------------------------------------------ */
+
+.container {
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 1.25rem;
+}
+
+.eyebrow {
+  font-size: clamp(0.7rem, 0.65rem + 0.2vw, 0.8rem);
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--color-primary);
+  font-weight: 600;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+.toast {
+  position: fixed;
+  left: 50%;
+  bottom: 1.5rem;
+  transform: translate(-50%, 20px);
+  background: var(--color-text);
+  color: #fff;
+  padding: 0.7em 1.3em;
+  border-radius: 999px;
+  font-size: 0.85rem;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--transition-base), transform var(--transition-base);
+  z-index: 999;
+  box-shadow: var(--shadow-card);
+}
+
+.toast.is-visible {
+  opacity: 1;
+  transform: translate(-50%, 0);
+}

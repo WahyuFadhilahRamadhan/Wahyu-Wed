@@ -1,0 +1,736 @@
+/* ==========================================================================
+   Mounstory — invitation.css
+   Styles for a single couple's invitation page (e.g. /demo/index.html).
+   Mobile-first; the card is centered with a max-width from the tablet
+   breakpoint up so it keeps reading like an invitation card, not a website.
+   ========================================================================== */
+
+body.invitation-body {
+  background: linear-gradient(180deg, #f3ece2 0%, #fbf7f2 40%);
+  min-height: 100vh;
+}
+
+.invitation-shell {
+  position: relative;
+  width: 100%;
+  max-width: var(--card-max-width);
+  margin: 0 auto;
+  background: var(--color-bg);
+  overflow: hidden;
+  min-height: 100vh;
+}
+
+@media (min-width: 480px) {
+  .invitation-shell {
+    box-shadow: var(--shadow-card);
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    min-height: calc(100vh - 4rem);
+    border-radius: var(--radius-lg);
+  }
+}
+
+@media (min-width: 1024px) {
+  .invitation-shell {
+    margin-top: 3rem;
+    margin-bottom: 3rem;
+    min-height: calc(100vh - 6rem);
+  }
+}
+
+/* Cover / opening screen --------------------------------------------------- */
+
+.cover {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 2rem 1.5rem;
+  background: linear-gradient(160deg, #f6ecdf 0%, #f1e2df 55%, #ece3ea 100%);
+  transition: opacity var(--transition-slow), visibility var(--transition-slow);
+}
+
+@media (min-width: 480px) {
+  .cover {
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    max-width: var(--card-max-width);
+    border-radius: var(--radius-lg);
+    top: 2rem;
+    bottom: 2rem;
+    height: auto;
+  }
+}
+
+@media (min-width: 1024px) {
+  .cover {
+    top: 3rem;
+    bottom: 3rem;
+  }
+}
+
+.cover.is-closing {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.cover__frame {
+  border: 1px solid rgba(201, 166, 107, 0.4);
+  border-radius: var(--radius-md);
+  padding: clamp(1.75rem, 6vw, 3rem) clamp(1.25rem, 5vw, 2rem);
+  width: 100%;
+  max-width: 380px;
+  animation: coverFrameIn 900ms ease-in-out;
+}
+
+@keyframes coverFrameIn {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.cover__eyebrow {
+  font-size: clamp(0.7rem, 0.65rem + 0.2vw, 0.85rem);
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--color-text-light);
+}
+
+.cover__names {
+  font-family: var(--font-serif);
+  font-size: clamp(2.1rem, 6vw + 0.5rem, 3.2rem);
+  line-height: 1.15;
+  margin: 0.6em 0 0.3em;
+  color: var(--color-text);
+}
+
+.cover__names span {
+  display: block;
+  font-size: 0.5em;
+  font-family: var(--font-sans);
+  letter-spacing: 0.3em;
+  color: var(--color-primary);
+  margin: 0.3em 0;
+}
+
+.cover__date {
+  font-size: clamp(0.85rem, 0.8rem + 0.2vw, 1rem);
+  color: var(--color-text-light);
+  margin-bottom: 1.75rem;
+}
+
+.cover__guest {
+  font-size: 0.85rem;
+  color: var(--color-text-light);
+  margin-bottom: 1.5rem;
+}
+
+.cover__guest strong {
+  display: block;
+  color: var(--color-text);
+  font-family: var(--font-serif);
+  font-size: 1.1rem;
+  margin-top: 0.2em;
+}
+
+.cover__open-btn svg {
+  width: 1.1em;
+  height: 1.1em;
+  transition: transform var(--transition-fast);
+}
+
+.cover__open-btn:hover svg {
+  transform: translateY(2px);
+}
+
+/* Content wrapper ------------------------------------------------------------ */
+
+.invitation-content {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity var(--transition-slow), transform var(--transition-slow);
+}
+
+.invitation-content.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.section {
+  padding: clamp(2.5rem, 8vw, 4rem) clamp(1.25rem, 6vw, 2.25rem);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.section:last-of-type {
+  border-bottom: none;
+}
+
+.section__header {
+  text-align: center;
+  margin-bottom: clamp(1.75rem, 6vw, 2.5rem);
+}
+
+.section__title {
+  font-size: clamp(1.6rem, 4vw + 0.5rem, 2.2rem);
+}
+
+.section__subtitle {
+  color: var(--color-text-light);
+  font-size: clamp(0.85rem, 0.8rem + 0.2vw, 0.95rem);
+  max-width: 40ch;
+  margin: 0.5em auto 0;
+}
+
+.ornament {
+  width: 40px;
+  height: 2px;
+  background: var(--color-primary);
+  margin: 0.75em auto 0;
+  border-radius: 2px;
+}
+
+/* Greeting / sapaan personal -------------------------------------------------- */
+
+.greeting {
+  text-align: center;
+}
+
+.greeting__to {
+  font-size: 0.8rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--color-text-light);
+}
+
+.greeting__name {
+  font-family: var(--font-serif);
+  font-size: clamp(1.4rem, 3vw + 0.8rem, 1.9rem);
+  margin: 0.35em 0 1.2em;
+  color: var(--color-primary);
+}
+
+.greeting__quote {
+  font-size: clamp(0.85rem, 0.8rem + 0.2vw, 0.95rem);
+  color: var(--color-text-light);
+  font-style: italic;
+  max-width: 42ch;
+  margin: 0 auto;
+}
+
+/* Countdown ------------------------------------------------------------------- */
+
+.countdown {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: clamp(0.5rem, 2vw, 1rem);
+  max-width: 420px;
+  margin: 0 auto;
+}
+
+.countdown__item {
+  background: var(--color-surface);
+  border-radius: var(--radius-sm);
+  padding: 0.9em 0.3em;
+  text-align: center;
+  box-shadow: var(--shadow-soft);
+}
+
+.countdown__value {
+  font-family: var(--font-serif);
+  font-size: clamp(1.4rem, 4vw + 0.5rem, 2rem);
+  color: var(--color-primary);
+  display: inline-block;
+  transition: opacity var(--transition-fast), transform var(--transition-fast);
+}
+
+.countdown__value.is-updating {
+  opacity: 0;
+  transform: translateY(-6px);
+}
+
+.countdown__label {
+  display: block;
+  font-size: clamp(0.6rem, 0.55rem + 0.2vw, 0.72rem);
+  color: var(--color-text-light);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-top: 0.3em;
+}
+
+/* Couple profiles --------------------------------------------------------------- */
+
+.couple-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+}
+
+.couple-card {
+  text-align: center;
+}
+
+.couple-card__photo {
+  width: clamp(140px, 40vw, 180px);
+  height: clamp(140px, 40vw, 180px);
+  border-radius: 50%;
+  object-fit: cover;
+  margin: 0 auto 1.1rem;
+  border: 6px solid var(--color-surface);
+  box-shadow: var(--shadow-soft);
+}
+
+.couple-card__name {
+  font-size: clamp(1.2rem, 3vw + 0.6rem, 1.5rem);
+  margin-bottom: 0.2em;
+}
+
+.couple-card__order {
+  color: var(--color-text-light);
+  font-size: 0.85rem;
+  margin-bottom: 0.6em;
+}
+
+.couple-card__parents {
+  font-size: 0.85rem;
+  color: var(--color-text-light);
+}
+
+.couple-and {
+  text-align: center;
+  font-family: var(--font-serif);
+  font-size: 1.8rem;
+  color: var(--color-primary);
+}
+
+/* Event details ------------------------------------------------------------------ */
+
+.event-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+}
+
+.event-card {
+  background: var(--color-surface);
+  border-radius: var(--radius-md);
+  padding: clamp(1.3rem, 5vw, 1.8rem);
+  box-shadow: var(--shadow-soft);
+  text-align: center;
+}
+
+.event-card__label {
+  color: var(--color-primary);
+  font-size: 0.78rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  margin-bottom: 0.5em;
+}
+
+.event-card__date {
+  font-family: var(--font-serif);
+  font-size: clamp(1.15rem, 3vw + 0.5rem, 1.4rem);
+  margin-bottom: 0.15em;
+}
+
+.event-card__time {
+  color: var(--color-text-light);
+  margin-bottom: 0.9em;
+  font-size: 0.9rem;
+}
+
+.event-card__venue {
+  font-weight: 600;
+  margin-bottom: 0.2em;
+}
+
+.event-card__address {
+  color: var(--color-text-light);
+  font-size: 0.85rem;
+  margin-bottom: 1.1em;
+}
+
+/* Gallery --------------------------------------------------------------------------- */
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.6rem;
+}
+
+@media (min-width: 480px) {
+  .gallery-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.8rem;
+  }
+}
+
+.gallery-grid__item {
+  position: relative;
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+}
+
+.gallery-grid__item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform var(--transition-base);
+}
+
+.gallery-grid__item:hover img {
+  transform: scale(1.08);
+}
+
+.lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  background: rgba(30, 26, 20, 0.92);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity var(--transition-base), visibility var(--transition-base);
+}
+
+.lightbox.is-open {
+  opacity: 1;
+  visibility: visible;
+}
+
+.lightbox img {
+  max-width: 100%;
+  max-height: 85vh;
+  border-radius: var(--radius-sm);
+  transform: scale(0.95);
+  transition: transform var(--transition-base);
+}
+
+.lightbox.is-open img {
+  transform: scale(1);
+}
+
+.lightbox__close {
+  position: absolute;
+  top: 1.25rem;
+  right: 1.25rem;
+  background: rgba(255, 255, 255, 0.15);
+  color: #fff;
+  border: none;
+  width: 2.4rem;
+  height: 2.4rem;
+  border-radius: 50%;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: background var(--transition-fast), transform var(--transition-fast);
+}
+
+.lightbox__close:hover {
+  background: rgba(255, 255, 255, 0.3);
+  transform: scale(1.08);
+}
+
+/* Forms (RSVP + wishes) --------------------------------------------------------------- */
+
+.form-field {
+  margin-bottom: 1.1rem;
+  text-align: left;
+}
+
+.form-field label {
+  display: block;
+  font-size: 0.82rem;
+  font-weight: 600;
+  margin-bottom: 0.4em;
+  color: var(--color-text);
+}
+
+.form-field input[type="text"],
+.form-field input[type="number"],
+.form-field select,
+.form-field textarea {
+  width: 100%;
+  border: 1.5px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  padding: 0.75em 0.9em;
+  font-family: var(--font-sans);
+  font-size: 0.92rem;
+  background: var(--color-surface);
+  color: var(--color-text);
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.form-field textarea {
+  resize: vertical;
+  min-height: 90px;
+}
+
+.form-field input:focus,
+.form-field select:focus,
+.form-field textarea:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(201, 166, 107, 0.18);
+}
+
+.radio-group {
+  display: flex;
+  gap: 0.6rem;
+}
+
+.radio-option {
+  flex: 1;
+  position: relative;
+}
+
+.radio-option input {
+  position: absolute;
+  opacity: 0;
+  inset: 0;
+  cursor: pointer;
+}
+
+.radio-option span {
+  display: block;
+  text-align: center;
+  border: 1.5px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  padding: 0.7em 0.5em;
+  font-size: 0.85rem;
+  transition: border-color var(--transition-fast), background var(--transition-fast), color var(--transition-fast), transform var(--transition-fast);
+}
+
+.radio-option input:checked + span {
+  border-color: var(--color-primary);
+  background: rgba(201, 166, 107, 0.12);
+  color: var(--color-primary);
+  font-weight: 600;
+  transform: scale(1.02);
+}
+
+.form-note {
+  text-align: center;
+  font-size: 0.85rem;
+  color: var(--color-success);
+  margin-top: 1rem;
+  opacity: 0;
+  max-height: 0;
+  overflow: hidden;
+  transition: opacity var(--transition-base), max-height var(--transition-base);
+}
+
+.form-note.is-visible {
+  opacity: 1;
+  max-height: 100px;
+}
+
+/* Digital gift / envelope -------------------------------------------------------------- */
+
+.gift-intro {
+  text-align: center;
+  color: var(--color-text-light);
+  font-size: 0.9rem;
+  max-width: 42ch;
+  margin: 0 auto 1.75rem;
+}
+
+.bank-card {
+  background: var(--color-surface);
+  border-radius: var(--radius-md);
+  padding: 1.1rem 1.3rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  box-shadow: var(--shadow-soft);
+  margin-bottom: 0.9rem;
+}
+
+.bank-card__info strong {
+  display: block;
+  font-size: 0.95rem;
+}
+
+.bank-card__number {
+  font-family: var(--font-serif);
+  font-size: 1.05rem;
+  letter-spacing: 0.04em;
+  margin: 0.2em 0;
+}
+
+.bank-card__name {
+  color: var(--color-text-light);
+  font-size: 0.8rem;
+}
+
+.bank-card__copy {
+  flex-shrink: 0;
+  background: var(--color-bg);
+  border: 1.5px solid var(--color-border);
+  border-radius: 999px;
+  padding: 0.55em 1.1em;
+  font-size: 0.78rem;
+  cursor: pointer;
+  transition: background var(--transition-fast), transform var(--transition-fast), border-color var(--transition-fast);
+}
+
+.bank-card__copy:hover {
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+}
+
+.bank-card__copy:active {
+  transform: scale(0.94);
+}
+
+.qris-card {
+  text-align: center;
+  background: var(--color-surface);
+  border-radius: var(--radius-md);
+  padding: 1.5rem;
+  box-shadow: var(--shadow-soft);
+  margin-top: 1.5rem;
+}
+
+.qris-card img {
+  max-width: 220px;
+  margin: 0 auto 0.8rem;
+  border-radius: var(--radius-sm);
+}
+
+.qris-card p {
+  font-size: 0.8rem;
+  color: var(--color-text-light);
+  margin: 0;
+}
+
+/* Wishes & prayers ------------------------------------------------------------------------ */
+
+.wishes-list {
+  list-style: none;
+  margin: 0 0 1.75rem;
+  padding: 0;
+  max-height: 340px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.wish-item {
+  background: var(--color-surface);
+  border-radius: var(--radius-sm);
+  padding: 0.9em 1.1em;
+  box-shadow: var(--shadow-soft);
+  animation: wishIn var(--transition-base);
+}
+
+@keyframes wishIn {
+  from { opacity: 0; transform: translateY(-8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.wish-item__head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 0.5rem;
+  margin-bottom: 0.25em;
+}
+
+.wish-item__name {
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.wish-item__status {
+  font-size: 0.7rem;
+  color: var(--color-accent);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  flex-shrink: 0;
+}
+
+.wish-item__message {
+  font-size: 0.87rem;
+  color: var(--color-text-light);
+  margin: 0;
+}
+
+/* Footer + music button ----------------------------------------------------------------- */
+
+.invitation-footer {
+  text-align: center;
+  padding: 2.5rem 1.5rem 3rem;
+  color: var(--color-text-light);
+  font-size: 0.8rem;
+}
+
+.invitation-footer__quote {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 1.05rem;
+  color: var(--color-text);
+  max-width: 36ch;
+  margin: 0 auto 1rem;
+}
+
+.music-toggle {
+  position: fixed;
+  bottom: 1.25rem;
+  right: 1.25rem;
+  z-index: 60;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  border: none;
+  background: var(--color-surface);
+  box-shadow: var(--shadow-card);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.music-toggle:hover {
+  transform: scale(1.08);
+}
+
+.music-toggle:active {
+  transform: scale(0.92);
+}
+
+.music-toggle svg {
+  width: 1.3rem;
+  height: 1.3rem;
+  color: var(--color-primary);
+}
+
+.music-toggle__disc {
+  animation: spin 3.5s linear infinite;
+  animation-play-state: paused;
+}
+
+.music-toggle.is-playing .music-toggle__disc {
+  animation-play-state: running;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+@media (min-width: 480px) {
+  .music-toggle {
+    right: calc(50% - (min(100vw, var(--card-max-width)) / 2) + 1.25rem);
+  }
+}

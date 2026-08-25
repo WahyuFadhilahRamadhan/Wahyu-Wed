@@ -1,0 +1,234 @@
+/* ==========================================================================
+   Mounstory — portfolio.css
+   Styles for the root landing page (/index.html) only.
+   ========================================================================== */
+
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  background: rgba(251, 247, 242, 0.85);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.navbar__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 1.25rem;
+}
+
+.navbar__logo {
+  font-family: var(--font-serif);
+  font-size: 1.3rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  text-decoration: none;
+  color: var(--color-text);
+}
+
+.navbar__logo span {
+  color: var(--color-primary);
+}
+
+.hero {
+  padding: clamp(3.5rem, 12vw, 7rem) 1.25rem clamp(3rem, 8vw, 5rem);
+  text-align: center;
+}
+
+.hero__eyebrow {
+  display: block;
+  margin-bottom: 1rem;
+}
+
+.hero__title {
+  font-size: clamp(2.1rem, 5vw + 1rem, 3.6rem);
+  max-width: 16ch;
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 1.15;
+}
+
+.hero__title em {
+  color: var(--color-primary);
+  font-style: normal;
+}
+
+.hero__subtitle {
+  color: var(--color-text-light);
+  max-width: 50ch;
+  margin: 1rem auto 2rem;
+  font-size: clamp(0.95rem, 0.9rem + 0.2vw, 1.05rem);
+}
+
+.hero__actions {
+  display: flex;
+  gap: 0.9rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.features {
+  padding: clamp(2.5rem, 8vw, 4rem) 1.25rem;
+}
+
+.features__grid {
+  max-width: 1000px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+}
+
+@media (min-width: 480px) {
+  .features__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .features__grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.feature-card {
+  background: var(--color-surface);
+  border-radius: var(--radius-md);
+  padding: 1.75rem 1.5rem;
+  box-shadow: var(--shadow-soft);
+  text-align: center;
+}
+
+.feature-card__icon {
+  width: 2.4rem;
+  height: 2.4rem;
+  margin: 0 auto 1rem;
+  color: var(--color-primary);
+}
+
+.feature-card h3 {
+  font-size: 1.05rem;
+  margin-bottom: 0.4em;
+}
+
+.feature-card p {
+  font-size: 0.85rem;
+  color: var(--color-text-light);
+  margin: 0;
+}
+
+.showcase {
+  padding: clamp(2.5rem, 8vw, 4rem) 1.25rem;
+  background: var(--color-surface);
+}
+
+.showcase__grid {
+  max-width: 1000px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.75rem;
+}
+
+@media (min-width: 480px) {
+  .showcase__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .showcase__grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.showcase-card {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  background: var(--color-bg);
+  box-shadow: var(--shadow-soft);
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.showcase-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-card);
+}
+
+.showcase-card__thumb {
+  aspect-ratio: 4 / 3;
+  background: linear-gradient(135deg, #f1e2df, #e8c9c9 60%, #c9a66b);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-family: var(--font-serif);
+  font-size: 1.3rem;
+  text-align: center;
+  padding: 1rem;
+}
+
+.showcase-card__body {
+  padding: 1.1rem 1.25rem 1.4rem;
+}
+
+.showcase-card__body h3 {
+  font-size: 1.05rem;
+  margin-bottom: 0.3em;
+}
+
+.showcase-card__body p {
+  font-size: 0.82rem;
+  color: var(--color-text-light);
+  margin: 0 0 0.8em;
+}
+
+.showcase-card__tag {
+  display: inline-block;
+  font-size: 0.7rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-primary);
+  font-weight: 600;
+}
+
+.cta {
+  padding: clamp(3rem, 10vw, 5rem) 1.25rem;
+  text-align: center;
+}
+
+.cta__box {
+  max-width: 640px;
+  margin: 0 auto;
+  background: linear-gradient(160deg, #f6ecdf, #f1e2df 60%, #ece3ea);
+  border-radius: var(--radius-lg);
+  padding: clamp(2rem, 6vw, 3rem);
+}
+
+.cta__box h2 {
+  font-size: clamp(1.5rem, 3vw + 1rem, 2rem);
+}
+
+.cta__box p {
+  color: var(--color-text-light);
+  margin-bottom: 1.5rem;
+  font-size: 0.92rem;
+}
+
+.site-footer {
+  text-align: center;
+  padding: 2.5rem 1.25rem;
+  color: var(--color-text-light);
+  font-size: 0.82rem;
+  border-top: 1px solid var(--color-border);
+}
+
+.site-footer a {
+  color: var(--color-primary);
+  text-decoration: none;
+}

@@ -1,0 +1,60 @@
+{
+  "meta": {
+    "title": "Kevin & Aisyah — Undangan Pernikahan",
+    "coupleShort": "Kevin & Aisyah",
+    "musicSrc": "audio/music.mp3"
+  },
+  "groom": {
+    "fullName": "Kevin Aditya Pratama",
+    "childOrder": "Putra pertama dari",
+    "parents": "Bapak Hendra Pratama & Ibu Siti Rahayu",
+    "photo": "images/groom.svg"
+  },
+  "bride": {
+    "fullName": "Aisyah Putri Maharani",
+    "childOrder": "Putri kedua dari",
+    "parents": "Bapak Ahmad Maharani & Ibu Dewi Lestari",
+    "photo": "images/bride.svg"
+  },
+  "event": {
+    "weddingDate": "2026-11-14T08:00:00+07:00",
+    "coverDateLabel": "14 . 11 . 2026",
+    "akad": {
+      "label": "Akad Nikah",
+      "date": "Sabtu, 14 November 2026",
+      "time": "08.00 – 10.00 WIB",
+      "venueName": "Masjid Al-Ikhlas",
+      "address": "Jl. Melati No. 12, Bandung, Jawa Barat",
+      "mapsUrl": "https://maps.google.com/?q=Masjid+Al+Ikhlas+Bandung"
+    },
+    "resepsi": {
+      "label": "Resepsi",
+      "date": "Sabtu, 14 November 2026",
+      "time": "11.00 – 14.00 WIB",
+      "venueName": "Gedung Serbaguna Graha Melati",
+      "address": "Jl. Melati No. 12, Bandung, Jawa Barat",
+      "mapsUrl": "https://maps.google.com/?q=Graha+Melati+Bandung"
+    }
+  },
+  "gallery": [
+    "images/gallery-1.svg",
+    "images/gallery-2.svg",
+    "images/gallery-3.svg",
+    "images/gallery-4.svg",
+    "images/gallery-5.svg",
+    "images/gallery-6.svg"
+  ],
+  "gift": {
+    "note": "Doa restu Anda merupakan karunia yang sangat berarti bagi kami. Namun jika ingin memberi tanda kasih, kami sediakan amplop digital berikut.",
+    "banks": [
+      { "bankName": "BCA", "accountNumber": "1234567890", "accountName": "Kevin Aditya Pratama" },
+      { "bankName": "Mandiri", "accountNumber": "0987654321", "accountName": "Aisyah Putri Maharani" }
+    ],
+    "qrisImage": "images/qris-placeholder.svg"
+  },
+  "wishes": [
+    { "name": "Dimas Prasetyo", "attendance": "Hadir", "message": "Selamat menempuh hidup baru! Semoga sakinah, mawaddah, warahmah selalu." },
+    { "name": "Putri Anggraini", "attendance": "Hadir", "message": "Bahagia terus ya kalian berdua, sehat selalu sampai kakek nenek." },
+    { "name": "Andi Wijaya", "attendance": "Tidak Hadir", "message": "Mohon maaf tidak bisa hadir, tapi doa terbaik selalu menyertai kalian berdua." }
+  ]
+}
