@@ -277,7 +277,7 @@
       e.preventDefault();
       var payload = {
         name: form.elements.rsvpName.value.trim(),
-        guests: form.elements.rsvpGuests.value,
+        guests: form.elements.rsvpGuests ? form.elements.rsvpGuests.value : undefined,
         attendance: form.elements.rsvpAttendance.value,
       };
       console.log("[RSVP submitted]", payload);

@@ -36,14 +36,6 @@
       "mapsUrl": "https://maps.app.goo.gl/BMDCQ9hyKmEQxAAi8"
     }
   },
-  "gallery": [
-    "images/gallery-1.svg",
-    "images/gallery-2.svg",
-    "images/gallery-3.svg",
-    "images/gallery-4.svg",
-    "images/gallery-5.svg",
-    "images/gallery-6.svg"
-  ],
   "gift": {
     "note": "Doa restu Anda merupakan karunia yang sangat berarti bagi kami. Namun jika ingin memberi tanda kasih, kami sediakan amplop digital berikut.",
     "banks": [
@@ -51,6 +43,5 @@
       { "bankName": "Bank", "accountNumber": "0000000000", "accountName": "Sahla Binti Kutni" }
     ],
     "qrisImage": "images/qris-placeholder.svg"
-  },
-  "wishes": []
+  }
 }
