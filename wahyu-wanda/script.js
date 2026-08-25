@@ -40,6 +40,7 @@
   }
 
   document.getElementById("displayGuestName").textContent = getGuestName();
+  document.getElementById("displayGuestNameHero").textContent = getGuestName();
 
   /* Event details into the DOM -------------------------------------------- */
 
@@ -102,6 +103,16 @@
       });
     }, 5100);
   });
+
+  /* Scroll down hint (welcome portal) --------------------------------------- */
+
+  var btnScrollDown = document.getElementById("btnScrollDown");
+  if (btnScrollDown) {
+    btnScrollDown.addEventListener("click", function () {
+      var next = document.getElementById("ayat-suci");
+      if (next) next.scrollIntoView({ behavior: "smooth", block: "start" });
+    });
+  }
 
   /* Countdown ----------------------------------------------------------------- */
 

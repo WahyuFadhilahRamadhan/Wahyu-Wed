@@ -90,22 +90,51 @@
   <!-- Main content -->
   <main class="main-content">
 
-    <!-- 1. Hero / welcome -->
+    <!-- 1. Hero / welcome (post-curtain "Opening Welcome" arch portal) -->
     <section class="hero-section" id="beranda">
-      <div class="hero-card deco-card reveal">
-        <span class="deco-corner deco-corner--bl"></span>
-        <span class="deco-corner deco-corner--br"></span>
+      <div class="welcome-portal reveal">
+        <div class="welcome-portal__glow-top" aria-hidden="true"></div>
+        <div class="welcome-portal__glow-bottom" aria-hidden="true"></div>
 
-        <p class="hero-card__label">Undangan Pernikahan</p>
-        <p class="hero-card__sublabel">Menuju Hari Bahagia Kami</p>
+        <div class="welcome-portal__frame">
+          <div class="welcome-portal__mountains" aria-hidden="true"></div>
 
-        <div class="hero-card__photo">
-          <img src="images/couple-hero.svg" alt="Wahyu & Wanda" />
+          <span class="welcome-portal__branch welcome-portal__branch--tl"><img src="images/ornaments/botanical-branch.svg" alt="" /></span>
+          <span class="welcome-portal__branch welcome-portal__branch--tr"><img src="images/ornaments/botanical-branch.svg" alt="" /></span>
+          <span class="welcome-portal__branch welcome-portal__branch--bl"><img src="images/ornaments/botanical-branch.svg" alt="" /></span>
+          <span class="welcome-portal__branch welcome-portal__branch--br"><img src="images/ornaments/botanical-branch.svg" alt="" /></span>
+
+          <div class="welcome-portal__gonjong" aria-hidden="true"></div>
+
+          <div class="welcome-portal__content">
+            <span class="welcome-portal__badge">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3l1.5 4.5L18 9l-4.5 1.5L12 15l-1.5-4.5L6 9l4.5-1.5z"/></svg>
+              The Wedding Of
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3l1.5 4.5L18 9l-4.5 1.5L12 15l-1.5-4.5L6 9l4.5-1.5z"/></svg>
+            </span>
+
+            <h1 class="welcome-portal__names">Wahyu<span>&amp;</span>Wanda</h1>
+
+            <p class="welcome-portal__date">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M3 10h18M8 2v4M16 2v4"/></svg>
+              <span id="heroDate">Tanggal menyusul</span> &bull; <span id="heroVenue">Lokasi menyusul</span>
+            </p>
+
+            <div class="welcome-portal__guest">
+              <p class="welcome-portal__guest-label">Kepada Yth. Bapak/Ibu/Saudara/i:</p>
+              <p class="welcome-portal__guest-name" id="displayGuestNameHero">Tamu Undangan</p>
+            </div>
+
+            <button type="button" class="welcome-portal__scroll" id="btnScrollDown">
+              <span class="welcome-portal__scroll-label">Gulir ke Bawah</span>
+              <span class="welcome-portal__scroll-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+              </span>
+            </button>
+          </div>
+
+          <div class="welcome-portal__foundation" aria-hidden="true"></div>
         </div>
-
-        <h2 class="hero-card__names">Wahyu &amp; Wanda</h2>
-        <p class="hero-card__date" id="heroDate">Tanggal menyusul</p>
-        <p class="hero-card__venue" id="heroVenue">Lokasi menyusul</p>
       </div>
     </section>
 

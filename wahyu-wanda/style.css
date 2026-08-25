@@ -518,88 +518,207 @@ img {
   padding: 3rem 0;
 }
 
-.hero-card {
+/* Post-curtain "Opening Welcome" arch portal (BotanicalRumahGadangPortal) --------------- */
+
+.welcome-portal {
   position: relative;
   width: 100%;
-  max-width: 34rem;
-  padding: clamp(2rem, 6vw, 3rem);
-  border-radius: 28px;
-  background: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(10px);
-  border: 2px solid rgba(212, 175, 55, 0.7);
-  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
-  text-align: center;
-  overflow: hidden;
+  max-width: 32rem;
 }
 
-.hero-card__corner {
+.welcome-portal__glow-top,
+.welcome-portal__glow-bottom {
   position: absolute;
-  color: rgba(212, 175, 55, 0.4);
-  font-size: 1.25rem;
-  font-family: var(--font-cinzel);
-}
-.hero-card__corner--tl { top: 1rem; left: 1rem; }
-.hero-card__corner--tr { top: 1rem; right: 1rem; }
-.hero-card__corner--bl { bottom: 1rem; left: 1rem; }
-.hero-card__corner--br { bottom: 1rem; right: 1rem; }
-
-.hero-card__label {
-  font-family: var(--font-cinzel);
-  font-size: 0.85rem;
-  font-weight: 700;
-  letter-spacing: 0.3em;
-  text-transform: uppercase;
-  color: var(--green);
-  margin: 0 0 0.3em;
-}
-
-.hero-card__sublabel {
-  font-size: 0.75rem;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  color: var(--gold-dark);
-  margin: 0 0 1.5rem;
-}
-
-.hero-card__photo {
-  width: clamp(160px, 40vw, 210px);
-  height: clamp(160px, 40vw, 210px);
-  margin: 0 auto 1.5rem;
+  left: 50%;
+  width: 16rem;
+  height: 16rem;
+  transform: translateX(-50%);
   border-radius: 50%;
-  padding: 6px;
-  background: linear-gradient(135deg, var(--gold), var(--gold-light), var(--green));
-  box-shadow: 0 10px 30px rgba(15, 51, 37, 0.2);
+  filter: blur(60px);
+  pointer-events: none;
+  z-index: 0;
+}
+.welcome-portal__glow-top { top: -1.5rem; background: rgba(252, 211, 77, 0.3); }
+.welcome-portal__glow-bottom { bottom: -1.5rem; background: rgba(16, 90, 66, 0.2); }
+
+.welcome-portal__frame {
+  position: relative;
+  z-index: 1;
+  border-radius: 140px 140px 24px 24px;
+  background: linear-gradient(180deg, #fefcf8, #faf5eb, #f4eee2);
+  border: 2px solid rgba(212, 175, 55, 0.6);
+  box-shadow: 0 20px 50px rgba(40, 65, 55, 0.25);
+  padding: clamp(1.5rem, 6vw, 2rem);
+  overflow: hidden;
+  text-align: center;
 }
 
-.hero-card__photo img {
+.welcome-portal__mountains {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 11rem;
+  background: url("images/ornaments/mountain-silhouette.svg") no-repeat top center / cover;
+  opacity: 0.4;
+  pointer-events: none;
+}
+
+.welcome-portal__gonjong {
+  position: relative;
+  z-index: 1;
   width: 100%;
-  height: 100%;
-  border-radius: 50%;
-  object-fit: cover;
+  height: clamp(48px, 12vw, 62px);
+  margin: -0.5rem auto 0.5rem;
+  background: url("images/ornaments/gonjong-header.svg") no-repeat center / 100% 100%;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.15));
 }
 
-.hero-card__names {
+.welcome-portal__branch {
+  position: absolute;
+  width: 4rem;
+  height: 4rem;
+  opacity: 0.85;
+  pointer-events: none;
+  z-index: 1;
+}
+.welcome-portal__branch img { width: 100%; height: 100%; }
+.welcome-portal__branch--tl { top: 0.5rem; left: 0.5rem; }
+.welcome-portal__branch--tr { top: 0.5rem; right: 0.5rem; transform: scaleX(-1); }
+.welcome-portal__branch--bl { bottom: 0.25rem; left: 0.5rem; width: 3.5rem; height: 3.5rem; opacity: 0.75; transform: rotate(90deg); }
+.welcome-portal__branch--br { bottom: 0.25rem; right: 0.5rem; width: 3.5rem; height: 3.5rem; opacity: 0.75; transform: rotate(-90deg) scaleX(-1); }
+
+.welcome-portal__content {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.welcome-portal__badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.4rem 1.1rem;
+  border-radius: 999px;
+  background: linear-gradient(90deg, #2a5043, #1f3d33, #2a5043);
+  border: 1px solid rgba(252, 211, 77, 0.5);
+  color: #fcd34d;
+  font-family: var(--font-cinzel);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+}
+.welcome-portal__badge svg { width: 14px; height: 14px; }
+
+.welcome-portal__names {
+  font-family: var(--font-cinzel);
+  font-size: clamp(2rem, 9vw, 2.8rem);
+  font-weight: 800;
+  color: #173329;
+  letter-spacing: 0.03em;
+  line-height: 1.15;
+  text-shadow: 0 1px 1px rgba(255, 255, 255, 0.4);
+}
+.welcome-portal__names span {
+  display: block;
+  margin: 0.15em 0;
   font-family: var(--font-script);
-  font-size: clamp(2rem, 6vw, 2.8rem);
-  font-weight: 400;
+  font-size: 0.65em;
   color: var(--gold-dark);
-  margin: 0 0 0.8rem;
+  text-transform: lowercase;
+  letter-spacing: normal;
 }
 
-.hero-card__date {
+.welcome-portal__date {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.45rem 1.1rem;
+  border-radius: 999px;
+  background: rgba(212, 175, 55, 0.1);
+  border: 1px solid rgba(212, 175, 55, 0.35);
+  color: #244b3c;
+  font-family: var(--font-cinzel);
+  font-size: 0.78rem;
+  font-weight: 600;
+}
+.welcome-portal__date svg { width: 15px; height: 15px; color: var(--gold-dark); }
+
+.welcome-portal__guest {
+  padding-top: 0.4rem;
+  text-align: center;
+}
+
+.welcome-portal__guest-label {
+  font-size: 0.68rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--text-light);
+  margin: 0 0 0.35em;
+}
+
+.welcome-portal__guest-name {
+  display: inline-block;
+  padding: 0.35rem 0.9rem;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.7);
+  border: 1px solid rgba(212, 175, 55, 0.3);
   font-family: var(--font-cinzel);
   font-weight: 700;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  color: var(--green);
-  font-size: 0.9rem;
-  margin: 0;
+  font-size: 0.95rem;
+  color: #142d24;
 }
 
-.hero-card__venue {
-  font-size: 0.78rem;
-  color: var(--text-light);
-  margin: 0.3em 0 0;
+.welcome-portal__scroll {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.4rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #3b6352;
+  padding-top: 0.5rem;
+}
+
+.welcome-portal__scroll-label {
+  font-family: var(--font-cinzel);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+.welcome-portal__scroll-icon {
+  width: 1.75rem;
+  height: 1.75rem;
+  border-radius: 50%;
+  background: rgba(212, 175, 55, 0.15);
+  border: 1px solid rgba(212, 175, 55, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: welcomeScrollBounce 1.8s ease-in-out infinite;
+}
+.welcome-portal__scroll-icon svg { width: 14px; height: 14px; color: var(--gold-dark); }
+
+@keyframes welcomeScrollBounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(4px); }
+}
+
+.welcome-portal__foundation {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  height: clamp(20px, 5vw, 28px);
+  margin-top: 1rem;
+  opacity: 0.75;
+  background: url("images/ornaments/gonjong-footer.svg") no-repeat center / 100% 100%;
 }
 
 /* Ayat card ------------------------------------------------------------------- */
