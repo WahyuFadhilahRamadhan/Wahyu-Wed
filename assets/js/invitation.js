@@ -27,7 +27,7 @@
   }
 
   function fetchData(path) {
-    return fetch(path).then(function (res) {
+    return fetch(path, { cache: "no-store" }).then(function (res) {
       if (!res.ok) throw new Error("Gagal memuat data undangan: " + res.status);
       return res.json();
     });
