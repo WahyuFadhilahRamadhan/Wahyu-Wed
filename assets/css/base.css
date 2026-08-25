@@ -150,8 +150,8 @@ ul, ol {
 
 .reveal {
   opacity: 0;
-  transform: translateY(28px);
-  transition: opacity var(--transition-slow), transform var(--transition-slow);
+  transform: translateY(42px);
+  transition: opacity 650ms ease-out, transform 650ms ease-out;
 }
 
 .reveal.is-visible {
