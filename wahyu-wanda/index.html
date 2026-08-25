@@ -51,12 +51,12 @@
     <div class="light-beam" id="lightBeam"></div>
 
     <div class="cover-card-wrap" id="coverCardWrap">
-      <div class="cover-card">
+      <div class="cover-card deco-card">
         <div class="cover-card__inner-border"></div>
-        <span class="cover-card__corner cover-card__corner--tl">&#10070;</span>
-        <span class="cover-card__corner cover-card__corner--tr">&#10070;</span>
-        <span class="cover-card__corner cover-card__corner--bl">&#10070;</span>
-        <span class="cover-card__corner cover-card__corner--br">&#10070;</span>
+        <span class="deco-corner deco-corner--bl"></span>
+        <span class="deco-corner deco-corner--br"></span>
+
+        <div class="cover-card__gonjong-top" aria-hidden="true"></div>
 
         <div class="cover-card__crest">
           <div class="cover-card__crest-inner">
@@ -74,11 +74,15 @@
           <p class="cover-card__guest-name" id="displayGuestName">Tamu Undangan</p>
         </div>
 
+        <div class="cover-card__pucuak" aria-hidden="true"></div>
+
         <button type="button" class="btn-open" id="btnOpenInvitation">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>
           <span>Buka Undangan</span>
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3l1.5 4.5L18 9l-4.5 1.5L12 15l-1.5-4.5L6 9l4.5-1.5z"/></svg>
         </button>
+
+        <div class="cover-card__gonjong-bottom" aria-hidden="true"></div>
       </div>
     </div>
   </div>
@@ -87,12 +91,10 @@
   <main class="main-content">
 
     <!-- 1. Hero / welcome -->
-    <section class="hero-section">
-      <div class="hero-card reveal">
-        <span class="hero-card__corner hero-card__corner--tl">&#10070;</span>
-        <span class="hero-card__corner hero-card__corner--tr">&#10070;</span>
-        <span class="hero-card__corner hero-card__corner--bl">&#10070;</span>
-        <span class="hero-card__corner hero-card__corner--br">&#10070;</span>
+    <section class="hero-section" id="beranda">
+      <div class="hero-card deco-card reveal">
+        <span class="deco-corner deco-corner--bl"></span>
+        <span class="deco-corner deco-corner--br"></span>
 
         <p class="hero-card__label">Undangan Pernikahan</p>
         <p class="hero-card__sublabel">Menuju Hari Bahagia Kami</p>
@@ -108,8 +110,10 @@
     </section>
 
     <!-- 2. Ayat Suci -->
-    <section class="section">
-      <div class="ayat-card reveal">
+    <section class="section" id="ayat-suci">
+      <div class="ayat-card deco-card reveal">
+        <span class="deco-corner deco-corner--bl"></span>
+        <span class="deco-corner deco-corner--br"></span>
         <div class="ayat-card__icon">
           <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 19.5A2.5 2.5 0 016.5 17H20V4H6.5A2.5 2.5 0 004 6.5v13z"/><path d="M4 19.5V6.5"/></svg>
         </div>
@@ -120,16 +124,24 @@
     </section>
 
     <!-- 3. Kedua Mempelai -->
-    <section class="section">
+    <section class="section" id="mempelai">
       <div class="section-header reveal">
         <p class="section-header__eyebrow">Kedua Mempelai</p>
         <h2 class="section-header__title">Mempelai Pria &amp; Wanita</h2>
-        <div class="section-header__rule"></div>
+        <div class="section-divider">
+          <span class="section-divider__line"></span>
+          <span class="section-divider__motif"></span>
+          <span class="section-divider__line section-divider__line--right"></span>
+        </div>
       </div>
 
       <div class="couple-grid">
-        <div class="couple-card reveal">
-          <div class="couple-card__photo"><img src="images/groom.svg" alt="Wahyu" /></div>
+        <div class="couple-card deco-card reveal">
+          <span class="deco-corner deco-corner--bl"></span>
+          <span class="deco-corner deco-corner--br"></span>
+          <div class="couple-card__photo">
+            <img src="images/groom.svg" alt="Wahyu" />
+          </div>
           <h3 class="couple-card__name">Wahyu</h3>
           <p class="couple-card__role">Pengantin Pria</p>
           <p class="couple-card__parents">
@@ -138,8 +150,12 @@
           </p>
         </div>
 
-        <div class="couple-card reveal">
-          <div class="couple-card__photo"><img src="images/bride.svg" alt="Wanda" /></div>
+        <div class="couple-card deco-card reveal">
+          <span class="deco-corner deco-corner--bl"></span>
+          <span class="deco-corner deco-corner--br"></span>
+          <div class="couple-card__photo">
+            <img src="images/bride.svg" alt="Wanda" />
+          </div>
           <h3 class="couple-card__name">Wanda</h3>
           <p class="couple-card__role">Pengantin Wanita</p>
           <p class="couple-card__parents">
@@ -151,8 +167,10 @@
     </section>
 
     <!-- 4. Countdown -->
-    <section class="section">
-      <div class="countdown-card reveal">
+    <section class="section" id="countdown">
+      <div class="countdown-card deco-card reveal">
+        <span class="deco-corner deco-corner--bl"></span>
+        <span class="deco-corner deco-corner--br"></span>
         <div class="section-header">
           <p class="section-header__eyebrow">Menghitung Hari</p>
           <h2 class="section-header__title">Menuju Hari Bahagia</h2>
@@ -185,15 +203,21 @@
     </section>
 
     <!-- 5. Waktu & Tempat -->
-    <section class="section">
+    <section class="section" id="acara">
       <div class="section-header reveal">
         <p class="section-header__eyebrow">Agenda Acara</p>
         <h2 class="section-header__title">Waktu &amp; Tempat</h2>
-        <div class="section-header__rule"></div>
+        <div class="section-divider">
+          <span class="section-divider__line"></span>
+          <span class="section-divider__motif"></span>
+          <span class="section-divider__line section-divider__line--right"></span>
+        </div>
       </div>
 
       <div class="event-grid">
-        <div class="event-card reveal">
+        <div class="event-card deco-card reveal">
+          <span class="deco-corner deco-corner--bl"></span>
+          <span class="deco-corner deco-corner--br"></span>
           <div>
             <div class="event-card__icon">
               <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 21s-7-4.5-9.5-9A5.5 5.5 0 0112 5a5.5 5.5 0 019.5 7c-2.5 4.5-9.5 9-9.5 9z"/></svg>
@@ -213,7 +237,9 @@
           </a>
         </div>
 
-        <div class="event-card reveal">
+        <div class="event-card deco-card reveal">
+          <span class="deco-corner deco-corner--bl"></span>
+          <span class="deco-corner deco-corner--br"></span>
           <div>
             <div class="event-card__icon">
               <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3l1.5 4.5L18 9l-4.5 1.5L12 15l-1.5-4.5L6 9l4.5-1.5z"/></svg>
@@ -233,42 +259,100 @@
           </a>
         </div>
       </div>
+
+      <div class="location-card reveal">
+        <div class="location-card__tabs">
+          <button type="button" class="location-card__tab is-active" data-map-tab="akad">Peta Akad</button>
+          <button type="button" class="location-card__tab" data-map-tab="resepsi">Peta Resepsi</button>
+        </div>
+        <div class="location-card__map">
+          <iframe id="locationMapFrame" src="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Peta lokasi acara"></iframe>
+        </div>
+        <p class="location-card__address" id="locationMapAddress">Alamat menyusul</p>
+      </div>
     </section>
 
     <!-- 6. Kisah Cinta -->
-    <section class="section">
+    <section class="section" id="cerita">
       <div class="section-header reveal">
         <p class="section-header__eyebrow">Perjalanan Cinta</p>
         <h2 class="section-header__title">Love Story</h2>
-        <div class="section-header__rule"></div>
+        <div class="section-divider">
+          <span class="section-divider__line"></span>
+          <span class="section-divider__motif"></span>
+          <span class="section-divider__line section-divider__line--right"></span>
+        </div>
       </div>
 
-      <div class="love-story">
-        <div class="love-story__item reveal">
-          <img class="love-story__photo" src="images/love-1.svg" alt="Pertemuan Pertama" />
-          <div>
-            <span class="love-story__meta">Tanggal menyusul &bull; Lokasi menyusul</span>
-            <h4 class="love-story__title">Pertemuan Pertama</h4>
-            <p class="love-story__desc">Ceritakan bagaimana kalian pertama kali bertemu di sini.</p>
-          </div>
+      <div class="love-story-v2" id="loveStory">
+        <div class="love-story-v2__rail">
+          <div class="love-story-v2__rail-fill" id="loveStoryRailFill"></div>
         </div>
-        <div class="love-story__item reveal">
-          <img class="love-story__photo" src="images/love-2.svg" alt="Hari Lamaran" />
-          <div>
-            <span class="love-story__meta">Tanggal menyusul &bull; Lokasi menyusul</span>
-            <h4 class="love-story__title">Hari Lamaran</h4>
-            <p class="love-story__desc">Ceritakan momen lamaran atau keputusan untuk melangkah lebih serius.</p>
+
+        <div class="love-story-v2__item reveal">
+          <span class="love-story-v2__node">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 21s-7-4.5-9.5-9A5.5 5.5 0 0112 5a5.5 5.5 0 019.5 7c-2.5 4.5-9.5 9-9.5 9z"/></svg>
+          </span>
+          <div class="love-story-v2__photo-wrap">
+            <img src="images/love-1.svg" alt="Pertemuan Pertama" />
+            <span class="love-story-v2__tag">Pertemuan Pertama</span>
+            <span class="love-story-v2__year">Menyusul</span>
           </div>
+          <div class="love-story-v2__meta">
+            <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M3 10h18M8 2v4M16 2v4"/></svg>Tanggal menyusul</span>
+            <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 6-9 12-9 12s-9-6-9-12a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>Lokasi menyusul</span>
+          </div>
+          <h4 class="love-story__title">Pertemuan Pertama</h4>
+          <p class="love-story__desc">Ceritakan bagaimana kalian pertama kali bertemu di sini.</p>
+        </div>
+
+        <div class="love-story-v2__item reveal">
+          <span class="love-story-v2__node">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 21s-7-4.5-9.5-9A5.5 5.5 0 0112 5a5.5 5.5 0 019.5 7c-2.5 4.5-9.5 9-9.5 9z"/></svg>
+          </span>
+          <div class="love-story-v2__photo-wrap">
+            <img src="images/love-2.svg" alt="Hari Lamaran" />
+            <span class="love-story-v2__tag">Hari Lamaran</span>
+            <span class="love-story-v2__year">Menyusul</span>
+          </div>
+          <div class="love-story-v2__meta">
+            <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M3 10h18M8 2v4M16 2v4"/></svg>Tanggal menyusul</span>
+            <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 6-9 12-9 12s-9-6-9-12a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>Lokasi menyusul</span>
+          </div>
+          <h4 class="love-story__title">Hari Lamaran</h4>
+          <p class="love-story__desc">Ceritakan momen lamaran atau keputusan untuk melangkah lebih serius.</p>
+        </div>
+
+        <div class="love-story-v2__item reveal">
+          <span class="love-story-v2__node love-story-v2__node--final">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3l1.5 4.5L18 9l-4.5 1.5L12 15l-1.5-4.5L6 9l4.5-1.5z"/></svg>
+          </span>
+          <div class="love-story-v2__photo-wrap">
+            <img src="images/couple-hero.svg" alt="Menuju Pernikahan" />
+            <span class="love-story-v2__tag">Menuju Pernikahan</span>
+            <span class="love-story-v2__year">2027</span>
+          </div>
+          <div class="love-story-v2__meta">
+            <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M3 10h18M8 2v4M16 2v4"/></svg>Tanggal menyusul</span>
+            <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 6-9 12-9 12s-9-6-9-12a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>Lokasi menyusul</span>
+          </div>
+          <h4 class="love-story__title">Menuju Ikatan Suci Pernikahan</h4>
+          <p class="love-story__desc">Doakan agar perjalanan kami menuju hari bahagia berjalan lancar.</p>
+          <p class="love-story-v2__final-note">Menuju Ikatan Suci Pernikahan &bull; Tanggal menyusul</p>
         </div>
       </div>
     </section>
 
     <!-- 7. Galeri -->
-    <section class="section">
+    <section class="section" id="galeri">
       <div class="section-header reveal">
         <p class="section-header__eyebrow">Dokumentasi</p>
         <h2 class="section-header__title">Galeri Foto</h2>
-        <div class="section-header__rule"></div>
+        <div class="section-divider">
+          <span class="section-divider__line"></span>
+          <span class="section-divider__motif"></span>
+          <span class="section-divider__line section-divider__line--right"></span>
+        </div>
       </div>
 
       <div class="gallery-grid reveal" id="galleryGrid">
@@ -282,11 +366,15 @@
     </section>
 
     <!-- 8. Amplop Digital -->
-    <section class="section">
+    <section class="section" id="kado">
       <div class="section-header reveal">
         <p class="section-header__eyebrow">Tanda Kasih</p>
         <h2 class="section-header__title">Amplop Digital &amp; Kado</h2>
-        <div class="section-header__rule"></div>
+        <div class="section-divider">
+          <span class="section-divider__line"></span>
+          <span class="section-divider__motif"></span>
+          <span class="section-divider__line section-divider__line--right"></span>
+        </div>
       </div>
       <p class="gift-intro reveal">Doa restu Anda adalah hadiah terindah. Bagi yang ingin memberikan tanda kasih secara digital, dapat melalui rekening berikut:</p>
 
@@ -320,14 +408,20 @@
     </section>
 
     <!-- 9. RSVP & Buku Tamu -->
-    <section class="section">
+    <section class="section" id="rsvp">
       <div class="section-header reveal">
         <p class="section-header__eyebrow">Buku Tamu</p>
         <h2 class="section-header__title">Konfirmasi &amp; Ucapan Doa</h2>
-        <div class="section-header__rule"></div>
+        <div class="section-divider">
+          <span class="section-divider__line"></span>
+          <span class="section-divider__motif"></span>
+          <span class="section-divider__line section-divider__line--right"></span>
+        </div>
       </div>
 
-      <div class="rsvp-card reveal">
+      <div class="rsvp-card deco-card reveal">
+        <span class="deco-corner deco-corner--bl"></span>
+        <span class="deco-corner deco-corner--br"></span>
         <form id="rsvpForm">
           <div class="form-field">
             <label for="rsvpName">Nama Lengkap</label>
@@ -351,7 +445,7 @@
         </form>
       </div>
 
-      <div class="comments-list" id="commentsList"></div>
+      <div class="comments-list" id="commentsList" data-anchor="buku-tamu"></div>
     </section>
 
     <!-- 10. Footer -->
@@ -367,6 +461,39 @@
   <div class="lightbox" id="lightboxModal">
     <img id="lightboxImg" src="" alt="Pratinjau galeri" />
   </div>
+
+  <!-- Floating section nav -->
+  <nav class="floating-nav" id="floatingNav" aria-label="Navigasi bagian undangan">
+    <div class="floating-nav__bar">
+      <button type="button" class="floating-nav__btn" data-nav-target="beranda" aria-label="Beranda">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 11l9-8 9 8"/><path d="M5 10v10h14V10"/></svg>
+      </button>
+      <button type="button" class="floating-nav__btn" data-nav-target="ayat-suci" aria-label="Ayat Suci">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 016.5 17H20V4H6.5A2.5 2.5 0 004 6.5v13z"/><path d="M4 19.5V6.5"/></svg>
+      </button>
+      <button type="button" class="floating-nav__btn" data-nav-target="countdown" aria-label="Hitung Mundur">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="13" r="8"/><path d="M12 9v4l3 2M9 2h6M17 5l1.5-1.5"/></svg>
+      </button>
+      <button type="button" class="floating-nav__btn" data-nav-target="mempelai" aria-label="Mempelai">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="8" cy="8" r="3.5"/><circle cx="16" cy="8" r="3.5"/><path d="M2 21c0-3.3 2.7-6 6-6s6 2.7 6 6M10 21c0-3.3 2.7-6 6-6s6 2.7 6 6"/></svg>
+      </button>
+      <button type="button" class="floating-nav__btn" data-nav-target="acara" aria-label="Acara">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M3 10h18M8 2v4M16 2v4"/></svg>
+      </button>
+      <button type="button" class="floating-nav__btn" data-nav-target="cerita" aria-label="Cerita Cinta">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.8 4.6a5.5 5.5 0 00-7.8 0L12 5.6l-1-1a5.5 5.5 0 00-7.8 7.8l1 1L12 21l7.8-7.6 1-1a5.5 5.5 0 000-7.8z"/></svg>
+      </button>
+      <button type="button" class="floating-nav__btn" data-nav-target="galeri" aria-label="Galeri">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+      </button>
+      <button type="button" class="floating-nav__btn" data-nav-target="rsvp" aria-label="RSVP">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4z"/></svg>
+      </button>
+      <button type="button" class="floating-nav__btn" data-nav-target="kado" aria-label="Kado">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="8" width="18" height="13" rx="1"/><path d="M12 8v13M3 8h18M12 8c-1.5-4-6-4-6-1.5S9 8 12 8zM12 8c1.5-4 6-4 6-1.5S15 8 12 8z"/></svg>
+      </button>
+    </div>
+  </nav>
 
   <script src="../assets/js/animations.js"></script>
   <script src="script.js"></script>

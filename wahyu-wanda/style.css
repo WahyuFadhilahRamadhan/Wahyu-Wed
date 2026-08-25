@@ -1,10 +1,11 @@
 /* ==========================================================================
    Wahyu & Wanda — standalone stylesheet
-   Adapted from WahyuFadhilahRamadhan/Template_Wed's vanilla-version/index.html
-   (own repo/design). Reimplemented as plain compiled CSS instead of the
-   Tailwind CDN + Lucide CDN runtime the source file used, so this page
-   never depends on an external script loading correctly to look right.
-   No cultural-specific (Minangkabau) wording — palette/typography only.
+   Adapted from WahyuFadhilahRamadhan/Template_Wed's actual React app (own
+   repo/design) — gonjong roof silhouettes, gold corner filigree, and the
+   other decorative motifs are kept (per request); explicit "Minangkabau" /
+   "Walimatul 'Ursy" wording is dropped. Reimplemented as plain compiled CSS
+   + inline SVG instead of the Tailwind CDN + Lucide CDN runtime the source
+   used, so this page never depends on an external script to look right.
    ========================================================================== */
 
 :root {
@@ -1331,4 +1332,350 @@ img {
 .reveal.is-visible {
   opacity: 1;
   transform: translateY(0);
+}
+
+/* Decorative gold corner filigree (applied to major cards) --------------------------- */
+
+.deco-card {
+  position: relative;
+}
+
+.deco-card::before,
+.deco-card::after,
+.deco-card .deco-corner {
+  content: "";
+  position: absolute;
+  width: 34px;
+  height: 34px;
+  background: url("images/ornaments/corner.svg") no-repeat center / contain;
+  pointer-events: none;
+}
+
+.deco-card::before { top: 6px; left: 6px; }
+.deco-card::after { top: 6px; right: 6px; transform: scaleX(-1); }
+.deco-card .deco-corner--bl { bottom: 6px; left: 6px; transform: scaleY(-1); }
+.deco-card .deco-corner--br { bottom: 6px; right: 6px; transform: scale(-1, -1); }
+
+.deco-card__hairline {
+  position: absolute;
+  left: 48px;
+  right: 48px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.8), transparent);
+  pointer-events: none;
+}
+.deco-card__hairline--top { top: 0; }
+.deco-card__hairline--bottom { bottom: 0; }
+
+/* Section divider motif (small diamond flanked by gold lines) ------------------------ */
+
+.section-divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  max-width: 26rem;
+  margin: 0 auto 0.5rem;
+}
+
+.section-divider__line {
+  flex: 1;
+  height: 1.5px;
+  background: linear-gradient(90deg, transparent, var(--gold));
+}
+.section-divider__line--right {
+  background: linear-gradient(270deg, transparent, var(--gold));
+}
+
+.section-divider__motif {
+  width: 22px;
+  height: 22px;
+  flex-shrink: 0;
+  background: url("images/ornaments/motif-saik.svg") no-repeat center / contain;
+  filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.5));
+}
+
+/* Gonjong roof accents on the cover card ---------------------------------------------- */
+
+.cover-card__gonjong-top {
+  width: 100%;
+  height: 42px;
+  margin-bottom: 0.5rem;
+  background: url("images/ornaments/gonjong-header.svg") no-repeat center / 100% 100%;
+}
+
+.cover-card__gonjong-bottom {
+  width: 100%;
+  height: 22px;
+  margin-top: 0.75rem;
+  background: url("images/ornaments/gonjong-footer.svg") no-repeat center / 100% 100%;
+  opacity: 0.85;
+}
+
+.cover-card__pucuak {
+  width: 100%;
+  max-width: 200px;
+  height: 16px;
+  margin: 0.5rem auto;
+  background: url("images/ornaments/pucuak-rabuang.svg") no-repeat center / contain;
+  opacity: 0.85;
+}
+
+/* Wood-style photo frame (simplified, no literal wood-carving texture) --------------- */
+
+.wood-photo-frame {
+  position: relative;
+  padding: 10px;
+  border-radius: 22px;
+  background: linear-gradient(135deg, #4a3216, #2e1d0c);
+  box-shadow: inset 0 0 12px rgba(0, 0, 0, 0.6), 0 12px 30px rgba(0, 0, 0, 0.5);
+}
+
+.wood-photo-frame__inner {
+  padding: 4px;
+  border-radius: 16px;
+  background: linear-gradient(135deg, var(--gold), var(--gold-light), var(--gold-dark));
+}
+
+.wood-photo-frame img {
+  border-radius: 12px;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Love story timeline (gold progress rail) --------------------------------------------- */
+
+.love-story-v2 {
+  position: relative;
+  margin-top: 2.5rem;
+  padding-left: clamp(2rem, 6vw, 3.5rem);
+}
+
+.love-story-v2__rail {
+  position: absolute;
+  top: 8px;
+  bottom: 16px;
+  left: clamp(0.75rem, 2vw, 1.5rem);
+  width: 6px;
+  border-radius: 999px;
+  background: rgba(212, 175, 55, 0.2);
+  overflow: hidden;
+}
+
+.love-story-v2__rail-fill {
+  width: 100%;
+  height: 0%;
+  background: linear-gradient(180deg, #b38822, #e5be3d, #1b3d32);
+  box-shadow: 0 0 12px rgba(218, 165, 32, 0.8);
+  transition: height 120ms linear;
+}
+
+.love-story-v2__item {
+  position: relative;
+  margin-bottom: 2.5rem;
+}
+.love-story-v2__item:last-child {
+  margin-bottom: 0;
+}
+
+.love-story-v2__node {
+  position: absolute;
+  top: 1.5rem;
+  left: clamp(-2rem, -6vw, -3.5rem);
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: 2px solid var(--gold);
+  background: var(--green);
+  color: var(--gold-light);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+  z-index: 1;
+}
+.love-story-v2__node svg {
+  width: 15px;
+  height: 15px;
+}
+.love-story-v2__node--final {
+  background: var(--gold-dark);
+  border-color: var(--gold-light);
+}
+
+.love-story-v2__photo-wrap {
+  position: relative;
+  height: 12rem;
+  border-radius: 16px;
+  overflow: hidden;
+  margin-bottom: 1rem;
+  border: 1px solid rgba(212, 175, 55, 0.5);
+}
+.love-story-v2__photo-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.love-story-v2__tag {
+  position: absolute;
+  top: 0.7rem;
+  left: 0.7rem;
+  padding: 0.25rem 0.75rem;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.92);
+  color: var(--green);
+  font-family: var(--font-cinzel);
+  font-size: 0.65rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+.love-story-v2__year {
+  position: absolute;
+  bottom: 0.7rem;
+  right: 0.7rem;
+  padding: 0.25rem 0.75rem;
+  border-radius: 999px;
+  background: rgba(10, 31, 23, 0.9);
+  color: var(--gold-light);
+  font-family: var(--font-cinzel);
+  font-size: 0.72rem;
+  font-weight: 700;
+}
+
+.love-story-v2__meta {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 0.5rem;
+  font-family: var(--font-cinzel);
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--gold-dark);
+  margin-bottom: 0.4rem;
+}
+.love-story-v2__meta svg {
+  width: 13px;
+  height: 13px;
+  vertical-align: -2px;
+  margin-right: 0.2em;
+}
+
+.love-story-v2__final-note {
+  margin-top: 1rem;
+  padding-top: 0.85rem;
+  border-top: 1px solid rgba(212, 175, 55, 0.3);
+  text-align: center;
+  font-family: var(--font-cinzel);
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--gold-dark);
+}
+
+/* Floating bottom nav ------------------------------------------------------------------ */
+
+.floating-nav {
+  position: fixed;
+  bottom: 1rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 40;
+  width: calc(100% - 1.5rem);
+  max-width: 30rem;
+}
+
+.floating-nav__bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  gap: 0.15rem;
+  padding: 0.4rem;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.95);
+  border: 2px solid rgba(212, 175, 55, 0.8);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(8px);
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.floating-nav__bar::-webkit-scrollbar {
+  display: none;
+}
+
+.floating-nav__btn {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.1rem;
+  height: 2.1rem;
+  border-radius: 50%;
+  border: none;
+  background: transparent;
+  color: #3e6052;
+  cursor: pointer;
+  transition: background 200ms ease, color 200ms ease, transform 200ms ease;
+}
+.floating-nav__btn svg {
+  width: 16px;
+  height: 16px;
+}
+.floating-nav__btn:hover {
+  background: rgba(212, 175, 55, 0.15);
+}
+.floating-nav__btn.is-active {
+  background: linear-gradient(135deg, #1b3d32, #2b5949);
+  color: var(--gold-light);
+  transform: scale(1.12);
+}
+
+/* Location map embed --------------------------------------------------------------------- */
+
+.location-card {
+  margin-top: 1.5rem;
+}
+
+.location-card__tabs {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.location-card__tab {
+  flex: 1;
+  padding: 0.6rem 0.5rem;
+  border-radius: 999px;
+  border: 1px solid rgba(212, 175, 55, 0.4);
+  background: #fbf0c9;
+  color: var(--gold-dark);
+  font-family: var(--font-cinzel);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  cursor: pointer;
+  transition: background 200ms ease, color 200ms ease;
+}
+.location-card__tab.is-active {
+  background: var(--green);
+  color: var(--gold-light);
+}
+
+.location-card__map {
+  width: 100%;
+  height: 220px;
+  border: 1px solid rgba(212, 175, 55, 0.5);
+  border-radius: 16px;
+  overflow: hidden;
+}
+.location-card__map iframe {
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+.location-card__address {
+  font-size: 0.78rem;
+  color: var(--text-light);
+  margin-top: 0.7rem;
 }
