@@ -1,0 +1,250 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Undangan Pernikahan Revaldy & Sahla</title>
+  <meta name="description" content="Undangan pernikahan digital Revaldy & Sahla — dipersembahkan oleh Mounstory." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../assets/css/base.css" />
+  <link rel="stylesheet" href="../assets/css/invitation.css" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- Cover / opening screen -->
+  <div class="cover" id="cover">
+    <div class="cover__frame">
+      <p class="cover__eyebrow">The Wedding Of</p>
+      <h1 class="cover__names" id="coverNames">&nbsp;</h1>
+      <p class="cover__date" id="coverDate"></p>
+      <p class="cover__guest">
+        Kepada Yth.
+        <strong id="guestNamePreview"><span id="guestName">Tamu Undangan</span></strong>
+      </p>
+      <button type="button" class="btn btn-primary cover__open-btn" id="openInvitationBtn">
+        Buka Undangan
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M19 12l-7 7-7-7"/></svg>
+      </button>
+    </div>
+  </div>
+
+  <div class="invitation-shell">
+    <main class="invitation-content" id="invitationContent">
+
+      <!-- Sapaan personal -->
+      <section class="section greeting">
+        <p class="eyebrow reveal">Undangan Pernikahan</p>
+        <h2 class="greeting__names reveal reveal-delay-1" id="greetingNames" style="font-family: var(--font-serif); font-size: clamp(1.8rem, 5vw + 0.5rem, 2.6rem);">&nbsp;</h2>
+        <div class="ornament reveal reveal-delay-1"></div>
+        <p class="greeting__to reveal reveal-delay-2" style="margin-top: 1.75rem;">Kepada Yth. Bapak/Ibu/Saudara/i</p>
+        <p class="greeting__name reveal reveal-delay-2" id="guestNameDisplay">Tamu Undangan</p>
+        <p class="greeting__quote reveal reveal-delay-3">
+          "Dan di antara tanda-tanda kekuasaan-Nya ialah Dia menciptakan untukmu pasangan dari jenismu sendiri, supaya kamu cenderung dan merasa tenteram kepadanya, dan dijadikan-Nya di antaramu rasa kasih dan sayang." — QS. Ar-Rum: 21
+        </p>
+      </section>
+
+      <!-- Countdown -->
+      <section class="section">
+        <div class="section__header">
+          <p class="eyebrow reveal">Menuju Hari Bahagia</p>
+          <h2 class="section__title reveal reveal-delay-1">Countdown</h2>
+        </div>
+        <div class="countdown reveal reveal-delay-2" id="countdown">
+          <div class="countdown__item">
+            <span class="countdown__value" data-unit="days">0</span>
+            <span class="countdown__label">Hari</span>
+          </div>
+          <div class="countdown__item">
+            <span class="countdown__value" data-unit="hours">00</span>
+            <span class="countdown__label">Jam</span>
+          </div>
+          <div class="countdown__item">
+            <span class="countdown__value" data-unit="minutes">00</span>
+            <span class="countdown__label">Menit</span>
+          </div>
+          <div class="countdown__item">
+            <span class="countdown__value" data-unit="seconds">00</span>
+            <span class="countdown__label">Detik</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- Couple profiles -->
+      <section class="section">
+        <div class="section__header">
+          <p class="eyebrow reveal">Mempelai</p>
+          <h2 class="section__title reveal reveal-delay-1">Kedua Mempelai</h2>
+        </div>
+        <div class="couple-grid">
+          <div class="couple-card reveal reveal-delay-1">
+            <img class="couple-card__photo" id="groomPhoto" src="" alt="" />
+            <h3 class="couple-card__name" id="groomFullName">&nbsp;</h3>
+            <p class="couple-card__order" id="groomOrder"></p>
+            <p class="couple-card__parents" id="groomParents"></p>
+          </div>
+          <p class="couple-and reveal">&amp;</p>
+          <div class="couple-card reveal reveal-delay-2">
+            <img class="couple-card__photo" id="bridePhoto" src="" alt="" />
+            <h3 class="couple-card__name" id="brideFullName">&nbsp;</h3>
+            <p class="couple-card__order" id="brideOrder"></p>
+            <p class="couple-card__parents" id="brideParents"></p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Event details -->
+      <section class="section">
+        <div class="section__header">
+          <p class="eyebrow reveal">Waktu &amp; Tempat</p>
+          <h2 class="section__title reveal reveal-delay-1">Acara</h2>
+        </div>
+        <div class="event-grid">
+          <div class="event-card reveal reveal-delay-1" data-event="akad">
+            <p class="event-card__label"></p>
+            <p class="event-card__date"></p>
+            <p class="event-card__time"></p>
+            <p class="event-card__venue"></p>
+            <p class="event-card__address"></p>
+            <a class="btn btn-outline event-card__maps" href="#" target="_blank" rel="noopener">Buka di Google Maps</a>
+          </div>
+          <div class="event-card reveal reveal-delay-2" data-event="resepsi">
+            <p class="event-card__label"></p>
+            <p class="event-card__date"></p>
+            <p class="event-card__time"></p>
+            <p class="event-card__venue"></p>
+            <p class="event-card__address"></p>
+            <a class="btn btn-outline event-card__maps" href="#" target="_blank" rel="noopener">Buka di Google Maps</a>
+          </div>
+        </div>
+      </section>
+
+      <!-- Gallery -->
+      <section class="section">
+        <div class="section__header">
+          <p class="eyebrow reveal">Galeri</p>
+          <h2 class="section__title reveal reveal-delay-1">Momen Kami</h2>
+        </div>
+        <div class="gallery-grid" id="galleryGrid"></div>
+      </section>
+
+      <!-- RSVP -->
+      <section class="section">
+        <div class="section__header">
+          <p class="eyebrow reveal">RSVP</p>
+          <h2 class="section__title reveal reveal-delay-1">Konfirmasi Kehadiran</h2>
+          <p class="section__subtitle reveal reveal-delay-2">Mohon konfirmasi kehadiran Anda sebelum hari-H agar kami dapat mempersiapkan acara dengan baik.</p>
+        </div>
+        <form class="reveal reveal-delay-2" id="rsvpForm">
+          <div class="form-field">
+            <label for="rsvpName">Nama</label>
+            <input type="text" id="rsvpName" name="rsvpName" placeholder="Nama lengkap" required />
+          </div>
+          <div class="form-field">
+            <label for="rsvpGuests">Jumlah Tamu</label>
+            <select id="rsvpGuests" name="rsvpGuests">
+              <option value="1">1 orang</option>
+              <option value="2">2 orang</option>
+              <option value="3">3 orang</option>
+              <option value="4">4 orang</option>
+            </select>
+          </div>
+          <div class="form-field">
+            <label>Konfirmasi Kehadiran</label>
+            <div class="radio-group">
+              <label class="radio-option">
+                <input type="radio" name="rsvpAttendance" value="Hadir" checked />
+                <span>Hadir</span>
+              </label>
+              <label class="radio-option">
+                <input type="radio" name="rsvpAttendance" value="Tidak Hadir" />
+                <span>Tidak Hadir</span>
+              </label>
+            </div>
+          </div>
+          <button type="submit" class="btn btn-primary btn-block">Kirim Konfirmasi</button>
+          <p class="form-note" id="rsvpNote"></p>
+        </form>
+      </section>
+
+      <!-- Digital gift / amplop -->
+      <section class="section">
+        <div class="section__header">
+          <p class="eyebrow reveal">Amplop Digital</p>
+          <h2 class="section__title reveal reveal-delay-1">Tanda Kasih</h2>
+        </div>
+        <p class="gift-intro reveal reveal-delay-1" id="giftNote"></p>
+        <div class="reveal reveal-delay-2" id="banksList"></div>
+        <div class="qris-card reveal reveal-delay-3" id="qrisCard" style="display:none;">
+          <img id="qrisImage" src="" alt="QRIS" />
+          <p>Scan kode QRIS di atas menggunakan aplikasi e-wallet atau m-banking favoritmu.</p>
+        </div>
+      </section>
+
+      <!-- Wishes & prayers -->
+      <section class="section">
+        <div class="section__header">
+          <p class="eyebrow reveal">Ucapan &amp; Doa</p>
+          <h2 class="section__title reveal reveal-delay-1">Kirim Ucapan</h2>
+        </div>
+        <ul class="wishes-list reveal reveal-delay-1" id="wishesList"></ul>
+        <form class="reveal reveal-delay-2" id="wishesForm">
+          <div class="form-field">
+            <label for="wishName">Nama</label>
+            <input type="text" id="wishName" name="wishName" placeholder="Nama kamu" />
+          </div>
+          <div class="form-field">
+            <label>Kehadiran</label>
+            <div class="radio-group">
+              <label class="radio-option">
+                <input type="radio" name="wishAttendance" value="Hadir" checked />
+                <span>Hadir</span>
+              </label>
+              <label class="radio-option">
+                <input type="radio" name="wishAttendance" value="Tidak Hadir" />
+                <span>Tidak Hadir</span>
+              </label>
+            </div>
+          </div>
+          <div class="form-field">
+            <label for="wishMessage">Ucapan &amp; Doa</label>
+            <textarea id="wishMessage" name="wishMessage" placeholder="Tuliskan ucapan dan doa terbaikmu..." required></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary btn-block">Kirim Ucapan</button>
+        </form>
+      </section>
+
+      <!-- Footer -->
+      <footer class="invitation-footer">
+        <p class="invitation-footer__quote reveal">Terima kasih atas doa dan restu yang telah diberikan.</p>
+        <p class="reveal reveal-delay-1" id="footerNames">&nbsp;</p>
+        <p class="reveal reveal-delay-2" style="margin-top: 1.5rem;">Dipersembahkan oleh <a href="https://mounstory.com" style="color: var(--color-primary); text-decoration:none;">Mounstory</a></p>
+      </footer>
+
+    </main>
+  </div>
+
+  <!-- Floating music toggle -->
+  <button type="button" class="music-toggle" id="musicToggle" aria-label="Putar / jeda musik">
+    <svg class="music-toggle__disc" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+      <circle cx="12" cy="12" r="9"/>
+      <circle cx="12" cy="12" r="2.2" fill="currentColor"/>
+    </svg>
+  </button>
+
+  <!-- Gallery lightbox -->
+  <div class="lightbox" id="lightbox">
+    <button type="button" class="lightbox__close" aria-label="Tutup">&times;</button>
+    <img src="" alt="Pratinjau galeri" />
+  </div>
+
+  <script src="../assets/js/animations.js"></script>
+  <script src="../assets/js/invitation.js"></script>
+  <script>
+    Mounstory.Invitation.init("data.json");
+    document.getElementById("guestNameDisplay").textContent = Mounstory.Invitation.getGuestName();
+  </script>
+</body>
+</html>
