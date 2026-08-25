@@ -16,6 +16,7 @@
       venue: "Lokasi menyusul",
       address: "Alamat menyusul",
       mapsUrl: "https://maps.google.com",
+      coords: null, // { lat, lng } — isi setelah lokasi acara resmi ditentukan
     },
     resepsi: {
       date: "Tanggal menyusul",
@@ -23,6 +24,7 @@
       venue: "Lokasi menyusul",
       address: "Alamat menyusul",
       mapsUrl: "https://maps.google.com",
+      coords: null,
     },
   };
   var STORAGE_KEY = "wahyu_wanda_comments";
@@ -250,6 +252,107 @@
   });
 
   loadComments();
+
+  /* Location map (Akad / Resepsi tabs) ------------------------------------------------ */
+
+  (function initLocationMap() {
+    var card = document.querySelector(".location-card");
+    var frame = document.getElementById("locationMapFrame");
+    var address = document.getElementById("locationMapAddress");
+    var tabs = document.querySelectorAll(".location-card__tab");
+    if (!card || !frame) return;
+
+    if (!EVENT.akad.coords && !EVENT.resepsi.coords) {
+      card.style.display = "none";
+      return;
+    }
+
+    function showTab(key) {
+      var info = EVENT[key];
+      if (!info || !info.coords) return;
+      frame.src =
+        "https://maps.google.com/maps?q=" + info.coords.lat + "," + info.coords.lng +
+        "&hl=id&z=16&output=embed";
+      address.textContent = info.venue + " — " + info.address;
+      tabs.forEach(function (tab) {
+        tab.classList.toggle("is-active", tab.dataset.mapTab === key);
+      });
+    }
+
+    tabs.forEach(function (tab) {
+      tab.addEventListener("click", function () {
+        showTab(tab.dataset.mapTab);
+      });
+    });
+
+    showTab(EVENT.akad.coords ? "akad" : "resepsi");
+  })();
+
+  /* Love Story scroll-linked rail fill ------------------------------------------------ */
+
+  (function initLoveStoryRail() {
+    var container = document.getElementById("loveStory");
+    var fill = document.getElementById("loveStoryRailFill");
+    if (!container || !fill) return;
+
+    function update() {
+      var rect = container.getBoundingClientRect();
+      var viewportH = window.innerHeight;
+      var start = viewportH * 0.85;
+      var progress = (start - rect.top) / (rect.height - viewportH * 0.5 + 1);
+      if (progress < 0) progress = 0;
+      if (progress > 1) progress = 1;
+      fill.style.height = (progress * 100) + "%";
+    }
+
+    update();
+    window.addEventListener("scroll", update, { passive: true });
+    window.addEventListener("resize", update);
+  })();
+
+  /* Floating nav: scroll-spy + click-to-scroll ---------------------------------------- */
+
+  (function initFloatingNav() {
+    var nav = document.getElementById("floatingNav");
+    if (!nav) return;
+    var buttons = Array.prototype.slice.call(nav.querySelectorAll(".floating-nav__btn"));
+    var sections = buttons
+      .map(function (btn) {
+        var el = document.getElementById(btn.dataset.navTarget);
+        return el ? { id: btn.dataset.navTarget, el: el, btn: btn } : null;
+      })
+      .filter(Boolean);
+
+    buttons.forEach(function (btn) {
+      btn.addEventListener("click", function () {
+        var target = document.getElementById(btn.dataset.navTarget);
+        if (target) target.scrollIntoView({ behavior: "smooth", block: "start" });
+      });
+    });
+
+    if (!sections.length || !("IntersectionObserver" in window)) return;
+
+    var observer = new IntersectionObserver(
+      function (entries) {
+        entries.forEach(function (entry) {
+          var match = sections.find(function (s) {
+            return s.el === entry.target;
+          });
+          if (!match) return;
+          if (entry.isIntersecting) {
+            buttons.forEach(function (btn) {
+              btn.classList.toggle("is-active", btn === match.btn);
+            });
+          }
+        });
+      },
+      { rootMargin: "-45% 0px -45% 0px", threshold: 0 }
+    );
+
+    sections.forEach(function (s) {
+      observer.observe(s.el);
+    });
+  })();
 
   /* Scroll reveal --------------------------------------------------------------------- */
 
