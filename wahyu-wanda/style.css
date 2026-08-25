@@ -1,0 +1,22 @@
+/* Page-specific theme for Wahyu & Wanda — warm, elegant sage & cream
+   palette. Scoped to this page only, so /demo/ and every other couple
+   stay on their own theme. */
+
+:root {
+  --color-bg: #f6f5ef;
+  --color-surface: #ffffff;
+  --color-primary: #7a8b6f;
+  --color-secondary: #e3ddc9;
+  --color-accent: #b98b5e;
+  --color-text: #3a3a32;
+  --color-text-light: #7d7d6f;
+  --color-border: #e6e2d4;
+}
+
+body.invitation-body {
+  background: linear-gradient(180deg, #efece0 0%, #f6f5ef 40%);
+}
+
+.cover {
+  background: linear-gradient(160deg, #f2efe4 0%, #ece6d5 55%, #e3ddc9 100%);
+}
