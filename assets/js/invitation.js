@@ -222,9 +222,11 @@
       document.body.style.overflow = "";
       setTimeout(function () {
         content.classList.add("is-visible");
-        content.querySelectorAll(".reveal").forEach(function (el, i) {
-          if (i < 3) el.classList.add("is-visible");
-        });
+        // Scroll-reveal only starts observing once the cover is actually
+        // dismissed — starting it earlier flags above-the-fold sections
+        // "visible" while they're still hidden behind the cover, so their
+        // fade-in plays out invisibly and the guest never sees any motion.
+        Mounstory.initScrollReveal();
       }, 150);
       if (typeof onOpen === "function") onOpen();
     });
@@ -445,7 +447,6 @@
         initWishLikes();
         initCopyButtons();
         initGalleryLightbox();
-        Mounstory.initScrollReveal();
       })
       .catch(function (err) {
         console.error(err);

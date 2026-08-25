@@ -597,6 +597,39 @@ img {
   gap: 1rem;
 }
 
+/* Staggered entrance for the welcome content, keyed off the parent's scroll-reveal state */
+.welcome-portal__badge,
+.welcome-portal__names,
+.welcome-portal__date,
+.welcome-portal__guest,
+.welcome-portal__scroll {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 600ms cubic-bezier(0.16, 1, 0.3, 1), transform 600ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+.welcome-portal.is-visible .welcome-portal__badge { transition-delay: 150ms; }
+.welcome-portal.is-visible .welcome-portal__names { transition-delay: 300ms; }
+.welcome-portal.is-visible .welcome-portal__date { transition-delay: 450ms; }
+.welcome-portal.is-visible .welcome-portal__guest { transition-delay: 550ms; }
+.welcome-portal.is-visible .welcome-portal__scroll { transition-delay: 680ms; }
+.welcome-portal.is-visible .welcome-portal__badge,
+.welcome-portal.is-visible .welcome-portal__names,
+.welcome-portal.is-visible .welcome-portal__date,
+.welcome-portal.is-visible .welcome-portal__guest,
+.welcome-portal.is-visible .welcome-portal__scroll {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .welcome-portal__badge, .welcome-portal__names, .welcome-portal__date,
+  .welcome-portal__guest, .welcome-portal__scroll {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
 .welcome-portal__badge {
   display: inline-flex;
   align-items: center;
@@ -1441,16 +1474,49 @@ img {
   color: #a39c8a;
 }
 
-/* Reveal-on-scroll ------------------------------------------------------------------- */
+/* Reveal-on-scroll (with a subtle 3D perspective tilt) ------------------------------- */
 
 .reveal {
   opacity: 0;
-  transform: translateY(32px);
-  transition: opacity 650ms ease-out, transform 650ms ease-out;
+  transform: perspective(900px) rotateX(10deg) translateY(32px);
+  transition: opacity 700ms cubic-bezier(0.16, 1, 0.3, 1), transform 700ms cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
 }
 .reveal.is-visible {
   opacity: 1;
-  transform: translateY(0);
+  transform: perspective(900px) rotateX(0deg) translateY(0);
+}
+
+/* Variant: slide + 3D flip in from the right (used by Love Story items) */
+.reveal--right {
+  transform: perspective(900px) rotateY(-16deg) translateX(44px);
+}
+.reveal--right.is-visible {
+  transform: perspective(900px) rotateY(0deg) translateX(0);
+}
+
+/* Variant: pop in with a slight tilt (used by countdown digits) */
+.reveal--pop {
+  transform: perspective(700px) rotateX(14deg) scale(0.82);
+}
+.reveal--pop.is-visible {
+  transform: perspective(700px) rotateX(0deg) scale(1);
+}
+
+/* Stagger delay utilities for grouped reveal items */
+.reveal-delay-1 { transition-delay: 90ms; }
+.reveal-delay-2 { transition-delay: 180ms; }
+.reveal-delay-3 { transition-delay: 270ms; }
+.reveal-delay-4 { transition-delay: 360ms; }
+.reveal-delay-5 { transition-delay: 450ms; }
+.reveal-delay-6 { transition-delay: 540ms; }
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal, .reveal--right, .reveal--pop {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
 }
 
 /* Decorative gold corner filigree (applied to major cards) --------------------------- */

@@ -98,9 +98,11 @@
 
     setTimeout(function () {
       entrancePortal.style.display = "none";
-      document.querySelectorAll(".reveal").forEach(function (el, i) {
-        if (i < 2) el.classList.add("is-visible");
-      });
+      // Scroll-reveal only starts observing once the curtain is actually gone —
+      // starting it earlier would flag above-the-fold sections "visible" while
+      // they're still hidden behind the curtain, so their fade-in plays out
+      // invisibly and the guest never sees any motion once it opens.
+      Mounstory.initScrollReveal();
     }, 5100);
   });
 
@@ -365,7 +367,4 @@
     });
   })();
 
-  /* Scroll reveal --------------------------------------------------------------------- */
-
-  Mounstory.initScrollReveal();
 })();
