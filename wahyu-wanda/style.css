@@ -40,6 +40,42 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
+/* Cinematic background video --------------------------------------------------- */
+
+body.has-bg-video {
+  background: #1c1917;
+}
+
+.bg-video-wrap {
+  position: fixed;
+  inset: 0;
+  z-index: -10;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.bg-video-wrap video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: scale(1.03);
+  filter: brightness(0.9) contrast(1.05);
+}
+
+.bg-video-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(10, 8, 6, 0.6);
+  backdrop-filter: blur(2.5px);
+}
+
+.bg-video-tint {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(6, 46, 33, 0.4) 0%, transparent 50%, rgba(46, 32, 6, 0.5) 100%);
+  mix-blend-mode: multiply;
+}
+
 img {
   max-width: 100%;
   display: block;
@@ -362,7 +398,7 @@ img {
   padding: 0.9rem 1.1rem;
   border-radius: 12px;
   background: rgba(6, 60, 40, 0.6);
-  border: 1px solid rgba(212, 175, 55, 0.3);
+  border: 2px solid rgba(212, 175, 55, 0.6);
 }
 
 .cover-card__guest-label {
@@ -438,20 +474,28 @@ img {
 }
 
 .section-header__eyebrow {
+  display: inline-block;
   font-family: var(--font-cinzel);
   font-size: 0.75rem;
   letter-spacing: 0.3em;
   text-transform: uppercase;
-  font-weight: 700;
-  color: var(--gold-dark);
-  margin: 0 0 0.4em;
+  font-weight: 800;
+  color: var(--gold-light);
+  background: rgba(10, 31, 23, 0.9);
+  border: 1px solid rgba(212, 175, 55, 0.6);
+  border-radius: 999px;
+  padding: 0.35em 1.1em;
+  margin: 0 0 0.7em;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.35);
+  backdrop-filter: blur(6px);
 }
 
 .section-header__title {
   font-family: var(--font-cinzel);
   font-size: clamp(1.7rem, 4vw + 0.5rem, 2.3rem);
-  font-weight: 700;
-  color: var(--green);
+  font-weight: 800;
+  color: var(--gold-light);
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.8);
   margin: 0;
 }
 
@@ -479,10 +523,10 @@ img {
   max-width: 34rem;
   padding: clamp(2rem, 6vw, 3rem);
   border-radius: 28px;
-  background: rgba(255, 255, 255, 0.8);
-  backdrop-filter: blur(8px);
-  border: 1px solid rgba(212, 175, 55, 0.35);
-  box-shadow: 0 15px 40px rgba(15, 51, 37, 0.08);
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  border: 2px solid rgba(212, 175, 55, 0.7);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
   text-align: center;
   overflow: hidden;
 }
@@ -625,11 +669,12 @@ img {
 }
 
 .couple-card {
-  background: #fff;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(8px);
   border-radius: 28px;
   padding: clamp(1.75rem, 5vw, 2.25rem);
-  border: 1px solid rgba(212, 175, 55, 0.3);
-  box-shadow: 0 10px 30px rgba(15, 51, 37, 0.1);
+  border: 2px solid rgba(212, 175, 55, 0.6);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
   text-align: center;
   display: flex;
   flex-direction: column;
@@ -805,11 +850,12 @@ img {
 }
 
 .event-card {
-  background: #fff;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(8px);
   border-radius: 24px;
   padding: clamp(1.5rem, 5vw, 2rem);
-  border: 1px solid rgba(212, 175, 55, 0.35);
-  box-shadow: 0 15px 35px rgba(15, 51, 37, 0.08);
+  border: 2px solid rgba(212, 175, 55, 0.6);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -903,7 +949,8 @@ img {
 }
 
 .love-story__item {
-  background: #fff;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(8px);
   border-radius: 20px;
   padding: 1.5rem;
   border: 1px solid #ece6d5;
@@ -1042,7 +1089,7 @@ img {
 }
 .bank-card--b {
   background: linear-gradient(135deg, #002f5e, #001730);
-  border: 1px solid rgba(212, 175, 55, 0.3);
+  border: 2px solid rgba(212, 175, 55, 0.6);
 }
 
 .bank-card__head {
@@ -1106,11 +1153,12 @@ img {
 /* RSVP + guestbook -------------------------------------------------------------------- */
 
 .rsvp-card {
-  background: #fff;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(8px);
   border-radius: 24px;
   padding: clamp(1.75rem, 5vw, 2.25rem);
-  border: 1px solid rgba(212, 175, 55, 0.35);
-  box-shadow: 0 15px 35px rgba(15, 51, 37, 0.08);
+  border: 2px solid rgba(212, 175, 55, 0.6);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
   max-width: 36rem;
   margin: 0 auto 2rem;
 }
@@ -1193,7 +1241,8 @@ img {
 }
 
 .comment-item {
-  background: #fff;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(8px);
   padding: 1.1rem 1.25rem;
   border-radius: 18px;
   border: 1px solid #ece6d5;
