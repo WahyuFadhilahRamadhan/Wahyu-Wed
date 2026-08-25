@@ -88,19 +88,17 @@
     coverCardWrap.style.opacity = "0";
     coverCardWrap.style.transform = "scale(0.92)";
 
-    setTimeout(function () {
-      curtainLeft.classList.add("is-opening");
-      curtainRight.classList.add("is-opening");
-      lightBeam.classList.add("is-bursting");
-      portalBg.style.opacity = "0";
+    curtainLeft.classList.add("is-opening");
+    curtainRight.classList.add("is-opening");
+    lightBeam.classList.add("is-bursting");
+    portalBg.style.opacity = "0";
 
-      setTimeout(function () {
-        entrancePortal.style.display = "none";
-        document.querySelectorAll(".reveal").forEach(function (el, i) {
-          if (i < 2) el.classList.add("is-visible");
-        });
-      }, 6200);
-    }, 1000);
+    setTimeout(function () {
+      entrancePortal.style.display = "none";
+      document.querySelectorAll(".reveal").forEach(function (el, i) {
+        if (i < 2) el.classList.add("is-visible");
+      });
+    }, 5100);
   });
 
   /* Countdown ----------------------------------------------------------------- */
