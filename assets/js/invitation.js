@@ -142,6 +142,7 @@
   }
 
   function wishItemHTML(wish) {
+    var likes = wish.likes || 0;
     return (
       '<li class="wish-item">' +
       '<div class="wish-item__head">' +
@@ -149,6 +150,10 @@
       '<span class="wish-item__status">' + escapeHTML(wish.attendance) + '</span>' +
       '</div>' +
       '<p class="wish-item__message">' + escapeHTML(wish.message) + '</p>' +
+      '<button type="button" class="wish-item__like" data-likes="' + likes + '">' +
+      '<svg viewBox="0 0 24 24"><path d="M12 21s-7-4.5-9.5-9A5.5 5.5 0 0112 6.5 5.5 5.5 0 0121.5 12c-2.5 4.5-9.5 9-9.5 9z"/></svg>' +
+      '<span class="wish-item__like-count">' + likes + '</span>' +
+      '</button>' +
       '</li>'
     );
   }
@@ -157,6 +162,47 @@
     var list = document.getElementById("wishesList");
     if (!list || !Array.isArray(data.wishes)) return;
     list.innerHTML = data.wishes.map(wishItemHTML).join("");
+  }
+
+  function initWishLikes() {
+    document.addEventListener("click", function (e) {
+      var btn = e.target.closest(".wish-item__like");
+      if (!btn || btn.disabled) return;
+      var likes = parseInt(btn.getAttribute("data-likes"), 10) || 0;
+      likes += 1;
+      btn.setAttribute("data-likes", likes);
+      btn.querySelector(".wish-item__like-count").textContent = likes;
+      btn.classList.add("is-liked");
+      btn.disabled = true;
+    });
+  }
+
+  /* ---------------------------------------------------------------------
+     Love story timeline (optional — only renders if both the container
+     and data.loveStory are present, so pages that skip it are unaffected)
+     ------------------------------------------------------------------- */
+
+  function renderLoveStory(data) {
+    var list = document.getElementById("loveStoryTimeline");
+    if (!list || !Array.isArray(data.loveStory)) return;
+    list.innerHTML = data.loveStory
+      .map(function (item) {
+        return (
+          '<div class="timeline-item reveal">' +
+          '<span class="timeline-item__dot"></span>' +
+          '<div class="timeline-item__content">' +
+          '<span class="timeline-item__year">' + escapeHTML(item.year) + '</span>' +
+          '<h3 class="timeline-item__title">' + escapeHTML(item.title) + '</h3>' +
+          '<p class="timeline-item__date">' +
+          escapeHTML(item.date) +
+          (item.location ? ' &middot; ' + escapeHTML(item.location) : '') +
+          '</p>' +
+          '<p class="timeline-item__desc">' + escapeHTML(item.description) + '</p>' +
+          '</div>' +
+          '</div>'
+        );
+      })
+      .join("");
   }
 
   /* ---------------------------------------------------------------------
@@ -384,6 +430,7 @@
         renderGallery(data);
         renderGift(data);
         renderWishes(data);
+        renderLoveStory(data);
 
         initCover(function () {
           if (data.meta && data.meta.musicSrc) {
@@ -395,6 +442,7 @@
         initMusicPlayer(data.meta && data.meta.musicSrc);
         initRSVPForm();
         initWishesForm();
+        initWishLikes();
         initCopyButtons();
         initGalleryLightbox();
         Mounstory.initScrollReveal();
