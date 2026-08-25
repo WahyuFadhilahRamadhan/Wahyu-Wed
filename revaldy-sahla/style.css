@@ -21,18 +21,37 @@ body.invitation-body {
   background: linear-gradient(160deg, #eaf4fa 0%, #dcebf3 55%, #cfe3ee 100%);
 }
 
-/* Floral corner accents on the cover, with a slow ambient sway */
+/* Arch-shaped cover card, monogram + floral accents ------------------------ */
 
 .cover__frame {
   position: relative;
+  border-width: 1.5px;
+  border-radius: 200px 200px 28px 28px;
+  padding-top: clamp(3rem, 10vw, 4rem);
+  background: rgba(255, 255, 255, 0.35);
+}
+
+.cover__monogram {
+  font-family: "Alex Brush", cursive;
+  font-size: clamp(2.6rem, 9vw, 3.6rem);
+  color: var(--color-primary);
+  line-height: 1;
+  margin: 0.3em 0 0;
+}
+
+.cover__monogram span {
+  font-family: var(--font-serif);
+  font-size: 0.55em;
+  color: var(--color-text-light);
+  vertical-align: middle;
 }
 
 .cover__frame::before,
 .cover__frame::after {
   content: "";
   position: absolute;
-  width: 92px;
-  height: 92px;
+  width: 130px;
+  height: 130px;
   background: url("images/floral-corner.svg") no-repeat center / contain;
   pointer-events: none;
   animation: floralSway 6s ease-in-out infinite;
@@ -40,13 +59,13 @@ body.invitation-body {
 }
 
 .cover__frame::before {
-  top: -20px;
-  left: -20px;
+  top: -24px;
+  left: -24px;
 }
 
 .cover__frame::after {
-  bottom: -20px;
-  right: -20px;
+  bottom: -24px;
+  right: -24px;
   transform: rotate(180deg);
   transform-origin: bottom right;
   animation-delay: -3s;
@@ -74,6 +93,45 @@ body.invitation-body {
 
 .couple-card__photo {
   border-width: 5px;
+}
+
+/* Adab Walimah grid --------------------------------------------------------- */
+
+.adab-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.6rem 1rem;
+  max-width: 420px;
+  margin: 0 auto;
+}
+
+.adab-item {
+  text-align: center;
+}
+
+.adab-item__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 58px;
+  height: 58px;
+  margin: 0 auto 0.7rem;
+  border-radius: 50%;
+  border: 1.5px solid var(--color-primary);
+  background: var(--color-surface);
+  color: var(--color-primary);
+  box-shadow: var(--shadow-soft);
+}
+
+.adab-item__icon svg {
+  width: 26px;
+  height: 26px;
+}
+
+.adab-item__label {
+  font-size: 0.8rem;
+  line-height: 1.4;
+  color: var(--color-text-light);
 }
 
 /* Ambient falling petals ---------------------------------------------------
