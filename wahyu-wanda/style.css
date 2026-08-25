@@ -807,25 +807,15 @@ img {
   line-height: 1.7;
 }
 
-/* Couple profile cards --------------------------------------------------------- */
+/* Profile cards (Mempelai Pria / Mempelai Wanita) — GroomSection / BrideSection port --- */
 
-.couple-grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 1.75rem;
-}
-
-@media (min-width: 700px) {
-  .couple-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-.couple-card {
+.profile-card {
+  max-width: 34rem;
+  margin: 0 auto;
   background: rgba(255, 255, 255, 0.95);
   backdrop-filter: blur(8px);
   border-radius: 28px;
-  padding: clamp(1.75rem, 5vw, 2.25rem);
+  padding: clamp(1.75rem, 6vw, 2.75rem) clamp(1.5rem, 5vw, 2.25rem);
   border: 2px solid rgba(212, 175, 55, 0.6);
   box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
   text-align: center;
@@ -834,50 +824,98 @@ img {
   align-items: center;
 }
 
-.couple-card__photo {
-  width: 160px;
-  height: 160px;
-  margin: 0 auto 1.5rem;
-  border-radius: 50%;
-  padding: 4px;
-  background: linear-gradient(135deg, var(--gold), var(--green));
-  box-shadow: 0 8px 20px rgba(15, 51, 37, 0.15);
-}
-
-.couple-card__photo img {
+.profile-card__gonjong {
   width: 100%;
-  height: 100%;
-  border-radius: 50%;
-  object-fit: cover;
+  max-width: 220px;
+  height: clamp(24px, 6vw, 32px);
+  margin: 0 auto 1rem;
+  background: url("images/ornaments/gonjong-header.svg") no-repeat center / 100% 100%;
+  opacity: 0.8;
 }
 
-.couple-card__name {
-  font-family: var(--font-cinzel);
-  font-size: 1.4rem;
-  font-weight: 700;
-  color: var(--green);
-  margin: 0 0 0.25em;
-}
-
-.couple-card__role {
-  font-family: var(--font-cinzel);
-  font-size: 0.7rem;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
+.profile-card__nickname {
+  font-family: var(--font-script);
+  font-size: clamp(1.9rem, 6vw, 2.4rem);
+  font-weight: 400;
   color: var(--gold-dark);
+  margin: 1.5rem 0 0.1em;
+}
+
+.profile-card__fullname {
+  font-family: var(--font-cinzel);
+  font-size: clamp(1rem, 3vw, 1.2rem);
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  color: var(--green);
   margin: 0 0 1rem;
 }
 
-.couple-card__parents {
-  font-size: 0.85rem;
-  color: var(--text-light);
-  margin: 0 0 1.5rem;
+.profile-card__motif {
+  width: 100%;
+  max-width: 200px;
+  height: 16px;
+  margin: 0.25rem auto 1.25rem;
+  background: url("images/ornaments/pucuak-rabuang.svg") no-repeat center / contain;
+  opacity: 0.8;
 }
 
-.couple-card__parents strong {
-  display: block;
-  color: #4a4238;
-  font-weight: 600;
+.profile-card__parents {
+  width: 100%;
+  max-width: 26rem;
+  padding: 1rem 1.25rem;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.85);
+  border: 1px solid rgba(212, 175, 55, 0.4);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.05);
+  margin: 0 0 1.25rem;
+}
+
+.profile-card__parents-label {
+  font-family: var(--font-cinzel);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #4b7060;
+  margin: 0 0 0.4em;
+}
+
+.profile-card__parents-father,
+.profile-card__parents-mother {
+  font-family: var(--font-cinzel);
+  font-weight: 700;
+  color: #152e25;
+  font-size: 0.95rem;
+  margin: 0.15em 0;
+}
+
+.profile-card__parents-mother {
+  color: #2d5244;
+  font-size: 0.88rem;
+}
+
+.profile-card__instagram {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+  padding: 0.65rem 1.4rem;
+  border-radius: 999px;
+  background: var(--green);
+  border: 1px solid rgba(252, 211, 77, 0.6);
+  color: var(--gold-light);
+  font-family: var(--font-cinzel);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-decoration: none;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+  transition: transform 200ms ease, background 200ms ease;
+}
+.profile-card__instagram svg { width: 16px; height: 16px; color: #fcd34d; }
+.profile-card__instagram:hover {
+  background: #285747;
+  transform: scale(1.05);
 }
 
 .pill-link {
@@ -1606,24 +1644,53 @@ img {
   opacity: 0.85;
 }
 
-/* Wood-style photo frame (simplified, no literal wood-carving texture) --------------- */
+/* Wood-carved photo frame (WoodCarvedPhotoFrame port) -------------------------------- */
 
 .wood-photo-frame {
   position: relative;
-  padding: 10px;
-  border-radius: 22px;
-  background: linear-gradient(135deg, #4a3216, #2e1d0c);
-  box-shadow: inset 0 0 12px rgba(0, 0, 0, 0.6), 0 12px 30px rgba(0, 0, 0, 0.5);
+  width: clamp(210px, 60vw, 320px);
+  height: clamp(210px, 60vw, 320px);
+  margin: 0 auto;
+  padding: clamp(10px, 3vw, 15px);
+  border-radius: 26px;
+  background-color: #3b2214;
+  background-image:
+    linear-gradient(90deg, rgba(255, 255, 255, 0.03) 0%, rgba(0, 0, 0, 0.25) 50%, rgba(255, 255, 255, 0.03) 100%),
+    repeating-linear-gradient(45deg, rgba(82, 45, 23, 0.9) 0px, rgba(58, 30, 14, 0.95) 4px, rgba(42, 21, 9, 0.98) 8px);
+  border: 4px solid #5a341b;
+  outline: 2px solid #d4af37;
+  outline-offset: -3px;
+  box-shadow:
+    inset 2px 2px 4px rgba(255, 255, 255, 0.25),
+    inset -2px -2px 6px rgba(0, 0, 0, 0.8),
+    0 12px 28px rgba(30, 15, 6, 0.35);
 }
 
+.wood-photo-frame__corner {
+  position: absolute;
+  width: 22px;
+  height: 22px;
+  background: url("images/ornaments/corner.svg") no-repeat center / contain;
+  pointer-events: none;
+  z-index: 2;
+}
+.wood-photo-frame__corner--tl { top: 6px; left: 6px; }
+.wood-photo-frame__corner--tr { top: 6px; right: 6px; transform: scaleX(-1); }
+.wood-photo-frame__corner--bl { bottom: 6px; left: 6px; transform: scaleY(-1); }
+.wood-photo-frame__corner--br { bottom: 6px; right: 6px; transform: scale(-1, -1); }
+
 .wood-photo-frame__inner {
+  width: 100%;
+  height: 100%;
   padding: 4px;
-  border-radius: 16px;
-  background: linear-gradient(135deg, var(--gold), var(--gold-light), var(--gold-dark));
+  border-radius: 18px;
+  background: linear-gradient(135deg, var(--gold-dark), var(--gold-light), var(--gold-dark));
+  box-shadow: inset 0 0 8px rgba(0, 0, 0, 0.3);
+  overflow: hidden;
 }
 
 .wood-photo-frame img {
-  border-radius: 12px;
+  border-radius: 14px;
   width: 100%;
   height: 100%;
   object-fit: cover;
