@@ -14,6 +14,9 @@
 </head>
 <body>
 
+  <!-- Ambient falling petals (decorative, CSS-driven, no per-frame JS) -->
+  <div class="petals" id="petals" aria-hidden="true"></div>
+
   <!-- Cover / opening screen -->
   <div class="cover" id="cover">
     <div class="cover__frame">
@@ -245,6 +248,24 @@
   <script>
     Mounstory.Invitation.init("data.json");
     document.getElementById("guestNameDisplay").textContent = Mounstory.Invitation.getGuestName();
+
+    (function () {
+      if (window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+      var host = document.getElementById("petals");
+      if (!host) return;
+      var count = 14;
+      for (var i = 0; i < count; i++) {
+        var petal = document.createElement("div");
+        petal.className = "petal";
+        var size = 14 + Math.random() * 14;
+        petal.style.setProperty("--x", Math.random() * 100 + "%");
+        petal.style.setProperty("--size", size.toFixed(0) + "px");
+        petal.style.setProperty("--duration", (9 + Math.random() * 9).toFixed(1) + "s");
+        petal.style.setProperty("--delay", (-Math.random() * 18).toFixed(1) + "s");
+        petal.style.setProperty("--drift", (Math.random() * 120 - 60).toFixed(0) + "px");
+        host.appendChild(petal);
+      }
+    })();
   </script>
 </body>
 </html>

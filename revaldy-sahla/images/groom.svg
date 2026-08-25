@@ -1,15 +1,15 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400">
   <defs>
     <linearGradient id="bgGroom" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="#f1e2df"/>
-      <stop offset="100%" stop-color="#c9a66b"/>
+      <stop offset="0%" stop-color="#dceaf2"/>
+      <stop offset="100%" stop-color="#6b93ad"/>
     </linearGradient>
   </defs>
   <rect width="400" height="400" fill="url(#bgGroom)"/>
 
   <!-- shoulders / attire -->
-  <path d="M110 400 C110 300 150 265 200 265 C250 265 290 300 290 400 Z" fill="#4a4238"/>
-  <path d="M170 275 L200 300 L230 275 L215 340 L200 330 L185 340 Z" fill="#fbf7f2"/>
+  <path d="M110 400 C110 300 150 265 200 265 C250 265 290 300 290 400 Z" fill="#2c3e50"/>
+  <path d="M170 275 L200 300 L230 275 L215 340 L200 330 L185 340 Z" fill="#f4f9fb"/>
 
   <!-- neck -->
   <rect x="182" y="205" width="36" height="45" rx="12" fill="#e4c9ad"/>
@@ -25,6 +25,6 @@
 
   <!-- peci / cap -->
   <path d="M146 122 C146 90 170 68 200 68 C230 68 254 90 254 122
-           C254 108 230 96 200 96 C170 96 146 108 146 122 Z" fill="#4a2f2f"/>
-  <rect x="144" y="118" width="112" height="12" rx="4" fill="#3a2323"/>
+           C254 108 230 96 200 96 C170 96 146 108 146 122 Z" fill="#1f2f3f"/>
+  <rect x="144" y="118" width="112" height="12" rx="4" fill="#16232f"/>
 </svg>
