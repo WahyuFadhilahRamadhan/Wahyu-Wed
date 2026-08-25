@@ -1,0 +1,42 @@
+/* Page-specific customization for Revaldy & Sahla — same palette as the
+   shared theme, with floral accents layered on top. Kept out of
+   assets/css/invitation.css so /demo/ and every other couple stay plain. */
+
+.cover__frame {
+  position: relative;
+}
+
+.cover__frame::before,
+.cover__frame::after {
+  content: "";
+  position: absolute;
+  width: 92px;
+  height: 92px;
+  background: url("images/floral-corner.svg") no-repeat center / contain;
+  pointer-events: none;
+}
+
+.cover__frame::before {
+  top: -20px;
+  left: -20px;
+}
+
+.cover__frame::after {
+  bottom: -20px;
+  right: -20px;
+  transform: rotate(180deg);
+}
+
+.ornament {
+  width: 96px;
+  height: 24px;
+  background: url("images/floral-divider.svg") no-repeat center / contain;
+}
+
+.section__header {
+  position: relative;
+}
+
+.couple-card__photo {
+  border-width: 5px;
+}
