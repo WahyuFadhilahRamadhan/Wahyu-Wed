@@ -90,22 +90,51 @@
   <!-- Main content -->
   <main class="main-content">
 
-    <!-- 1. Hero / welcome -->
+    <!-- 1. Hero / welcome (post-curtain "Opening Welcome" arch portal) -->
     <section class="hero-section" id="beranda">
-      <div class="hero-card deco-card reveal">
-        <span class="deco-corner deco-corner--bl"></span>
-        <span class="deco-corner deco-corner--br"></span>
+      <div class="welcome-portal reveal">
+        <div class="welcome-portal__glow-top" aria-hidden="true"></div>
+        <div class="welcome-portal__glow-bottom" aria-hidden="true"></div>
 
-        <p class="hero-card__label">Undangan Pernikahan</p>
-        <p class="hero-card__sublabel">Menuju Hari Bahagia Kami</p>
+        <div class="welcome-portal__frame">
+          <div class="welcome-portal__mountains" aria-hidden="true"></div>
 
-        <div class="hero-card__photo">
-          <img src="images/couple-hero.svg" alt="Wahyu & Wanda" />
+          <span class="welcome-portal__branch welcome-portal__branch--tl"><img src="images/ornaments/botanical-branch.svg" alt="" /></span>
+          <span class="welcome-portal__branch welcome-portal__branch--tr"><img src="images/ornaments/botanical-branch.svg" alt="" /></span>
+          <span class="welcome-portal__branch welcome-portal__branch--bl"><img src="images/ornaments/botanical-branch.svg" alt="" /></span>
+          <span class="welcome-portal__branch welcome-portal__branch--br"><img src="images/ornaments/botanical-branch.svg" alt="" /></span>
+
+          <div class="welcome-portal__gonjong" aria-hidden="true"></div>
+
+          <div class="welcome-portal__content">
+            <span class="welcome-portal__badge">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3l1.5 4.5L18 9l-4.5 1.5L12 15l-1.5-4.5L6 9l4.5-1.5z"/></svg>
+              The Wedding Of
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3l1.5 4.5L18 9l-4.5 1.5L12 15l-1.5-4.5L6 9l4.5-1.5z"/></svg>
+            </span>
+
+            <h1 class="welcome-portal__names">Wahyu<span>&amp;</span>Wanda</h1>
+
+            <p class="welcome-portal__date">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M3 10h18M8 2v4M16 2v4"/></svg>
+              <span id="heroDate">Tanggal menyusul</span> &bull; <span id="heroVenue">Lokasi menyusul</span>
+            </p>
+
+            <div class="welcome-portal__guest">
+              <p class="welcome-portal__guest-label">Kepada Yth. Bapak/Ibu/Saudara/i:</p>
+              <p class="welcome-portal__guest-name" id="displayGuestNameHero">Tamu Undangan</p>
+            </div>
+
+            <button type="button" class="welcome-portal__scroll" id="btnScrollDown">
+              <span class="welcome-portal__scroll-label">Gulir ke Bawah</span>
+              <span class="welcome-portal__scroll-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+              </span>
+            </button>
+          </div>
+
+          <div class="welcome-portal__foundation" aria-hidden="true"></div>
         </div>
-
-        <h2 class="hero-card__names">Wahyu &amp; Wanda</h2>
-        <p class="hero-card__date" id="heroDate">Tanggal menyusul</p>
-        <p class="hero-card__venue" id="heroVenue">Lokasi menyusul</p>
       </div>
     </section>
 
@@ -123,11 +152,11 @@
       </div>
     </section>
 
-    <!-- 3. Kedua Mempelai -->
-    <section class="section" id="mempelai">
+    <!-- 3a. Mempelai Pria -->
+    <section class="section" id="mempelai-pria">
       <div class="section-header reveal">
-        <p class="section-header__eyebrow">Kedua Mempelai</p>
-        <h2 class="section-header__title">Mempelai Pria &amp; Wanita</h2>
+        <p class="section-header__eyebrow">Mempelai Pria</p>
+        <h2 class="section-header__title">The Groom</h2>
         <div class="section-divider">
           <span class="section-divider__line"></span>
           <span class="section-divider__motif"></span>
@@ -135,34 +164,83 @@
         </div>
       </div>
 
-      <div class="couple-grid">
-        <div class="couple-card deco-card reveal">
-          <span class="deco-corner deco-corner--bl"></span>
-          <span class="deco-corner deco-corner--br"></span>
-          <div class="couple-card__photo">
+      <div class="profile-card deco-card reveal">
+        <span class="deco-corner deco-corner--bl"></span>
+        <span class="deco-corner deco-corner--br"></span>
+
+        <div class="profile-card__gonjong" aria-hidden="true"></div>
+
+        <div class="wood-photo-frame">
+          <span class="wood-photo-frame__corner wood-photo-frame__corner--tl"></span>
+          <span class="wood-photo-frame__corner wood-photo-frame__corner--tr"></span>
+          <span class="wood-photo-frame__corner wood-photo-frame__corner--bl"></span>
+          <span class="wood-photo-frame__corner wood-photo-frame__corner--br"></span>
+          <div class="wood-photo-frame__inner">
             <img src="images/groom.svg" alt="Wahyu" />
           </div>
-          <h3 class="couple-card__name">Wahyu</h3>
-          <p class="couple-card__role">Pengantin Pria</p>
-          <p class="couple-card__parents">
-            Putra menyusul dari:<br />
-            <strong>Nama orang tua menyusul</strong>
-          </p>
         </div>
 
-        <div class="couple-card deco-card reveal">
-          <span class="deco-corner deco-corner--bl"></span>
-          <span class="deco-corner deco-corner--br"></span>
-          <div class="couple-card__photo">
+        <h3 class="profile-card__nickname">Wahyu</h3>
+        <p class="profile-card__fullname">Nama lengkap menyusul</p>
+
+        <div class="profile-card__motif" aria-hidden="true"></div>
+
+        <div class="profile-card__parents">
+          <p class="profile-card__parents-label">Putra Pertama Dari</p>
+          <p class="profile-card__parents-father">Bapak menyusul</p>
+          <p class="profile-card__parents-mother">&amp; Ibu menyusul</p>
+        </div>
+
+        <a class="profile-card__instagram" href="#" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg>
+          <span>Instagram Pengantin Pria</span>
+        </a>
+      </div>
+    </section>
+
+    <!-- 3b. Mempelai Wanita -->
+    <section class="section" id="mempelai-wanita">
+      <div class="section-header reveal">
+        <p class="section-header__eyebrow">Mempelai Wanita</p>
+        <h2 class="section-header__title">The Bride</h2>
+        <div class="section-divider">
+          <span class="section-divider__line"></span>
+          <span class="section-divider__motif"></span>
+          <span class="section-divider__line section-divider__line--right"></span>
+        </div>
+      </div>
+
+      <div class="profile-card deco-card reveal">
+        <span class="deco-corner deco-corner--bl"></span>
+        <span class="deco-corner deco-corner--br"></span>
+
+        <div class="profile-card__gonjong" aria-hidden="true"></div>
+
+        <div class="wood-photo-frame">
+          <span class="wood-photo-frame__corner wood-photo-frame__corner--tl"></span>
+          <span class="wood-photo-frame__corner wood-photo-frame__corner--tr"></span>
+          <span class="wood-photo-frame__corner wood-photo-frame__corner--bl"></span>
+          <span class="wood-photo-frame__corner wood-photo-frame__corner--br"></span>
+          <div class="wood-photo-frame__inner">
             <img src="images/bride.svg" alt="Wanda" />
           </div>
-          <h3 class="couple-card__name">Wanda</h3>
-          <p class="couple-card__role">Pengantin Wanita</p>
-          <p class="couple-card__parents">
-            Putri menyusul dari:<br />
-            <strong>Nama orang tua menyusul</strong>
-          </p>
         </div>
+
+        <h3 class="profile-card__nickname">Wanda</h3>
+        <p class="profile-card__fullname">Nama lengkap menyusul</p>
+
+        <div class="profile-card__motif" aria-hidden="true"></div>
+
+        <div class="profile-card__parents">
+          <p class="profile-card__parents-label">Putri Pertama Dari</p>
+          <p class="profile-card__parents-father">Bapak menyusul</p>
+          <p class="profile-card__parents-mother">&amp; Ibu menyusul</p>
+        </div>
+
+        <a class="profile-card__instagram" href="#" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg>
+          <span>Instagram Pengantin Wanita</span>
+        </a>
       </div>
     </section>
 
@@ -176,20 +254,20 @@
           <h2 class="section-header__title">Menuju Hari Bahagia</h2>
         </div>
 
-        <div class="countdown-grid" id="countdown">
-          <div class="countdown-grid__item">
+        <div class="countdown-grid" id="countdownGrid">
+          <div class="countdown-grid__item reveal reveal--pop reveal-delay-1">
             <span class="countdown-grid__value" data-unit="days">00</span>
             <span class="countdown-grid__label">Hari</span>
           </div>
-          <div class="countdown-grid__item">
+          <div class="countdown-grid__item reveal reveal--pop reveal-delay-2">
             <span class="countdown-grid__value" data-unit="hours">00</span>
             <span class="countdown-grid__label">Jam</span>
           </div>
-          <div class="countdown-grid__item">
+          <div class="countdown-grid__item reveal reveal--pop reveal-delay-3">
             <span class="countdown-grid__value" data-unit="minutes">00</span>
             <span class="countdown-grid__label">Menit</span>
           </div>
-          <div class="countdown-grid__item">
+          <div class="countdown-grid__item reveal reveal--pop reveal-delay-4">
             <span class="countdown-grid__value" data-unit="seconds">00</span>
             <span class="countdown-grid__label">Detik</span>
           </div>
@@ -237,7 +315,7 @@
           </a>
         </div>
 
-        <div class="event-card deco-card reveal">
+        <div class="event-card deco-card reveal reveal-delay-2">
           <span class="deco-corner deco-corner--bl"></span>
           <span class="deco-corner deco-corner--br"></span>
           <div>
@@ -289,7 +367,7 @@
           <div class="love-story-v2__rail-fill" id="loveStoryRailFill"></div>
         </div>
 
-        <div class="love-story-v2__item reveal">
+        <div class="love-story-v2__item reveal reveal--right reveal-delay-1">
           <span class="love-story-v2__node">
             <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 21s-7-4.5-9.5-9A5.5 5.5 0 0112 5a5.5 5.5 0 019.5 7c-2.5 4.5-9.5 9-9.5 9z"/></svg>
           </span>
@@ -306,7 +384,7 @@
           <p class="love-story__desc">Ceritakan bagaimana kalian pertama kali bertemu di sini.</p>
         </div>
 
-        <div class="love-story-v2__item reveal">
+        <div class="love-story-v2__item reveal reveal--right reveal-delay-2">
           <span class="love-story-v2__node">
             <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 21s-7-4.5-9.5-9A5.5 5.5 0 0112 5a5.5 5.5 0 019.5 7c-2.5 4.5-9.5 9-9.5 9z"/></svg>
           </span>
@@ -323,7 +401,7 @@
           <p class="love-story__desc">Ceritakan momen lamaran atau keputusan untuk melangkah lebih serius.</p>
         </div>
 
-        <div class="love-story-v2__item reveal">
+        <div class="love-story-v2__item reveal reveal--right reveal-delay-3">
           <span class="love-story-v2__node love-story-v2__node--final">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3l1.5 4.5L18 9l-4.5 1.5L12 15l-1.5-4.5L6 9l4.5-1.5z"/></svg>
           </span>
@@ -355,13 +433,13 @@
         </div>
       </div>
 
-      <div class="gallery-grid reveal" id="galleryGrid">
-        <img src="images/gallery-1.svg" alt="Foto 1" />
-        <img src="images/gallery-2.svg" alt="Foto 2" />
-        <img src="images/gallery-3.svg" alt="Foto 3" />
-        <img src="images/gallery-4.svg" alt="Foto 4" />
-        <img src="images/gallery-5.svg" alt="Foto 5" />
-        <img src="images/gallery-6.svg" alt="Foto 6" />
+      <div class="gallery-grid" id="galleryGrid">
+        <img class="reveal reveal-delay-1" src="images/gallery-1.svg" alt="Foto 1" />
+        <img class="reveal reveal-delay-2" src="images/gallery-2.svg" alt="Foto 2" />
+        <img class="reveal reveal-delay-3" src="images/gallery-3.svg" alt="Foto 3" />
+        <img class="reveal reveal-delay-4" src="images/gallery-4.svg" alt="Foto 4" />
+        <img class="reveal reveal-delay-5" src="images/gallery-5.svg" alt="Foto 5" />
+        <img class="reveal reveal-delay-6" src="images/gallery-6.svg" alt="Foto 6" />
       </div>
     </section>
 
@@ -378,8 +456,8 @@
       </div>
       <p class="gift-intro reveal">Doa restu Anda adalah hadiah terindah. Bagi yang ingin memberikan tanda kasih secara digital, dapat melalui rekening berikut:</p>
 
-      <div class="gift-grid reveal">
-        <div class="bank-card bank-card--a">
+      <div class="gift-grid">
+        <div class="bank-card bank-card--a reveal reveal-delay-1">
           <div class="bank-card__head">
             <span class="bank-card__name">Bank</span>
             <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg>
@@ -392,7 +470,7 @@
           </button>
         </div>
 
-        <div class="bank-card bank-card--b">
+        <div class="bank-card bank-card--b reveal reveal-delay-2">
           <div class="bank-card__head">
             <span class="bank-card__name">Bank</span>
             <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg>
@@ -474,8 +552,11 @@
       <button type="button" class="floating-nav__btn" data-nav-target="countdown" aria-label="Hitung Mundur">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="13" r="8"/><path d="M12 9v4l3 2M9 2h6M17 5l1.5-1.5"/></svg>
       </button>
-      <button type="button" class="floating-nav__btn" data-nav-target="mempelai" aria-label="Mempelai">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="8" cy="8" r="3.5"/><circle cx="16" cy="8" r="3.5"/><path d="M2 21c0-3.3 2.7-6 6-6s6 2.7 6 6M10 21c0-3.3 2.7-6 6-6s6 2.7 6 6"/></svg>
+      <button type="button" class="floating-nav__btn" data-nav-target="mempelai-pria" aria-label="Mempelai Pria">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-3.9 3.6-7 8-7s8 3.1 8 7"/></svg>
+      </button>
+      <button type="button" class="floating-nav__btn" data-nav-target="mempelai-wanita" aria-label="Mempelai Wanita">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="7.5" r="3.5"/><path d="M12 11v8M9 16h6"/></svg>
       </button>
       <button type="button" class="floating-nav__btn" data-nav-target="acara" aria-label="Acara">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M3 10h18M8 2v4M16 2v4"/></svg>

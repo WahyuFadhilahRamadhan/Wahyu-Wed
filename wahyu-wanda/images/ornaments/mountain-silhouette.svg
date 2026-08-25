@@ -1,0 +1,21 @@
+<svg viewBox="0 0 500 180" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+  <defs>
+    <linearGradient id="skyGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#e2ecf5" />
+      <stop offset="60%" stop-color="#f3e8dc" />
+      <stop offset="100%" stop-color="#faf5eb" />
+    </linearGradient>
+    <linearGradient id="mountGrad1" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#b5c7ba" />
+      <stop offset="100%" stop-color="#dbe8df" />
+    </linearGradient>
+    <linearGradient id="mountGrad2" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#8da896" />
+      <stop offset="100%" stop-color="#c5d8cc" />
+    </linearGradient>
+  </defs>
+  <rect width="500" height="180" fill="url(#skyGrad)" />
+  <path d="M120 180 L250 50 L380 180 Z" fill="url(#mountGrad1)" opacity="0.7" />
+  <path d="M180 180 L260 75 L340 180 Z" fill="url(#mountGrad2)" opacity="0.8" />
+  <ellipse cx="250" cy="110" rx="140" ry="25" fill="#ffffff" opacity="0.6" />
+</svg>

@@ -40,6 +40,7 @@
   }
 
   document.getElementById("displayGuestName").textContent = getGuestName();
+  document.getElementById("displayGuestNameHero").textContent = getGuestName();
 
   /* Event details into the DOM -------------------------------------------- */
 
@@ -97,11 +98,23 @@
 
     setTimeout(function () {
       entrancePortal.style.display = "none";
-      document.querySelectorAll(".reveal").forEach(function (el, i) {
-        if (i < 2) el.classList.add("is-visible");
-      });
+      // Scroll-reveal only starts observing once the curtain is actually gone —
+      // starting it earlier would flag above-the-fold sections "visible" while
+      // they're still hidden behind the curtain, so their fade-in plays out
+      // invisibly and the guest never sees any motion once it opens.
+      Mounstory.initScrollReveal();
     }, 5100);
   });
+
+  /* Scroll down hint (welcome portal) --------------------------------------- */
+
+  var btnScrollDown = document.getElementById("btnScrollDown");
+  if (btnScrollDown) {
+    btnScrollDown.addEventListener("click", function () {
+      var next = document.getElementById("ayat-suci");
+      if (next) next.scrollIntoView({ behavior: "smooth", block: "start" });
+    });
+  }
 
   /* Countdown ----------------------------------------------------------------- */
 
@@ -354,7 +367,4 @@
     });
   })();
 
-  /* Scroll reveal --------------------------------------------------------------------- */
-
-  Mounstory.initScrollReveal();
 })();
