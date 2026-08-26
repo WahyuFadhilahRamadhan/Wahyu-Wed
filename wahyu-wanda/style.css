@@ -600,38 +600,9 @@ img {
   gap: 1rem;
 }
 
-/* Staggered entrance for the welcome content, keyed off the parent's scroll-reveal state */
-.welcome-portal__badge,
-.welcome-portal__names,
-.welcome-portal__date,
-.welcome-portal__guest,
-.welcome-portal__scroll {
-  opacity: 0;
-  transform: translateY(16px);
-  transition: opacity 600ms cubic-bezier(0.16, 1, 0.3, 1), transform 600ms cubic-bezier(0.16, 1, 0.3, 1);
-}
-.welcome-portal.is-visible .welcome-portal__badge { transition-delay: 150ms; }
-.welcome-portal.is-visible .welcome-portal__names { transition-delay: 300ms; }
-.welcome-portal.is-visible .welcome-portal__date { transition-delay: 450ms; }
-.welcome-portal.is-visible .welcome-portal__guest { transition-delay: 550ms; }
-.welcome-portal.is-visible .welcome-portal__scroll { transition-delay: 680ms; }
-.welcome-portal.is-visible .welcome-portal__badge,
-.welcome-portal.is-visible .welcome-portal__names,
-.welcome-portal.is-visible .welcome-portal__date,
-.welcome-portal.is-visible .welcome-portal__guest,
-.welcome-portal.is-visible .welcome-portal__scroll {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .welcome-portal__badge, .welcome-portal__names, .welcome-portal__date,
-  .welcome-portal__guest, .welcome-portal__scroll {
-    opacity: 1;
-    transform: none;
-    transition: none;
-  }
-}
+/* The welcome content shows immediately together with the card (.welcome-portal's own
+   .reveal fade below) — no per-line cascade, so there's no extra wait once the curtain
+   is gone before the guest can read anything. */
 
 .welcome-portal__badge {
   display: inline-flex;
@@ -1520,7 +1491,7 @@ img {
 .reveal {
   opacity: 0;
   transform: perspective(900px) rotateX(10deg) translateY(32px);
-  transition: opacity 700ms cubic-bezier(0.16, 1, 0.3, 1), transform 700ms cubic-bezier(0.16, 1, 0.3, 1);
+  transition: opacity 2500ms cubic-bezier(0.16, 1, 0.3, 1), transform 2500ms cubic-bezier(0.16, 1, 0.3, 1);
   will-change: opacity, transform;
 }
 .reveal.is-visible {
@@ -1528,12 +1499,9 @@ img {
   transform: perspective(900px) rotateX(0deg) translateY(0);
 }
 
-/* Variant: slide + 3D flip in from the right (used by Love Story items) --------------
-   Given a longer, slower duration (2.5s) so the slide reads as a deliberate,
-   smooth glide rather than the snappier default used elsewhere. */
+/* Variant: slide + 3D flip in from the right (used by Love Story items) */
 .reveal--right {
   transform: perspective(1000px) rotateY(-18deg) translateX(70px);
-  transition: opacity 2500ms cubic-bezier(0.16, 1, 0.3, 1), transform 2500ms cubic-bezier(0.16, 1, 0.3, 1);
 }
 .reveal--right.is-visible {
   transform: perspective(1000px) rotateY(0deg) translateX(0);
