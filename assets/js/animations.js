@@ -24,13 +24,13 @@
       return;
     }
 
+    // Toggles .is-visible every time an element crosses into or out of view,
+    // rather than revealing once and unobserving — so scrolling back up and
+    // down again replays the animation instead of leaving it static.
     var observer = new IntersectionObserver(
       function (entries) {
         entries.forEach(function (entry) {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("is-visible");
-            observer.unobserve(entry.target);
-          }
+          entry.target.classList.toggle("is-visible", entry.isIntersecting);
         });
       },
       { threshold: 0.05, rootMargin: "0px 0px -8% 0px" }
