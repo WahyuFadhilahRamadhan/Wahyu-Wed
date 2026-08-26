@@ -8,23 +8,39 @@
 (function () {
   "use strict";
 
-  var WEDDING_DATE = "2027-01-01T08:00:00+07:00";
+  var WEDDING_DATE = "2026-10-16T08:00:00+07:00";
+
+  function mapsLink(query) {
+    return "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent(query);
+  }
+
+  var BUNGO_MAS_QUERY = "Perumahan Bungo Mas Tahap 1 Blok D No. 4, Koto Tangah, Kota Padang";
+  var GERI_PERMAI_QUERY = "Perumahan Geri Permai Blok C No. 22, Lubuk Buaya, Koto Tangah, Kota Padang";
+
   var EVENT = {
     akad: {
-      date: "Tanggal menyusul",
+      date: "Jumat, 16 Oktober 2026",
       time: "Waktu menyusul",
-      venue: "Lokasi menyusul",
-      address: "Alamat menyusul",
-      mapsUrl: "https://maps.google.com",
-      coords: null, // { lat, lng } — isi setelah lokasi acara resmi ditentukan
+      venue: "Perumahan Bungo Mas Tahap 1",
+      address: "Blok D No. 4, Koto Tangah, Kota Padang",
+      mapQuery: BUNGO_MAS_QUERY,
+      mapsUrl: mapsLink(BUNGO_MAS_QUERY),
     },
-    resepsi: {
-      date: "Tanggal menyusul",
+    resepsiWanita: {
+      date: "Sabtu, 17 Oktober 2026",
       time: "Waktu menyusul",
-      venue: "Lokasi menyusul",
-      address: "Alamat menyusul",
-      mapsUrl: "https://maps.google.com",
-      coords: null,
+      venue: "Perumahan Bungo Mas Tahap 1",
+      address: "Blok D No. 4, Koto Tangah, Kota Padang",
+      mapQuery: BUNGO_MAS_QUERY,
+      mapsUrl: mapsLink(BUNGO_MAS_QUERY),
+    },
+    resepsiPria: {
+      date: "Minggu, 18 Oktober 2026",
+      time: "Waktu menyusul",
+      venue: "Perumahan Geri Permai",
+      address: "Blok C No. 22, Lubuk Buaya, Koto Tangah, Kota Padang",
+      mapQuery: GERI_PERMAI_QUERY,
+      mapsUrl: mapsLink(GERI_PERMAI_QUERY),
     },
   };
   var STORAGE_KEY = "wahyu_wanda_comments";
@@ -52,7 +68,8 @@
     document.getElementById(prefix + "Maps").href = info.mapsUrl;
   }
   fillEvent("akad", EVENT.akad);
-  fillEvent("resepsi", EVENT.resepsi);
+  fillEvent("resepsiWanita", EVENT.resepsiWanita);
+  fillEvent("resepsiPria", EVENT.resepsiPria);
   document.getElementById("heroDate").textContent = EVENT.akad.date;
   document.getElementById("heroVenue").textContent = EVENT.akad.venue;
 
@@ -275,17 +292,15 @@
     var tabs = document.querySelectorAll(".location-card__tab");
     if (!card || !frame) return;
 
-    if (!EVENT.akad.coords && !EVENT.resepsi.coords) {
+    if (!EVENT.akad.mapQuery && !EVENT.resepsiWanita.mapQuery && !EVENT.resepsiPria.mapQuery) {
       card.style.display = "none";
       return;
     }
 
     function showTab(key) {
       var info = EVENT[key];
-      if (!info || !info.coords) return;
-      frame.src =
-        "https://maps.google.com/maps?q=" + info.coords.lat + "," + info.coords.lng +
-        "&hl=id&z=16&output=embed";
+      if (!info || !info.mapQuery) return;
+      frame.src = "https://maps.google.com/maps?q=" + encodeURIComponent(info.mapQuery) + "&hl=id&z=16&output=embed";
       address.textContent = info.venue + " — " + info.address;
       tabs.forEach(function (tab) {
         tab.classList.toggle("is-active", tab.dataset.mapTab === key);
@@ -298,7 +313,7 @@
       });
     });
 
-    showTab(EVENT.akad.coords ? "akad" : "resepsi");
+    showTab("akad");
   })();
 
   /* Love Story scroll-linked rail fill ------------------------------------------------ */
