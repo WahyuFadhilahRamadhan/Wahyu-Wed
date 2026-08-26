@@ -10,16 +10,10 @@
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;800;900&family=Great+Vibes&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Scheherazade+New:wght@600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
 </head>
-<body class="has-bg-video">
+<body class="has-scene-bg">
 
-  <!-- Fixed cinematic background video -->
-  <div class="bg-video-wrap" aria-hidden="true">
-    <video autoplay loop muted playsinline preload="auto" poster="images/couple-hero.svg">
-      <source src="video/background.mp4" type="video/mp4" />
-    </video>
-    <div class="bg-video-overlay"></div>
-    <div class="bg-video-tint"></div>
-  </div>
+  <!-- Fixed cinematic backdrop (static gradient) -->
+  <div class="scene-bg" aria-hidden="true"></div>
 
   <!-- Floating music toggle -->
   <button type="button" class="music-toggle" id="musicToggle" aria-label="Putar / jeda musik">
