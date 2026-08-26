@@ -44,40 +44,20 @@ body {
   max-width: 100vw;
 }
 
-/* Cinematic background video --------------------------------------------------- */
+/* Fixed cinematic backdrop (static gradient, no video) --------------------------- */
 
-body.has-bg-video {
+body.has-scene-bg {
   background: #1c1917;
 }
 
-.bg-video-wrap {
+.scene-bg {
   position: fixed;
   inset: 0;
   z-index: -10;
-  overflow: hidden;
   pointer-events: none;
-}
-
-.bg-video-wrap video {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transform: scale(1.03);
-  filter: brightness(0.9) contrast(1.05);
-}
-
-.bg-video-overlay {
-  position: absolute;
-  inset: 0;
-  background: rgba(10, 8, 6, 0.6);
-  backdrop-filter: blur(2.5px);
-}
-
-.bg-video-tint {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(180deg, rgba(6, 46, 33, 0.4) 0%, transparent 50%, rgba(46, 32, 6, 0.5) 100%);
-  mix-blend-mode: multiply;
+  background:
+    radial-gradient(circle at 50% 15%, rgba(212, 175, 55, 0.12), transparent 55%),
+    linear-gradient(180deg, #0d211a 0%, #071610 45%, #10251c 75%, #1c1917 100%);
 }
 
 img {
