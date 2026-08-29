@@ -141,6 +141,67 @@
   background: rgba(255, 255, 255, 0.28);
 }
 
+/* Sapaan personal — first screen after the cover is opened, same
+   full-bleed photo treatment as the sections below it. Content is
+   short now (title + countdown, no more guest line/ayat), centered
+   like every other photo section on this page. */
+
+.greeting {
+  position: relative;
+  padding: 0;
+  overflow: hidden;
+}
+
+.greeting__photo {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background: url("images/greeting-photo.jpg");
+  background-size: cover;
+  background-position: center 30%;
+  background-repeat: no-repeat;
+}
+
+.greeting__scrim {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(180deg, rgba(15, 22, 26, 0.55) 0%, rgba(15, 22, 26, 0.15) 35%, rgba(15, 22, 26, 0.2) 60%, rgba(15, 22, 26, 0.6) 100%);
+}
+
+.greeting__body {
+  position: relative;
+  z-index: 2;
+  padding: 3.5rem 1.75rem;
+}
+
+.greeting .eyebrow {
+  color: rgba(255, 255, 255, 0.88);
+}
+
+.greeting .ornament {
+  background: rgba(255, 255, 255, 0.75);
+}
+
+.greeting .greeting__names {
+  color: #fff;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.45);
+}
+
+.greeting #countdown {
+  margin-top: 2rem;
+}
+
+/* Wide desktop windows crop this portrait photo much more tightly than
+   mobile does (background-size: cover zooms in further the wider the
+   section gets), which was pushing the couple's faces right up under
+   the countdown row. Show more of the ceiling / push them down. */
+@media (min-width: 860px) {
+  .greeting__photo {
+    background-position: center 12%;
+  }
+}
+
 /* Terima kasih — short thank-you panel over a photo, echoing the cover's
    full-bleed treatment but on a smaller, self-contained section. */
 

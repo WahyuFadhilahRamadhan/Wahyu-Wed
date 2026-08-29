@@ -41,42 +41,46 @@
   <div class="invitation-shell">
     <main class="invitation-content" id="invitationContent">
 
-      <!-- Sapaan personal -->
+      <!-- Sapaan personal — first screen after "Buka Undangan". Countdown
+           lives here too now; the guest greeting already appeared on the
+           cover so isn't repeated here, and the ayat moved to its own
+           section below (see "Doa & Harapan"). -->
       <section class="section greeting">
-        <p class="eyebrow reveal">Undangan Pernikahan</p>
-        <h2 class="greeting__names reveal reveal-delay-1" id="greetingNames">&nbsp;</h2>
-        <div class="ornament reveal reveal-delay-1"></div>
-        <p class="greeting__to reveal reveal-delay-2" style="margin-top: 1.75rem;">Kepada Yth. Bapak/Ibu/Saudara/i</p>
-        <p class="greeting__name reveal reveal-delay-2" id="guestNameDisplay">Tamu Undangan</p>
-        <p class="greeting__quote reveal reveal-delay-3">
-          "Dan di antara tanda-tanda kekuasaan-Nya ialah Dia menciptakan untukmu pasangan dari jenismu sendiri, supaya kamu cenderung dan merasa tenteram kepadanya, dan dijadikan-Nya di antaramu rasa kasih dan sayang." — QS. Ar-Rum: 21
-        </p>
+        <div class="greeting__photo"></div>
+        <div class="greeting__scrim"></div>
+        <div class="greeting__body">
+          <p class="eyebrow reveal">The Wedding Of</p>
+          <h2 class="greeting__names reveal reveal-delay-1" id="greetingNames">&nbsp;</h2>
+          <div class="ornament reveal reveal-delay-1"></div>
+          <div class="countdown reveal reveal-delay-2" id="countdown">
+            <div class="countdown__item">
+              <span class="countdown__value" data-unit="days">0</span>
+              <span class="countdown__label">Hari</span>
+            </div>
+            <div class="countdown__item">
+              <span class="countdown__value" data-unit="hours">00</span>
+              <span class="countdown__label">Jam</span>
+            </div>
+            <div class="countdown__item">
+              <span class="countdown__value" data-unit="minutes">00</span>
+              <span class="countdown__label">Menit</span>
+            </div>
+            <div class="countdown__item">
+              <span class="countdown__value" data-unit="seconds">00</span>
+              <span class="countdown__label">Detik</span>
+            </div>
+          </div>
+        </div>
       </section>
 
-      <!-- Countdown -->
+      <!-- Doa & Harapan — the ayat that used to sit under the greeting -->
       <section class="section">
         <div class="section__header">
-          <p class="eyebrow reveal">Menuju Hari Bahagia</p>
-          <h2 class="section__title reveal reveal-delay-1">Countdown</h2>
+          <p class="eyebrow reveal">Doa &amp; Harapan</p>
         </div>
-        <div class="countdown reveal reveal-delay-2" id="countdown">
-          <div class="countdown__item">
-            <span class="countdown__value" data-unit="days">0</span>
-            <span class="countdown__label">Hari</span>
-          </div>
-          <div class="countdown__item">
-            <span class="countdown__value" data-unit="hours">00</span>
-            <span class="countdown__label">Jam</span>
-          </div>
-          <div class="countdown__item">
-            <span class="countdown__value" data-unit="minutes">00</span>
-            <span class="countdown__label">Menit</span>
-          </div>
-          <div class="countdown__item">
-            <span class="countdown__value" data-unit="seconds">00</span>
-            <span class="countdown__label">Detik</span>
-          </div>
-        </div>
+        <p class="greeting__quote reveal reveal-delay-1">
+          "Dan di antara tanda-tanda kekuasaan-Nya ialah Dia menciptakan untukmu pasangan dari jenismu sendiri, supaya kamu cenderung dan merasa tenteram kepadanya, dan dijadikan-Nya di antaramu rasa kasih dan sayang." — QS. Ar-Rum: 21
+        </p>
       </section>
 
       <!-- Kedua Mempelai — full-bleed one-per-screen on mobile; becomes a
@@ -299,7 +303,8 @@
   <script src="../assets/js/invitation.js"></script>
   <script>
     Mounstory.Invitation.init("data.json");
-    document.getElementById("guestNameDisplay").textContent = Mounstory.Invitation.getGuestName();
+    var guestNameDisplayEl = document.getElementById("guestNameDisplay");
+    if (guestNameDisplayEl) guestNameDisplayEl.textContent = Mounstory.Invitation.getGuestName();
   </script>
 </body>
 </html>
