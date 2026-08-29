@@ -192,6 +192,29 @@
   margin: 0;
 }
 
+/* One-section-per-screen scroll flow — each .section snaps to fill the
+   screen as you scroll, so the page reads as a sequence of full slides
+   instead of one long continuous page. Pure CSS scroll-snap (native
+   browser behavior, no animation library), so it stays as lightweight
+   as everything else on this page. A section taller than one screen
+   (e.g. the 3-card Acara grid) just scrolls normally past its snap
+   point — mandatory snapping only pins the *start* of each section. */
+
+html {
+  scroll-behavior: smooth;
+  scroll-snap-type: y mandatory;
+}
+
+.section {
+  min-height: 100vh;
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+}
+
 /* Wedding Wish — status as a small pill instead of plain caps text. */
 
 .wish-item__status {
