@@ -79,29 +79,35 @@
         </div>
       </section>
 
-      <!-- Mempelai Pria — own full-bleed photo section -->
-      <section class="section groom-section">
-        <div class="groom-section__photo"></div>
-        <div class="groom-section__scrim"></div>
-        <div class="groom-section__body">
-          <p class="eyebrow reveal">Mempelai Pria</p>
-          <h2 class="person-section__name reveal reveal--left reveal-delay-1" id="groomFullName">&nbsp;</h2>
-          <p class="person-section__order reveal reveal--left reveal-delay-2" id="groomOrder"></p>
-          <p class="person-section__parents reveal reveal--left reveal-delay-2" id="groomParents"></p>
-        </div>
-      </section>
+      <!-- Kedua Mempelai — full-bleed one-per-screen on mobile; becomes a
+           side-by-side two-card grid on desktop (see .couple-sections in
+           style.css) since a portrait photo stretched full-bleed across a
+           wide viewport crops far too tight. -->
+      <div class="couple-sections">
+        <section class="section groom-section">
+          <div class="groom-section__photo"></div>
+          <div class="groom-section__scrim"></div>
+          <div class="groom-section__body">
+            <p class="eyebrow reveal">Groom</p>
+            <h2 class="person-section__name reveal reveal--left reveal-delay-1" id="groomFullName">&nbsp;</h2>
+            <div class="ornament reveal reveal--left reveal-delay-1"></div>
+            <p class="person-section__order reveal reveal--left reveal-delay-2" id="groomOrder"></p>
+            <p class="person-section__parents reveal reveal--left reveal-delay-2" id="groomParents"></p>
+          </div>
+        </section>
 
-      <!-- Mempelai Wanita — own full-bleed photo section -->
-      <section class="section bride-section">
-        <div class="bride-section__photo"></div>
-        <div class="bride-section__scrim"></div>
-        <div class="bride-section__body">
-          <p class="eyebrow reveal">Mempelai Wanita</p>
-          <h2 class="person-section__name reveal reveal--right reveal-delay-1" id="brideFullName">&nbsp;</h2>
-          <p class="person-section__order reveal reveal--right reveal-delay-2" id="brideOrder"></p>
-          <p class="person-section__parents reveal reveal--right reveal-delay-2" id="brideParents"></p>
-        </div>
-      </section>
+        <section class="section bride-section">
+          <div class="bride-section__photo"></div>
+          <div class="bride-section__scrim"></div>
+          <div class="bride-section__body">
+            <p class="eyebrow reveal">Bride</p>
+            <h2 class="person-section__name reveal reveal--right reveal-delay-1" id="brideFullName">&nbsp;</h2>
+            <div class="ornament reveal reveal--right reveal-delay-1"></div>
+            <p class="person-section__order reveal reveal--right reveal-delay-2" id="brideOrder"></p>
+            <p class="person-section__parents reveal reveal--right reveal-delay-2" id="brideParents"></p>
+          </div>
+        </section>
+      </div>
 
       <!-- Love story -->
       <section class="section">
