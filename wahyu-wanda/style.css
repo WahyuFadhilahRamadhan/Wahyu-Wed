@@ -231,22 +231,27 @@ html {
    layouts instead of one long stack. */
 
 @media (min-width: 860px) {
-  .invitation-shell {
-    max-width: 880px;
-  }
-
   .couple-grid {
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
     grid-template-columns: 1fr auto 1fr;
     align-items: center;
     gap: 2rem;
   }
 
   .event-grid {
+    max-width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
     grid-template-columns: repeat(3, 1fr);
     gap: 1.5rem;
   }
 
   .gallery-grid {
+    max-width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
     grid-template-columns: repeat(4, 1fr);
   }
 
@@ -256,5 +261,36 @@ html {
     max-width: 480px;
     margin-left: auto;
     margin-right: auto;
+  }
+}
+
+/* No floating "card" anywhere — this page is a plain full-bleed page,
+   edge to edge at every screen size, not a phone-width card centered
+   on a visible background gutter like the shared engine's default. The
+   cover and the content below it both go full width; individual grids
+   above still cap their own width (via the block above) so cards don't
+   spread absurdly thin on very wide monitors — but that's a centered
+   content column, not a boxed/shadowed "frame". */
+
+.invitation-shell,
+.cover {
+  width: 100%;
+  max-width: none;
+  margin: 0;
+  box-shadow: none;
+  border-radius: 0;
+}
+
+.cover {
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  transform: none;
+}
+
+@media (min-width: 480px) {
+  .music-toggle {
+    right: 1.25rem;
   }
 }
