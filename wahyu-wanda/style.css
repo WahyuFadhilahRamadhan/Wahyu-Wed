@@ -159,7 +159,10 @@
   position: absolute;
   inset: 0;
   z-index: 0;
-  background: linear-gradient(155deg, #3a4a35 0%, #5c6b4d 55%, #a79b78 100%);
+  background: url("images/thanks-photo.jpg");
+  background-size: cover;
+  background-position: center 68%;
+  background-repeat: no-repeat;
 }
 
 .thanks-section__scrim {
@@ -296,5 +299,74 @@ html {
 @media (min-width: 480px) {
   .music-toggle {
     right: 1.25rem;
+  }
+}
+
+/* Varied scroll-reveal directions — the shared .reveal is a plain
+   fade-up. These give specific, paired/sequential elements (the couple
+   grid, the love story timeline, the first/last event card) a sense of
+   converging from either side instead of every single element on the
+   page fading up the same way. Kept to elements where a direction
+   reads as intentional, not sprinkled everywhere. */
+
+.reveal.reveal--left {
+  transform: translateX(-56px);
+}
+
+.reveal.reveal--right {
+  transform: translateX(56px);
+}
+
+.reveal.reveal--left.is-visible,
+.reveal.reveal--right.is-visible {
+  transform: translateX(0);
+}
+
+.reveal.reveal--pop {
+  transform: scale(0.82);
+}
+
+.reveal.reveal--pop.is-visible {
+  transform: scale(1);
+}
+
+/* Greeting names — moved out of an inline style so the desktop bump
+   below can target it. */
+.greeting__names {
+  font-family: var(--font-serif);
+  font-size: clamp(1.8rem, 5vw + 0.5rem, 2.6rem);
+}
+
+/* Desktop type scale — the shared engine's clamp() sizes top out at
+   values tuned for a ~600px card, so headings and body copy read too
+   small once this page's sections widen out on desktop (see the
+   min-width: 860px block above). Bumping the root font-size scales
+   every rem-based size/spacing on the page proportionally in one
+   place; a few of the most prominent headings get an extra explicit
+   bump on top since those are what actually read "small" here. */
+
+@media (min-width: 860px) {
+  html {
+    font-size: 17.5px;
+  }
+
+  .cover--photo .cover__names {
+    font-size: 4.4rem;
+  }
+
+  .greeting__names {
+    font-size: 3.4rem;
+  }
+
+  .section__title {
+    font-size: 2.75rem;
+  }
+
+  .thanks-section__text {
+    font-size: 1.05rem;
+  }
+
+  .thanks-section__names {
+    font-size: 1.7rem;
   }
 }

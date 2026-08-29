@@ -192,9 +192,10 @@
     var list = document.getElementById("loveStoryTimeline");
     if (!list || !Array.isArray(data.loveStory)) return;
     list.innerHTML = data.loveStory
-      .map(function (item) {
+      .map(function (item, index) {
+        var direction = index % 2 === 0 ? "reveal--left" : "reveal--right";
         return (
-          '<div class="timeline-item reveal">' +
+          '<div class="timeline-item reveal ' + direction + '">' +
           '<span class="timeline-item__dot"></span>' +
           '<div class="timeline-item__content">' +
           '<span class="timeline-item__year">' + escapeHTML(item.year) + '</span>' +
