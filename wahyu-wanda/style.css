@@ -1,7 +1,34 @@
-/* Page-specific theme for Wahyu & Wanda — full-bleed photo cover screen.
-   Scoped to this page only, so /demo/ and every other couple keep the
-   default card-style cover. Everything past the cover uses the shared
-   invitation.css styling untouched. */
+/* Page-specific theme for Wahyu & Wanda — full-bleed photo cover screen,
+   plus a dark forest-green/olive accent palette (in place of the shared
+   default gold) to match the couple's reference. Scoped to this page
+   only via CSS variables + a few hardcoded-rgba overrides below, so
+   /demo/ and every other couple keep the default gold theme untouched. */
+
+:root {
+  --color-primary: #3f5c3a;
+  --color-primary-dark: #2c4128;
+}
+
+.btn-primary:hover {
+  box-shadow: 0 8px 22px rgba(63, 92, 58, 0.35);
+}
+
+.btn-outline:hover {
+  background: rgba(63, 92, 58, 0.08);
+}
+
+.form-field input:focus,
+.form-field select:focus,
+.form-field textarea:focus {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(63, 92, 58, 0.18);
+}
+
+.radio-option input:checked + span {
+  border-color: var(--color-primary);
+  background: rgba(63, 92, 58, 0.12);
+  color: var(--color-primary);
+}
 
 .cover--photo {
   padding: 0;
@@ -23,8 +50,8 @@
   inset: 0;
   z-index: 0;
   background:
-    linear-gradient(180deg, rgba(20, 30, 35, 0.55) 0%, rgba(20, 30, 35, 0.1) 30%, rgba(20, 30, 35, 0.15) 60%, rgba(15, 22, 26, 0.75) 100%),
-    linear-gradient(160deg, #3c5866 0%, #5c7c7a 45%, #8a9b74 75%, #b7ad82 100%);
+    linear-gradient(180deg, rgba(18, 26, 18, 0.6) 0%, rgba(18, 26, 18, 0.15) 30%, rgba(18, 26, 18, 0.2) 60%, rgba(14, 20, 14, 0.78) 100%),
+    linear-gradient(160deg, #3a4a35 0%, #5c6b4d 45%, #838f68 75%, #a79b78 100%);
 }
 
 .cover__scrim {
@@ -128,7 +155,7 @@
   position: absolute;
   inset: 0;
   z-index: 0;
-  background: linear-gradient(155deg, #5c7c7a 0%, #8a9b74 55%, #b7ad82 100%);
+  background: linear-gradient(155deg, #3a4a35 0%, #5c6b4d 55%, #a79b78 100%);
 }
 
 .thanks-section__scrim {
