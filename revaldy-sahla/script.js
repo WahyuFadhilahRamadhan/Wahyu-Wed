@@ -196,25 +196,6 @@
     }
   });
 
-  /* Gallery lightbox ---------------------------------------------------------------- */
-
-  (function initLightbox() {
-    var grid = document.getElementById("galleryGrid");
-    var modal = document.getElementById("lightboxModal");
-    var img = document.getElementById("lightboxImg");
-    grid.addEventListener("click", function (e) {
-      if (e.target.tagName !== "IMG") return;
-      img.src = e.target.src;
-      modal.classList.add("is-open");
-    });
-    modal.addEventListener("click", function () {
-      modal.classList.remove("is-open");
-    });
-    document.addEventListener("keydown", function (e) {
-      if (e.key === "Escape") modal.classList.remove("is-open");
-    });
-  })();
-
   /* RSVP + guestbook (localStorage) --------------------------------------------------- */
 
   function loadComments() {
@@ -304,28 +285,6 @@
     });
 
     showTab("akad");
-  })();
-
-  /* Love Story scroll-linked rail fill ------------------------------------------------ */
-
-  (function initLoveStoryRail() {
-    var container = document.getElementById("loveStory");
-    var fill = document.getElementById("loveStoryRailFill");
-    if (!container || !fill) return;
-
-    function update() {
-      var rect = container.getBoundingClientRect();
-      var viewportH = window.innerHeight;
-      var start = viewportH * 0.85;
-      var progress = (start - rect.top) / (rect.height - viewportH * 0.5 + 1);
-      if (progress < 0) progress = 0;
-      if (progress > 1) progress = 1;
-      fill.style.height = (progress * 100) + "%";
-    }
-
-    update();
-    window.addEventListener("scroll", update, { passive: true });
-    window.addEventListener("resize", update);
   })();
 
   /* Floating nav: scroll-spy + click-to-scroll ---------------------------------------- */
