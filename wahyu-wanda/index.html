@@ -10,23 +10,31 @@
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="../assets/css/base.css" />
   <link rel="stylesheet" href="../assets/css/invitation.css" />
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
-  <!-- Cover / opening screen -->
-  <div class="cover" id="cover">
+  <!-- Cover / opening screen — full-bleed photo (placeholder gradient until the
+       couple's real photo is supplied; see .cover__photo in style.css) -->
+  <div class="cover cover--photo" id="cover">
+    <div class="cover__photo"></div>
+    <div class="cover__scrim"></div>
     <div class="cover__frame">
-      <p class="cover__eyebrow">The Wedding Of</p>
-      <h1 class="cover__names" id="coverNames">&nbsp;</h1>
-      <p class="cover__date" id="coverDate"></p>
-      <p class="cover__guest">
-        Kepada Yth.
-        <strong id="guestNamePreview"><span id="guestName">Tamu Undangan</span></strong>
-      </p>
-      <button type="button" class="btn btn-primary cover__open-btn" id="openInvitationBtn">
-        Buka Undangan
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M19 12l-7 7-7-7"/></svg>
-      </button>
+      <div class="cover__top">
+        <p class="cover__eyebrow">The Wedding Of</p>
+        <h1 class="cover__names" id="coverNames">&nbsp;</h1>
+      </div>
+      <div class="cover__bottom">
+        <p class="cover__guest">
+          Kepada Yth.<br />
+          <strong id="guestNamePreview"><span id="guestName">Tamu Undangan</span></strong>
+        </p>
+        <p class="cover__disclaimer">*Mohon maaf jika ada kesalahan dalam penulisan nama / gelar.</p>
+        <button type="button" class="btn cover__open-btn" id="openInvitationBtn">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16v16H4z" opacity="0"/><path d="M3 7l9 6 9-6M3 7v10h18V7"/></svg>
+          Buka Undangan
+        </button>
+      </div>
     </div>
   </div>
 

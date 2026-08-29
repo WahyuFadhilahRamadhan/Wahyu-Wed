@@ -1,0 +1,110 @@
+/* Page-specific theme for Wahyu & Wanda — full-bleed photo cover screen.
+   Scoped to this page only, so /demo/ and every other couple keep the
+   default card-style cover. Everything past the cover uses the shared
+   invitation.css styling untouched. */
+
+.cover--photo {
+  padding: 0;
+  background: none;
+}
+
+@media (min-width: 480px) {
+  .cover--photo {
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+  }
+}
+
+/* Placeholder background until the couple's real photo is supplied —
+   swap this for `background-image: url("images/cover-photo.jpg");
+   background-size: cover; background-position: center;` once it's in. */
+.cover__photo {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background:
+    linear-gradient(180deg, rgba(20, 30, 35, 0.55) 0%, rgba(20, 30, 35, 0.1) 30%, rgba(20, 30, 35, 0.15) 60%, rgba(15, 22, 26, 0.75) 100%),
+    linear-gradient(160deg, #3c5866 0%, #5c7c7a 45%, #8a9b74 75%, #b7ad82 100%);
+}
+
+.cover__scrim {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: radial-gradient(ellipse at 50% 45%, transparent 30%, rgba(10, 15, 18, 0.35) 100%);
+}
+
+.cover--photo .cover__frame {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: none;
+  height: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border: none;
+  border-radius: 0;
+  padding: clamp(2rem, 8vh, 3.5rem) clamp(1.5rem, 6vw, 2.5rem);
+  animation: none;
+  box-sizing: border-box;
+}
+
+@media (min-width: 480px) {
+  .cover--photo .cover__frame {
+    min-height: auto;
+  }
+}
+
+.cover--photo .cover__top,
+.cover--photo .cover__bottom {
+  text-align: center;
+}
+
+.cover--photo .cover__eyebrow {
+  color: rgba(255, 255, 255, 0.92);
+  text-shadow: 0 1px 6px rgba(0, 0, 0, 0.4);
+}
+
+.cover--photo .cover__names {
+  font-family: var(--font-sans);
+  font-weight: 600;
+  color: #fff;
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.45);
+  margin: 0.35em 0 0;
+}
+
+.cover--photo .cover__guest {
+  color: rgba(255, 255, 255, 0.95);
+  text-shadow: 0 1px 6px rgba(0, 0, 0, 0.4);
+  margin-bottom: 0.5em;
+}
+
+.cover--photo .cover__guest strong {
+  color: #fff;
+  font-family: var(--font-sans);
+  font-weight: 600;
+  font-size: 1.05rem;
+}
+
+.cover__disclaimer {
+  font-size: 0.72rem;
+  font-style: italic;
+  color: rgba(255, 255, 255, 0.75);
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.4);
+  margin: 0 0 1.5rem;
+}
+
+.cover--photo .cover__open-btn {
+  background: rgba(255, 255, 255, 0.18);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+}
+
+.cover--photo .cover__open-btn:hover {
+  background: rgba(255, 255, 255, 0.28);
+}
