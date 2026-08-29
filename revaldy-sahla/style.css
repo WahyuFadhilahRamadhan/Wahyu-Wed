@@ -1734,6 +1734,10 @@ img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  /* Portrait photos are taller than the square frame, so cover crops
+     top+bottom evenly by default — that cuts into the peci/hijab. Anchor
+     near the top instead so the crop comes out of the shoulders/chest. */
+  object-position: center 12%;
 }
 
 /* Love story timeline (gold progress rail) --------------------------------------------- */
