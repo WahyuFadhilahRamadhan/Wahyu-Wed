@@ -159,7 +159,10 @@
   position: absolute;
   inset: 0;
   z-index: 0;
-  background: linear-gradient(155deg, #3a4a35 0%, #5c6b4d 55%, #a79b78 100%);
+  background: url("images/thanks-photo.jpg");
+  background-size: cover;
+  background-position: center 68%;
+  background-repeat: no-repeat;
 }
 
 .thanks-section__scrim {
