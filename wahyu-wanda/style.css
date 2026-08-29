@@ -144,6 +144,15 @@
 /* Sapaan personal — first screen after the cover is opened, same
    full-bleed photo treatment as the sections below it. */
 
+/* The couple stand centered and fill most of the photo's height (only
+   real empty space is the ceiling/chandelier area at the top), so
+   centering the text — the section default — lands it right on their
+   faces. Anchor it to the top instead, over the empty ceiling, and
+   push the crop up (lower position-y) so even more headroom shows. */
+.section.greeting {
+  justify-content: flex-start;
+}
+
 .greeting {
   position: relative;
   padding: 0;
@@ -156,7 +165,7 @@
   z-index: 0;
   background: url("images/greeting-photo.jpg");
   background-size: cover;
-  background-position: center 38%;
+  background-position: center 18%;
   background-repeat: no-repeat;
 }
 
@@ -164,7 +173,7 @@
   position: absolute;
   inset: 0;
   z-index: 1;
-  background: linear-gradient(180deg, rgba(15, 22, 26, 0.62) 0%, rgba(15, 22, 26, 0.28) 35%, rgba(15, 22, 26, 0.3) 65%, rgba(15, 22, 26, 0.68) 100%);
+  background: linear-gradient(180deg, rgba(15, 22, 26, 0.7) 0%, rgba(15, 22, 26, 0.3) 45%, transparent 65%);
 }
 
 .greeting__body {
