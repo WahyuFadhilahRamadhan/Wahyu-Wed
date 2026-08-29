@@ -703,6 +703,83 @@ body.invitation-body {
   fill: currentColor;
 }
 
+/* Gift modal (opt-in — only used by pages with a [data-open-gift] trigger
+   and #giftModal; inert everywhere else) ------------------------------------------------- */
+
+.gift-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 210;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  background: rgba(30, 26, 20, 0.5);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity var(--transition-base), visibility var(--transition-base);
+}
+
+@media (min-width: 480px) {
+  .gift-modal {
+    align-items: center;
+    padding: 1.5rem;
+  }
+}
+
+.gift-modal.is-open {
+  opacity: 1;
+  visibility: visible;
+}
+
+.gift-modal__panel {
+  position: relative;
+  width: 100%;
+  max-width: 420px;
+  max-height: 85vh;
+  overflow-y: auto;
+  background: var(--color-bg);
+  border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+  padding: 1.75rem 1.5rem 2rem;
+  transform: translateY(24px);
+  transition: transform var(--transition-base);
+}
+
+.gift-modal.is-open .gift-modal__panel {
+  transform: translateY(0);
+}
+
+@media (min-width: 480px) {
+  .gift-modal__panel {
+    border-radius: var(--radius-lg);
+  }
+}
+
+.gift-modal__title {
+  text-align: center;
+  font-size: 1.2rem;
+  margin-bottom: 1.25rem;
+}
+
+.gift-modal__close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  width: 2.1rem;
+  height: 2.1rem;
+  border-radius: 50%;
+  border: none;
+  background: var(--color-surface);
+  color: var(--color-text-light);
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: background var(--transition-fast), transform var(--transition-fast);
+}
+
+.gift-modal__close:hover {
+  background: var(--color-border);
+  transform: scale(1.06);
+}
+
 /* Love story timeline ---------------------------------------------------------------------- */
 
 .timeline {

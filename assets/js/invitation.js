@@ -53,6 +53,7 @@
     var shortNames = data.meta.coupleShort || "";
     renderText("coverNames", shortNames);
     renderText("greetingNames", shortNames);
+    renderText("thanksNames", shortNames);
     renderText("footerNames", shortNames);
 
     var guest = getGuestName();
@@ -391,6 +392,39 @@
   }
 
   /* ---------------------------------------------------------------------
+     Gift modal (optional — only wires up if a page includes a
+     [data-open-gift] trigger and #giftModal, so pages that keep the
+     inline bank-card layout are completely unaffected)
+     ------------------------------------------------------------------- */
+
+  function initGiftModal() {
+    var modal = document.getElementById("giftModal");
+    var openBtn = document.querySelector("[data-open-gift]");
+    if (!modal || !openBtn) return;
+
+    var closeBtn = modal.querySelector("[data-close-gift]");
+
+    function open() {
+      modal.classList.add("is-open");
+      document.body.style.overflow = "hidden";
+    }
+
+    function close() {
+      modal.classList.remove("is-open");
+      document.body.style.overflow = "";
+    }
+
+    openBtn.addEventListener("click", open);
+    if (closeBtn) closeBtn.addEventListener("click", close);
+    modal.addEventListener("click", function (e) {
+      if (e.target === modal) close();
+    });
+    document.addEventListener("keydown", function (e) {
+      if (e.key === "Escape") close();
+    });
+  }
+
+  /* ---------------------------------------------------------------------
      Gallery lightbox
      ------------------------------------------------------------------- */
 
@@ -452,6 +486,7 @@
         initWishLikes();
         initCopyButtons();
         initGalleryLightbox();
+        initGiftModal();
       })
       .catch(function (err) {
         console.error(err);

@@ -53,6 +53,19 @@
         </p>
       </section>
 
+      <!-- Terima kasih -->
+      <section class="section thanks-section">
+        <div class="thanks-section__photo"></div>
+        <div class="thanks-section__scrim"></div>
+        <div class="thanks-section__body">
+          <p class="eyebrow reveal">Terima Kasih</p>
+          <p class="thanks-section__text reveal reveal-delay-1">
+            Atas doa dan restu yang diberikan, kami ucapkan terima kasih yang sebesar-besarnya.
+          </p>
+          <p class="thanks-section__names reveal reveal-delay-2" id="thanksNames">&nbsp;</p>
+        </div>
+      </section>
+
       <!-- Countdown -->
       <section class="section">
         <div class="section__header">
@@ -100,6 +113,15 @@
             <p class="couple-card__parents" id="brideParents"></p>
           </div>
         </div>
+      </section>
+
+      <!-- Love story -->
+      <section class="section">
+        <div class="section__header">
+          <p class="eyebrow reveal">Perjalanan Kami</p>
+          <h2 class="section__title reveal reveal-delay-1">Kisah Cinta</h2>
+        </div>
+        <div class="timeline" id="loveStoryTimeline"></div>
       </section>
 
       <!-- Event details -->
@@ -191,11 +213,9 @@
           <h2 class="section__title reveal reveal-delay-1">Tanda Kasih</h2>
         </div>
         <p class="gift-intro reveal reveal-delay-1" id="giftNote"></p>
-        <div class="reveal reveal-delay-2" id="banksList"></div>
-        <div class="qris-card reveal reveal-delay-3" id="qrisCard" style="display:none;">
-          <img id="qrisImage" src="" alt="QRIS" />
-          <p>Scan kode QRIS di atas menggunakan aplikasi e-wallet atau m-banking favoritmu.</p>
-        </div>
+        <button type="button" class="btn btn-primary reveal reveal-delay-2" data-open-gift style="display:block; margin:0 auto;">
+          Kirim Tanda Kasih
+        </button>
       </section>
 
       <!-- Wishes & prayers -->
@@ -253,6 +273,19 @@
   <div class="lightbox" id="lightbox">
     <button type="button" class="lightbox__close" aria-label="Tutup">&times;</button>
     <img src="" alt="Pratinjau galeri" />
+  </div>
+
+  <!-- Wedding gift modal -->
+  <div class="gift-modal" id="giftModal">
+    <div class="gift-modal__panel">
+      <button type="button" class="gift-modal__close" data-close-gift aria-label="Tutup">&times;</button>
+      <h3 class="gift-modal__title">Amplop Digital</h3>
+      <div id="banksList"></div>
+      <div class="qris-card" id="qrisCard" style="display:none;">
+        <img id="qrisImage" src="" alt="QRIS" />
+        <p>Scan kode QRIS di atas menggunakan aplikasi e-wallet atau m-banking favoritmu.</p>
+      </div>
+    </div>
   </div>
 
   <script src="../assets/js/animations.js"></script>
