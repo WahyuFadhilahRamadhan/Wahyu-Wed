@@ -1,0 +1,201 @@
+/* Page-specific theme for Wahyu & Wanda — full-bleed photo cover screen,
+   plus a dark forest-green/olive accent palette (in place of the shared
+   default gold) to match the couple's reference. Scoped to this page
+   only via CSS variables + a few hardcoded-rgba overrides below, so
+   /demo/ and every other couple keep the default gold theme untouched. */
+
+:root {
+  --color-primary: #3f5c3a;
+  --color-primary-dark: #2c4128;
+}
+
+.btn-primary:hover {
+  box-shadow: 0 8px 22px rgba(63, 92, 58, 0.35);
+}
+
+.btn-outline:hover {
+  background: rgba(63, 92, 58, 0.08);
+}
+
+.form-field input:focus,
+.form-field select:focus,
+.form-field textarea:focus {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(63, 92, 58, 0.18);
+}
+
+.radio-option input:checked + span {
+  border-color: var(--color-primary);
+  background: rgba(63, 92, 58, 0.12);
+  color: var(--color-primary);
+}
+
+.cover--photo {
+  padding: 0;
+  background: none;
+}
+
+@media (min-width: 480px) {
+  .cover--photo {
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+  }
+}
+
+/* Placeholder background until the couple's real photo is supplied —
+   swap this for `background-image: url("images/cover-photo.jpg");
+   background-size: cover; background-position: center;` once it's in. */
+.cover__photo {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background:
+    linear-gradient(180deg, rgba(18, 26, 18, 0.6) 0%, rgba(18, 26, 18, 0.15) 30%, rgba(18, 26, 18, 0.2) 60%, rgba(14, 20, 14, 0.78) 100%),
+    linear-gradient(160deg, #3a4a35 0%, #5c6b4d 45%, #838f68 75%, #a79b78 100%);
+}
+
+.cover__scrim {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: radial-gradient(ellipse at 50% 45%, transparent 30%, rgba(10, 15, 18, 0.35) 100%);
+}
+
+.cover--photo .cover__frame {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: none;
+  height: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border: none;
+  border-radius: 0;
+  padding: clamp(2rem, 8vh, 3.5rem) clamp(1.5rem, 6vw, 2.5rem);
+  animation: none;
+  box-sizing: border-box;
+}
+
+@media (min-width: 480px) {
+  .cover--photo .cover__frame {
+    min-height: auto;
+  }
+}
+
+.cover--photo .cover__top,
+.cover--photo .cover__bottom {
+  text-align: center;
+}
+
+.cover--photo .cover__eyebrow {
+  color: rgba(255, 255, 255, 0.92);
+  text-shadow: 0 1px 6px rgba(0, 0, 0, 0.4);
+}
+
+.cover--photo .cover__names {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 600;
+  color: #fff;
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.45);
+  margin: 0.35em 0 0;
+}
+
+.cover--photo .cover__guest {
+  color: rgba(255, 255, 255, 0.95);
+  text-shadow: 0 1px 6px rgba(0, 0, 0, 0.4);
+  margin-bottom: 0.5em;
+}
+
+.cover--photo .cover__guest strong {
+  color: #fff;
+  font-family: var(--font-sans);
+  font-weight: 600;
+  font-size: 1.05rem;
+}
+
+.cover__disclaimer {
+  font-size: 0.72rem;
+  font-style: italic;
+  color: rgba(255, 255, 255, 0.75);
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.4);
+  margin: 0 0 1.5rem;
+}
+
+.cover--photo .cover__open-btn {
+  background: rgba(255, 255, 255, 0.18);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+}
+
+.cover--photo .cover__open-btn:hover {
+  background: rgba(255, 255, 255, 0.28);
+}
+
+/* Terima kasih — short thank-you panel over a photo, echoing the cover's
+   full-bleed treatment but on a smaller, self-contained section. */
+
+.thanks-section {
+  position: relative;
+  padding: 0;
+  min-height: 340px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  text-align: center;
+}
+
+.thanks-section__photo {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background: linear-gradient(155deg, #3a4a35 0%, #5c6b4d 55%, #a79b78 100%);
+}
+
+.thanks-section__scrim {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(180deg, rgba(15, 22, 26, 0.55) 0%, rgba(15, 22, 26, 0.3) 100%);
+}
+
+.thanks-section__body {
+  position: relative;
+  z-index: 2;
+  padding: 3.5rem 1.75rem;
+  max-width: 32ch;
+}
+
+.thanks-section .eyebrow {
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.thanks-section__text {
+  color: #fff;
+  font-size: 0.92rem;
+  line-height: 1.7;
+  text-shadow: 0 1px 6px rgba(0, 0, 0, 0.35);
+  margin: 0.75em 0 0.5em;
+}
+
+.thanks-section__names {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 1.3rem;
+  color: #fff;
+  margin: 0;
+}
+
+/* Wedding Wish — status as a small pill instead of plain caps text. */
+
+.wish-item__status {
+  padding: 0.15em 0.7em;
+  border-radius: 999px;
+  background: rgba(147, 165, 145, 0.16);
+}

@@ -44,6 +44,26 @@
       "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Perumahan%20Geri%20Permai%20Blok%20C%20No.%2022%2C%20Lubuk%20Buaya%2C%20Koto%20Tangah%2C%20Kota%20Padang"
     }
   },
+  "loveStory": [
+    {
+      "year": "01",
+      "title": "Awal Bertemu",
+      "date": "Cerita awal menyusul",
+      "description": "Perjalanan kami dimulai dari pertemuan sederhana yang perlahan tumbuh menjadi kisah yang tak terduga."
+    },
+    {
+      "year": "02",
+      "title": "Saling Meyakinkan",
+      "date": "Cerita menyusul",
+      "description": "Waktu demi waktu kami lalui bersama, saling mengenal dan meyakinkan diri untuk melangkah lebih jauh."
+    },
+    {
+      "year": "03",
+      "title": "Menuju Pernikahan",
+      "date": "16 Oktober 2026",
+      "description": "Dengan restu kedua orang tua, kami memutuskan untuk melanjutkan kisah ini ke jenjang pernikahan."
+    }
+  ],
   "gallery": [
     "images/gallery-1.svg",
     "images/gallery-2.svg",
