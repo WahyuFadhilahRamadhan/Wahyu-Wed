@@ -1,0 +1,64 @@
+{
+  "meta": {
+    "title": "Wahyu & Wanda — Undangan Pernikahan",
+    "coupleShort": "Wahyu & Wanda",
+    "musicSrc": "audio/music.wav"
+  },
+  "groom": {
+    "fullName": "Wahyu Fadhilah Ramadha",
+    "childOrder": "Putra pertama dari",
+    "parents": "Bapak Drs. Riswandi, M.Si & Ibu Selvia Mawardi",
+    "photo": "images/groom.svg"
+  },
+  "bride": {
+    "fullName": "Wanda Dwi Harsita",
+    "childOrder": "Putri kedua dari",
+    "parents": "Bapak Bentri Wirsal & Ibu Harneli",
+    "photo": "images/bride.svg"
+  },
+  "event": {
+    "weddingDate": "2026-10-16T08:00:00+07:00",
+    "coverDateLabel": "16 . 10 . 2026",
+    "akad": {
+      "label": "Akad Nikah",
+      "date": "Jumat, 16 Oktober 2026",
+      "time": "Waktu menyusul",
+      "venueName": "Perumahan Bungo Mas Tahap 1",
+      "address": "Blok D No. 4, Koto Tangah, Kota Padang",
+      "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Perumahan%20Bungo%20Mas%20Tahap%201%20Blok%20D%20No.%204%2C%20Koto%20Tangah%2C%20Kota%20Padang"
+    },
+    "resepsiWanita": {
+      "label": "Resepsi (Kediaman Wanita)",
+      "date": "Sabtu, 17 Oktober 2026",
+      "time": "Waktu menyusul",
+      "venueName": "Perumahan Bungo Mas Tahap 1",
+      "address": "Blok D No. 4, Koto Tangah, Kota Padang",
+      "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Perumahan%20Bungo%20Mas%20Tahap%201%20Blok%20D%20No.%204%2C%20Koto%20Tangah%2C%20Kota%20Padang"
+    },
+    "resepsiPria": {
+      "label": "Resepsi (Kediaman Pria)",
+      "date": "Minggu, 18 Oktober 2026",
+      "time": "Waktu menyusul",
+      "venueName": "Perumahan Geri Permai",
+      "address": "Blok C No. 22, Lubuk Buaya, Koto Tangah, Kota Padang",
+      "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Perumahan%20Geri%20Permai%20Blok%20C%20No.%2022%2C%20Lubuk%20Buaya%2C%20Koto%20Tangah%2C%20Kota%20Padang"
+    }
+  },
+  "gallery": [
+    "images/gallery-1.svg",
+    "images/gallery-2.svg",
+    "images/gallery-3.svg",
+    "images/gallery-4.svg",
+    "images/gallery-5.svg",
+    "images/gallery-6.svg"
+  ],
+  "gift": {
+    "note": "Doa restu Anda merupakan karunia yang sangat berarti bagi kami. Namun jika ingin memberi tanda kasih, kami sediakan amplop digital berikut.",
+    "banks": [
+      { "bankName": "Bank", "accountNumber": "0000000000", "accountName": "Wahyu Fadhilah Ramadha" },
+      { "bankName": "Bank", "accountNumber": "0000000000", "accountName": "Wanda Dwi Harsita" }
+    ],
+    "qrisImage": "images/qris-placeholder.svg"
+  },
+  "wishes": []
+}

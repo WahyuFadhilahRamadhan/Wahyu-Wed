@@ -73,7 +73,12 @@
   }
 
   function renderEvent(data) {
-    ["akad", "resepsi"].forEach(function (key) {
+    var eventKeys = data.event
+      ? Object.keys(data.event).filter(function (key) {
+          return key !== "weddingDate" && key !== "coverDateLabel";
+        })
+      : [];
+    eventKeys.forEach(function (key) {
       var info = data.event && data.event[key];
       var card = document.querySelector('[data-event="' + key + '"]');
       if (!info || !card) {
