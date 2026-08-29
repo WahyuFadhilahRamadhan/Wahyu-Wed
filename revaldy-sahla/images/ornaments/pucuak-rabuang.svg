@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 40" fill="none" preserveAspectRatio="none">
+  <defs>
+    <linearGradient id="prGold" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#967018"/><stop offset="50%" stop-color="#d4af37"/><stop offset="100%" stop-color="#967018"/>
+    </linearGradient>
+  </defs>
+  <path d="M0 38 H500" stroke="url(#prGold)" stroke-width="1.5"/>
+  <g transform="translate(4,0)"><path d="M18 4 L34 36 H2 Z" fill="rgba(212,175,55,0.12)" stroke="url(#prGold)" stroke-width="1.2"/><path d="M18 12 L28 32 H8 Z" fill="none" stroke="url(#prGold)" stroke-width="0.8"/><path d="M18 20 L22 28 H14 Z" fill="url(#prGold)"/><circle cx="18" cy="3" r="1.5" fill="#d4af37"/></g>
+  <g transform="translate(45,0)"><path d="M18 4 L34 36 H2 Z" fill="rgba(212,175,55,0.12)" stroke="url(#prGold)" stroke-width="1.2"/><path d="M18 12 L28 32 H8 Z" fill="none" stroke="url(#prGold)" stroke-width="0.8"/><path d="M18 20 L22 28 H14 Z" fill="url(#prGold)"/><circle cx="18" cy="3" r="1.5" fill="#d4af37"/></g>
+  <g transform="translate(86,0)"><path d="M18 4 L34 36 H2 Z" fill="rgba(212,175,55,0.12)" stroke="url(#prGold)" stroke-width="1.2"/><path d="M18 12 L28 32 H8 Z" fill="none" stroke="url(#prGold)" stroke-width="0.8"/><path d="M18 20 L22 28 H14 Z" fill="url(#prGold)"/><circle cx="18" cy="3" r="1.5" fill="#d4af37"/></g>
+  <g transform="translate(127,0)"><path d="M18 4 L34 36 H2 Z" fill="rgba(212,175,55,0.12)" stroke="url(#prGold)" stroke-width="1.2"/><path d="M18 12 L28 32 H8 Z" fill="none" stroke="url(#prGold)" stroke-width="0.8"/><path d="M18 20 L22 28 H14 Z" fill="url(#prGold)"/><circle cx="18" cy="3" r="1.5" fill="#d4af37"/></g>
+  <g transform="translate(168,0)"><path d="M18 4 L34 36 H2 Z" fill="rgba(212,175,55,0.12)" stroke="url(#prGold)" stroke-width="1.2"/><path d="M18 12 L28 32 H8 Z" fill="none" stroke="url(#prGold)" stroke-width="0.8"/><path d="M18 20 L22 28 H14 Z" fill="url(#prGold)"/><circle cx="18" cy="3" r="1.5" fill="#d4af37"/></g>
+  <g transform="translate(209,0)"><path d="M18 4 L34 36 H2 Z" fill="rgba(212,175,55,0.12)" stroke="url(#prGold)" stroke-width="1.2"/><path d="M18 12 L28 32 H8 Z" fill="none" stroke="url(#prGold)" stroke-width="0.8"/><path d="M18 20 L22 28 H14 Z" fill="url(#prGold)"/><circle cx="18" cy="3" r="1.5" fill="#d4af37"/></g>
+  <g transform="translate(250,0)"><path d="M18 4 L34 36 H2 Z" fill="rgba(212,175,55,0.12)" stroke="url(#prGold)" stroke-width="1.2"/><path d="M18 12 L28 32 H8 Z" fill="none" stroke="url(#prGold)" stroke-width="0.8"/><path d="M18 20 L22 28 H14 Z" fill="url(#prGold)"/><circle cx="18" cy="3" r="1.5" fill="#d4af37"/></g>
+  <g transform="translate(291,0)"><path d="M18 4 L34 36 H2 Z" fill="rgba(212,175,55,0.12)" stroke="url(#prGold)" stroke-width="1.2"/><path d="M18 12 L28 32 H8 Z" fill="none" stroke="url(#prGold)" stroke-width="0.8"/><path d="M18 20 L22 28 H14 Z" fill="url(#prGold)"/><circle cx="18" cy="3" r="1.5" fill="#d4af37"/></g>
+  <g transform="translate(332,0)"><path d="M18 4 L34 36 H2 Z" fill="rgba(212,175,55,0.12)" stroke="url(#prGold)" stroke-width="1.2"/><path d="M18 12 L28 32 H8 Z" fill="none" stroke="url(#prGold)" stroke-width="0.8"/><path d="M18 20 L22 28 H14 Z" fill="url(#prGold)"/><circle cx="18" cy="3" r="1.5" fill="#d4af37"/></g>
+  <g transform="translate(373,0)"><path d="M18 4 L34 36 H2 Z" fill="rgba(212,175,55,0.12)" stroke="url(#prGold)" stroke-width="1.2"/><path d="M18 12 L28 32 H8 Z" fill="none" stroke="url(#prGold)" stroke-width="0.8"/><path d="M18 20 L22 28 H14 Z" fill="url(#prGold)"/><circle cx="18" cy="3" r="1.5" fill="#d4af37"/></g>
+  <g transform="translate(414,0)"><path d="M18 4 L34 36 H2 Z" fill="rgba(212,175,55,0.12)" stroke="url(#prGold)" stroke-width="1.2"/><path d="M18 12 L28 32 H8 Z" fill="none" stroke="url(#prGold)" stroke-width="0.8"/><path d="M18 20 L22 28 H14 Z" fill="url(#prGold)"/><circle cx="18" cy="3" r="1.5" fill="#d4af37"/></g>
+  <g transform="translate(455,0)"><path d="M18 4 L34 36 H2 Z" fill="rgba(212,175,55,0.12)" stroke="url(#prGold)" stroke-width="1.2"/><path d="M18 12 L28 32 H8 Z" fill="none" stroke="url(#prGold)" stroke-width="0.8"/><path d="M18 20 L22 28 H14 Z" fill="url(#prGold)"/><circle cx="18" cy="3" r="1.5" fill="#d4af37"/></g>
+  <path d="M0 2 H500" stroke="url(#prGold)" stroke-width="1" stroke-dasharray="3 3" opacity="0.6"/>
+</svg>

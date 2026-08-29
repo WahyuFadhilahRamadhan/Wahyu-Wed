@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 120" fill="none" preserveAspectRatio="none">
+  <defs>
+    <linearGradient id="goldBright" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fff3b3"/><stop offset="35%" stop-color="#d4af37"/><stop offset="70%" stop-color="#e4c760"/><stop offset="100%" stop-color="#8e6814"/>
+    </linearGradient>
+    <linearGradient id="sageRoof" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#2c5144"/><stop offset="100%" stop-color="#152d25"/>
+    </linearGradient>
+  </defs>
+  <path d="M0 120 L800 120 L800 95 Q600 88 400 93 Q200 88 0 95 Z" fill="url(#sageRoof)" opacity="0.85"/>
+  <path d="M70 100 Q110 50 140 10 Q145 50 170 100" stroke="url(#goldBright)" stroke-width="2.8" fill="none"/>
+  <circle cx="140" cy="10" r="3.5" fill="url(#goldBright)"/>
+  <path d="M220 95 Q260 40 280 20 Q290 50 320 95" stroke="url(#goldBright)" stroke-width="2.8" fill="none"/>
+  <circle cx="280" cy="20" r="3.5" fill="url(#goldBright)"/>
+  <path d="M350 90 Q390 20 400 0 Q410 20 450 90" stroke="url(#goldBright)" stroke-width="3.2" fill="none"/>
+  <circle cx="400" cy="0" r="4.5" fill="url(#goldBright)"/>
+  <path d="M480 95 Q510 50 520 20 Q540 40 580 95" stroke="url(#goldBright)" stroke-width="2.8" fill="none"/>
+  <circle cx="520" cy="20" r="3.5" fill="url(#goldBright)"/>
+  <path d="M630 100 Q655 50 660 10 Q690 50 730 100" stroke="url(#goldBright)" stroke-width="2.8" fill="none"/>
+  <circle cx="660" cy="10" r="3.5" fill="url(#goldBright)"/>
+  <path d="M0 115 H800" stroke="url(#goldBright)" stroke-width="1.2" stroke-dasharray="6 4"/>
+</svg>
