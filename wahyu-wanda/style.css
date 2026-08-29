@@ -42,16 +42,20 @@
   }
 }
 
-/* Placeholder background until the couple's real photo is supplied —
-   swap this for `background-image: url("images/cover-photo.jpg");
-   background-size: cover; background-position: center;` once it's in. */
+/* The couple's real photo, with a dark gradient scrim on top so the
+   white cover text stays readable. background-position keeps the
+   couple centered — the source photo is landscape, so a tall phone
+   screen crops it heavily on the sides, not top/bottom. */
 .cover__photo {
   position: absolute;
   inset: 0;
   z-index: 0;
   background:
-    linear-gradient(180deg, rgba(18, 26, 18, 0.6) 0%, rgba(18, 26, 18, 0.15) 30%, rgba(18, 26, 18, 0.2) 60%, rgba(14, 20, 14, 0.78) 100%),
-    linear-gradient(160deg, #3a4a35 0%, #5c6b4d 45%, #838f68 75%, #a79b78 100%);
+    linear-gradient(180deg, rgba(18, 26, 18, 0.55) 0%, rgba(18, 26, 18, 0.12) 30%, rgba(18, 26, 18, 0.18) 60%, rgba(14, 20, 14, 0.72) 100%),
+    url("images/cover-photo.jpg");
+  background-size: cover;
+  background-position: 52% 35%;
+  background-repeat: no-repeat;
 }
 
 .cover__scrim {
