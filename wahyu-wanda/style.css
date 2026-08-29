@@ -466,19 +466,28 @@ html {
    untouched (nothing in this block applies below 860px). */
 
 @media (min-width: 860px) {
+  /* The card grid itself becomes the full-screen "slide" (like every
+     other section) — otherwise it's only as tall as the cards and
+     the next section bleeds into view on the same screen. */
   .couple-sections {
+    min-height: 100vh;
+    min-height: 100svh;
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 1.75rem;
-    max-width: 1000px;
+    align-content: center;
+    gap: 2rem;
+    max-width: 1150px;
     margin: 0 auto;
     padding: clamp(2.5rem, 8vw, 4rem) clamp(1.25rem, 6vw, 2.25rem);
+    box-sizing: border-box;
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
   }
 
   .section.groom-section,
   .section.bride-section {
     min-height: 0;
-    aspect-ratio: 4 / 5;
+    aspect-ratio: 3 / 4;
     scroll-snap-align: none;
     scroll-snap-stop: normal;
     align-items: flex-start;
