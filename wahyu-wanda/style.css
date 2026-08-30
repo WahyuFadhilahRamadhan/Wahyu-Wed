@@ -142,9 +142,13 @@
 }
 
 /* Sapaan personal — first screen after the cover is opened, same
-   full-bleed photo treatment as the sections below it. Content is
-   short now (title + countdown, no more guest line/ayat), centered
-   like every other photo section on this page. */
+   full-bleed photo treatment as the sections below it. Title up top,
+   ayat down at the bottom — same top/bottom split as the cover screen,
+   instead of everything clumped together in the vertical center. The
+   couple should stay visible here (this isn't a hide-the-photo screen
+   like the countdown attempt was) — the ayat is plain text, not an
+   opaque card, so it doesn't need to fight the crop for space the way
+   the countdown boxes did. */
 
 .greeting {
   position: relative;
@@ -169,9 +173,6 @@
   background: linear-gradient(180deg, rgba(15, 22, 26, 0.55) 0%, rgba(15, 22, 26, 0.15) 35%, rgba(15, 22, 26, 0.2) 60%, rgba(15, 22, 26, 0.6) 100%);
 }
 
-/* Title pinned near the top (over the empty ceiling), countdown
-   pinned near the bottom — same top/bottom split as the cover screen,
-   instead of both clumped together in the vertical center. */
 .greeting__body {
   position: relative;
   z-index: 2;
@@ -197,33 +198,18 @@
   text-shadow: 0 2px 10px rgba(0, 0, 0, 0.45);
 }
 
-/* Frosted-glass countdown cards instead of flat white boxes — matches
-   the "Buka Undangan" pill on the cover rather than looking like a
-   plain UI widget dropped onto a photo. */
-.greeting .countdown__item {
-  background: rgba(255, 255, 255, 0.14);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  border: 1px solid rgba(255, 255, 255, 0.35);
-  box-shadow: none;
+.greeting .greeting__quote {
+  color: rgba(255, 255, 255, 0.92);
+  text-shadow: 0 1px 6px rgba(0, 0, 0, 0.4);
 }
 
-.greeting .countdown__value {
-  color: #fff;
-  text-shadow: 0 1px 8px rgba(0, 0, 0, 0.4);
-}
-
-.greeting .countdown__label {
-  color: rgba(255, 255, 255, 0.8);
-}
-
-/* Wide desktop windows crop this portrait photo much more tightly than
+/* Wide desktop windows crop this portrait photo more tightly than
    mobile does (background-size: cover zooms in further the wider the
-   section gets), which was pushing the couple's faces right up under
-   the countdown row. Show more of the ceiling / push them down. */
+   section gets) — nudge the crop so the couple stays comfortably in
+   frame instead of the very top of the ceiling only. */
 @media (min-width: 860px) {
   .greeting__photo {
-    background-position: center 12%;
+    background-position: center 15%;
   }
 }
 
@@ -369,6 +355,166 @@
   font-size: 1.3rem;
   color: #fff;
   margin: 0;
+}
+
+/* Countdown — its own full-bleed photo section, right after Bride.
+   Placeholder gradient until the real photo is supplied (swap
+   .countdown-section__photo's background for a background-image, same
+   pattern as every other placeholder photo on this page). Frosted-
+   glass cards (not flat white) so they read as part of the photo. */
+
+.countdown-section {
+  position: relative;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  text-align: center;
+}
+
+.countdown-section__photo {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background: linear-gradient(155deg, #3a4a35 0%, #5c6b4d 55%, #a79b78 100%);
+}
+
+.countdown-section__scrim {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(180deg, rgba(15, 22, 26, 0.5) 0%, rgba(15, 22, 26, 0.22) 50%, rgba(15, 22, 26, 0.55) 100%);
+}
+
+.countdown-section__body {
+  position: relative;
+  z-index: 2;
+  padding: 3.5rem 1.75rem;
+}
+
+.countdown-section .eyebrow {
+  color: rgba(255, 255, 255, 0.88);
+  margin-bottom: 1.5rem;
+}
+
+.countdown-section .countdown__item {
+  background: rgba(255, 255, 255, 0.14);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  box-shadow: none;
+}
+
+.countdown-section .countdown__value {
+  color: #fff;
+  text-shadow: 0 1px 8px rgba(0, 0, 0, 0.4);
+}
+
+.countdown-section .countdown__label {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+/* Love Story — single card (photo + a short "label - description"
+   list) instead of the shared timeline component. Photo is a
+   placeholder gradient until the real one is supplied. */
+
+.love-story-section {
+  text-align: center;
+}
+
+.love-story__title {
+  font-family: var(--font-serif);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: clamp(1.3rem, 3vw + 0.6rem, 1.7rem);
+  margin-bottom: 1.75rem;
+}
+
+.love-story__card {
+  max-width: 400px;
+  margin: 0 auto;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: 1rem;
+  box-shadow: var(--shadow-soft);
+  text-align: left;
+}
+
+.love-story__photo {
+  aspect-ratio: 3 / 4;
+  border-radius: var(--radius-md);
+  background: linear-gradient(155deg, #d8cdbd 0%, #c7b9a6 50%, #b7ad82 100%);
+  margin-bottom: 1.25rem;
+}
+
+.love-story__list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+  padding: 0 0.25rem 0.5rem;
+}
+
+.love-story__item {
+  font-size: 0.88rem;
+  color: var(--color-text-light);
+  margin: 0;
+  line-height: 1.6;
+}
+
+.love-story__item strong {
+  color: var(--color-text);
+  font-family: var(--font-serif);
+}
+
+/* Desktop — even the two-column version stayed a modest box floating
+   in a mostly-empty full-height screen. Let the card itself fill most
+   of the screen instead — full photo bleeding edge-to-edge up the
+   left side of the frame, story list filling the right half — rather
+   than a smaller boxed card with lots of cream background around it. */
+@media (min-width: 860px) {
+  .section.love-story-section {
+    padding-left: clamp(1rem, 3vw, 2rem);
+    padding-right: clamp(1rem, 3vw, 2rem);
+  }
+
+  .love-story__title {
+    font-size: 2.2rem;
+  }
+
+  .love-story__card {
+    width: 100%;
+    max-width: 1600px;
+    min-height: 78vh;
+    display: flex;
+    align-items: stretch;
+    gap: 0;
+    padding: 0;
+    overflow: hidden;
+  }
+
+  .love-story__photo {
+    flex: 0 0 48%;
+    aspect-ratio: auto;
+    margin-bottom: 0;
+    border-radius: 0;
+  }
+
+  .love-story__list {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 1.75rem;
+    padding: 3rem 3.5rem;
+  }
+
+  .love-story__item {
+    font-size: 1.1rem;
+    line-height: 1.8;
+  }
 }
 
 /* One-section-per-screen scroll flow — each .section snaps to fill the
