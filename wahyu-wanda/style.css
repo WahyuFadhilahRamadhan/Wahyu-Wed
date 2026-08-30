@@ -469,6 +469,42 @@
   font-family: var(--font-serif);
 }
 
+/* Desktop — the card stayed a narrow mobile-width column floating in
+   a mostly-empty full-height screen. Turn it into a proper two-column
+   layout instead: photo on one side, the story list on the other,
+   using the width the section already has instead of just centering
+   a phone-sized card in it. */
+@media (min-width: 860px) {
+  .love-story__title {
+    font-size: 2.2rem;
+  }
+
+  .love-story__card {
+    max-width: 940px;
+    display: flex;
+    align-items: center;
+    gap: 3rem;
+    padding: 2rem;
+  }
+
+  .love-story__photo {
+    flex: 0 0 42%;
+    aspect-ratio: 4 / 5;
+    margin-bottom: 0;
+  }
+
+  .love-story__list {
+    flex: 1;
+    gap: 1.5rem;
+    padding: 0;
+  }
+
+  .love-story__item {
+    font-size: 1.05rem;
+    line-height: 1.75;
+  }
+}
+
 /* One-section-per-screen scroll flow — each .section snaps to fill the
    screen as you scroll, so the page reads as a sequence of full slides
    instead of one long continuous page. Pure CSS scroll-snap (native
