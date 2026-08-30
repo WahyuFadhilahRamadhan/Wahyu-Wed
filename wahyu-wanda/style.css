@@ -209,7 +209,7 @@
    frame instead of the very top of the ceiling only. */
 @media (min-width: 860px) {
   .greeting__photo {
-    background-position: center 15%;
+    background-position: center 60%;
   }
 }
 
