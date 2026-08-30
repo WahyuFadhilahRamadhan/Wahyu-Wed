@@ -444,7 +444,7 @@
 }
 
 .love-story__photo {
-  aspect-ratio: 4 / 3;
+  aspect-ratio: 3 / 4;
   border-radius: var(--radius-md);
   background: linear-gradient(155deg, #d8cdbd 0%, #c7b9a6 50%, #b7ad82 100%);
   margin-bottom: 1.25rem;
@@ -475,12 +475,18 @@
    left side of the frame, story list filling the right half — rather
    than a smaller boxed card with lots of cream background around it. */
 @media (min-width: 860px) {
+  .section.love-story-section {
+    padding-left: clamp(1rem, 3vw, 2rem);
+    padding-right: clamp(1rem, 3vw, 2rem);
+  }
+
   .love-story__title {
     font-size: 2.2rem;
   }
 
   .love-story__card {
-    max-width: 1200px;
+    width: 100%;
+    max-width: 1600px;
     min-height: 78vh;
     display: flex;
     align-items: stretch;
