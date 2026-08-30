@@ -142,9 +142,13 @@
 }
 
 /* Sapaan personal — first screen after the cover is opened, same
-   full-bleed photo treatment as the sections below it. Content is
-   short now (title + countdown, no more guest line/ayat), centered
-   like every other photo section on this page. */
+   full-bleed photo treatment as the sections below it. Title up top,
+   ayat down at the bottom — same top/bottom split as the cover screen,
+   instead of everything clumped together in the vertical center. The
+   couple should stay visible here (this isn't a hide-the-photo screen
+   like the countdown attempt was) — the ayat is plain text, not an
+   opaque card, so it doesn't need to fight the crop for space the way
+   the countdown boxes did. */
 
 .greeting {
   position: relative;
@@ -169,9 +173,6 @@
   background: linear-gradient(180deg, rgba(15, 22, 26, 0.55) 0%, rgba(15, 22, 26, 0.15) 35%, rgba(15, 22, 26, 0.2) 60%, rgba(15, 22, 26, 0.6) 100%);
 }
 
-/* Title pinned near the top (over the empty ceiling), countdown
-   pinned near the bottom — same top/bottom split as the cover screen,
-   instead of both clumped together in the vertical center. */
 .greeting__body {
   position: relative;
   z-index: 2;
@@ -197,42 +198,18 @@
   text-shadow: 0 2px 10px rgba(0, 0, 0, 0.45);
 }
 
-/* Frosted-glass countdown cards instead of flat white boxes — matches
-   the "Buka Undangan" pill on the cover rather than looking like a
-   plain UI widget dropped onto a photo. */
-.greeting .countdown__item {
-  background: rgba(255, 255, 255, 0.14);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  border: 1px solid rgba(255, 255, 255, 0.35);
-  box-shadow: none;
+.greeting .greeting__quote {
+  color: rgba(255, 255, 255, 0.92);
+  text-shadow: 0 1px 6px rgba(0, 0, 0, 0.4);
 }
 
-.greeting .countdown__value {
-  color: #fff;
-  text-shadow: 0 1px 8px rgba(0, 0, 0, 0.4);
-}
-
-.greeting .countdown__label {
-  color: rgba(255, 255, 255, 0.8);
-}
-
-/* Wide desktop windows crop this portrait photo much more tightly than
+/* Wide desktop windows crop this portrait photo more tightly than
    mobile does (background-size: cover zooms in further the wider the
-   section gets), which kept pushing the couple's heads right up under
-   the countdown row no matter how this was tuned. Stop trying to keep
-   them in frame here at all — bias hard toward the ceiling/chandelier
-   (the couple isn't the point of this particular screen, the title +
-   countdown are) and darken the bottom scrim further so even the
-   sliver of them that's still visible is covered where the countdown
-   sits. */
+   section gets) — nudge the crop so the couple stays comfortably in
+   frame instead of the very top of the ceiling only. */
 @media (min-width: 860px) {
   .greeting__photo {
-    background-position: center 0%;
-  }
-
-  .greeting__scrim {
-    background: linear-gradient(180deg, rgba(15, 22, 26, 0.55) 0%, rgba(15, 22, 26, 0.15) 30%, rgba(15, 22, 26, 0.35) 55%, rgba(15, 22, 26, 0.82) 100%);
+    background-position: center 15%;
   }
 }
 
