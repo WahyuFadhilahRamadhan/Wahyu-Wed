@@ -92,13 +92,47 @@
         </section>
       </div>
 
-      <!-- Love story -->
-      <section class="section">
-        <div class="section__header">
-          <p class="eyebrow reveal">Perjalanan Kami</p>
-          <h2 class="section__title reveal reveal-delay-1">Kisah Cinta</h2>
+      <!-- Countdown — own full-bleed photo section, placeholder gradient
+           until the real photo is supplied (see .countdown-section__photo
+           in style.css). -->
+      <section class="section countdown-section">
+        <div class="countdown-section__photo"></div>
+        <div class="countdown-section__scrim"></div>
+        <div class="countdown-section__body">
+          <p class="eyebrow reveal">Menuju Hari Bahagia</p>
+          <div class="countdown reveal reveal-delay-1" id="countdown">
+            <div class="countdown__item">
+              <span class="countdown__value" data-unit="days">0</span>
+              <span class="countdown__label">Hari</span>
+            </div>
+            <div class="countdown__item">
+              <span class="countdown__value" data-unit="hours">00</span>
+              <span class="countdown__label">Jam</span>
+            </div>
+            <div class="countdown__item">
+              <span class="countdown__value" data-unit="minutes">00</span>
+              <span class="countdown__label">Menit</span>
+            </div>
+            <div class="countdown__item">
+              <span class="countdown__value" data-unit="seconds">00</span>
+              <span class="countdown__label">Detik</span>
+            </div>
+          </div>
         </div>
-        <div class="timeline" id="loveStoryTimeline"></div>
+      </section>
+
+      <!-- Love story — single card, photo placeholder until the real one
+           is supplied (see .love-story__photo in style.css). -->
+      <section class="section love-story-section">
+        <h2 class="love-story__title reveal">Love Story</h2>
+        <div class="love-story__card reveal reveal-delay-1">
+          <div class="love-story__photo"></div>
+          <div class="love-story__list">
+            <p class="love-story__item"><strong>Awal Bertemu</strong> - Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+            <p class="love-story__item"><strong>Lamaran</strong> - Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+            <p class="love-story__item"><strong>Pernikahan</strong> - Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+          </div>
+        </div>
       </section>
 
       <!-- Event details -->
@@ -144,12 +178,24 @@
         <div class="gallery-grid" id="galleryGrid"></div>
       </section>
 
+      <!-- Digital gift / amplop -->
+      <section class="section">
+        <div class="section__header">
+          <p class="eyebrow reveal">Amplop Digital</p>
+          <h2 class="section__title reveal reveal-delay-1">Tanda Kasih</h2>
+        </div>
+        <p class="gift-intro reveal reveal-delay-1" id="giftNote"></p>
+        <button type="button" class="btn btn-primary reveal reveal-delay-2" data-open-gift style="display:block; margin:0 auto;">
+          Kirim Tanda Kasih
+        </button>
+      </section>
+
       <!-- RSVP -->
       <section class="section">
         <div class="section__header">
           <p class="eyebrow reveal">RSVP</p>
           <h2 class="section__title reveal reveal-delay-1">Konfirmasi Kehadiran</h2>
-          <p class="section__subtitle reveal reveal-delay-2">Mohon konfirmasi kehadiran Anda sebelum hari-H agar kami dapat mempersiapkan acara dengan baik.</p>
+          <p class="section__subtitle reveal reveal-delay-2">Bagi tamu undangan yang akan hadir di acara pernikahan kami, silahkan kirimkan konfirmasi kehadiran dengan mengisi form berikut.</p>
         </div>
         <form class="reveal reveal-delay-2" id="rsvpForm">
           <div class="form-field">
@@ -181,18 +227,6 @@
           <button type="submit" class="btn btn-primary btn-block">Kirim Konfirmasi</button>
           <p class="form-note" id="rsvpNote"></p>
         </form>
-      </section>
-
-      <!-- Digital gift / amplop -->
-      <section class="section">
-        <div class="section__header">
-          <p class="eyebrow reveal">Amplop Digital</p>
-          <h2 class="section__title reveal reveal-delay-1">Tanda Kasih</h2>
-        </div>
-        <p class="gift-intro reveal reveal-delay-1" id="giftNote"></p>
-        <button type="button" class="btn btn-primary reveal reveal-delay-2" data-open-gift style="display:block; margin:0 auto;">
-          Kirim Tanda Kasih
-        </button>
       </section>
 
       <!-- Wishes & prayers -->
@@ -236,7 +270,7 @@
         <div class="thanks-section__body">
           <p class="eyebrow reveal">Terima Kasih</p>
           <p class="thanks-section__text reveal reveal-delay-1">
-            Atas doa dan restu yang diberikan, kami ucapkan terima kasih yang sebesar-besarnya.
+            Merupakan suatu kebahagiaan dan kehormatan bagi kami, apabila Bapak/Ibu/Saudara/i berkenan hadir di hari bahagia kami.
           </p>
           <p class="thanks-section__names reveal reveal-delay-2" id="thanksNames">&nbsp;</p>
         </div>
