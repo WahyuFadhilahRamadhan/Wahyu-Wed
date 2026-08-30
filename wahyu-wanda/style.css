@@ -219,11 +219,20 @@
 
 /* Wide desktop windows crop this portrait photo much more tightly than
    mobile does (background-size: cover zooms in further the wider the
-   section gets), which was pushing the couple's faces right up under
-   the countdown row. Show more of the ceiling / push them down. */
+   section gets), which kept pushing the couple's heads right up under
+   the countdown row no matter how this was tuned. Stop trying to keep
+   them in frame here at all — bias hard toward the ceiling/chandelier
+   (the couple isn't the point of this particular screen, the title +
+   countdown are) and darken the bottom scrim further so even the
+   sliver of them that's still visible is covered where the countdown
+   sits. */
 @media (min-width: 860px) {
   .greeting__photo {
-    background-position: center 12%;
+    background-position: center 0%;
+  }
+
+  .greeting__scrim {
+    background: linear-gradient(180deg, rgba(15, 22, 26, 0.55) 0%, rgba(15, 22, 26, 0.15) 30%, rgba(15, 22, 26, 0.35) 55%, rgba(15, 22, 26, 0.82) 100%);
   }
 }
 
