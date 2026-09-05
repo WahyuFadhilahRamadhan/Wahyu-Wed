@@ -8,9 +8,13 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="../assets/css/base.css" />
-  <link rel="stylesheet" href="../assets/css/invitation.css" />
-  <link rel="stylesheet" href="style.css" />
+  <!-- ?v= cache-busts these local files so a guest opening the link always
+       gets the latest CSS/JS instead of a stale cached copy — bump this
+       value whenever base.css / invitation.css / animations.js /
+       invitation.js / style.css change. -->
+  <link rel="stylesheet" href="../assets/css/base.css?v=20260905" />
+  <link rel="stylesheet" href="../assets/css/invitation.css?v=20260905" />
+  <link rel="stylesheet" href="style.css?v=20260905" />
 </head>
 <body>
 
@@ -323,8 +327,8 @@
   </div>
 
 
-  <script src="../assets/js/animations.js"></script>
-  <script src="../assets/js/invitation.js"></script>
+  <script src="../assets/js/animations.js?v=20260905"></script>
+  <script src="../assets/js/invitation.js?v=20260905"></script>
   <script>
     Mounstory.Invitation.init("data.json");
     var guestNameDisplayEl = document.getElementById("guestNameDisplay");
