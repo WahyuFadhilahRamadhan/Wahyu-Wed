@@ -121,21 +121,14 @@
         </div>
       </section>
 
-      <!-- Love story — single card, photo side is a slideshow that
-           auto-cycles through the couple's photos (see #loveStorySlides
-           init call below, and .love-story__slide in style.css). -->
+      <!-- Love story — single card with a static photo (LS3), plus the
+           same photo full-bleed behind the whole section. -->
       <section class="section love-story-section">
+        <div class="love-story-section__photo bg-reveal"></div>
+        <div class="love-story-section__scrim bg-reveal"></div>
         <h2 class="love-story__title reveal">Love Story</h2>
         <div class="love-story__card reveal reveal-delay-1">
-          <div class="love-story__photo" id="loveStorySlides">
-            <div class="love-story__slide is-active" style="background-image: url('images/love-story-1.jpg')"></div>
-            <div class="love-story__slide" style="background-image: url('images/love-story-2.jpg')"></div>
-            <div class="love-story__slide" style="background-image: url('images/love-story-3.jpg')"></div>
-            <div class="love-story__slide" style="background-image: url('images/love-story-4.jpg')"></div>
-            <div class="love-story__slide" style="background-image: url('images/love-story-5.jpg')"></div>
-            <div class="love-story__slide" style="background-image: url('images/love-story-6.jpg')"></div>
-            <div class="love-story__slide" style="background-image: url('images/love-story-7.jpg')"></div>
-          </div>
+          <div class="love-story__photo" style="background-image: url('images/love-story-3.jpg')"></div>
           <div class="love-story__list">
             <p class="love-story__item"><strong>Awal Bertemu</strong> - Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
             <p class="love-story__item"><strong>Lamaran</strong> - Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
@@ -144,8 +137,11 @@
         </div>
       </section>
 
-      <!-- Event details -->
-      <section class="section">
+      <!-- Event details — full-bleed photo behind it too, same pattern
+           as Love Story above. -->
+      <section class="section acara-section">
+        <div class="acara-section__photo bg-reveal"></div>
+        <div class="acara-section__scrim bg-reveal"></div>
         <div class="section__header">
           <p class="eyebrow reveal">Waktu &amp; Tempat</p>
           <h2 class="section__title reveal reveal-delay-1">Acara</h2>
@@ -327,18 +323,6 @@
     Mounstory.Invitation.init("data.json");
     var guestNameDisplayEl = document.getElementById("guestNameDisplay");
     if (guestNameDisplayEl) guestNameDisplayEl.textContent = Mounstory.Invitation.getGuestName();
-
-    // Love Story photo slideshow — cross-fades through the slides on a timer.
-    (function () {
-      var slides = document.querySelectorAll("#loveStorySlides .love-story__slide");
-      if (slides.length < 2) return;
-      var current = 0;
-      setInterval(function () {
-        slides[current].classList.remove("is-active");
-        current = (current + 1) % slides.length;
-        slides[current].classList.add("is-active");
-      }, 4000);
-    })();
   </script>
 </body>
 </html>
