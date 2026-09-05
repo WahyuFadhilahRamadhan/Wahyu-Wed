@@ -325,7 +325,6 @@
 
 .person-section__name {
   font-family: var(--font-serif);
-  text-transform: uppercase;
   letter-spacing: 0.04em;
   font-size: clamp(1.4rem, 4vw + 0.4rem, 1.9rem);
   line-height: 1.25;
