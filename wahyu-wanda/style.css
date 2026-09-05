@@ -898,32 +898,32 @@ html {
    untouched (nothing in this block applies below 860px). */
 
 @media (min-width: 860px) {
-  /* The card grid itself becomes the full-screen "slide" (like every
-     other section) — otherwise it's only as tall as the cards and
-     the next section bleeds into view on the same screen. */
+  /* Full-bleed split screen — each half fills the entire viewport
+     height with no gutters, gaps, or rounded corners, so there's no
+     cream background showing anywhere around the two photos. */
   .couple-sections {
     min-height: 100vh;
     min-height: 100svh;
     display: grid;
     grid-template-columns: 1fr 1fr;
-    align-content: center;
-    gap: 2rem;
-    max-width: 1150px;
-    margin: 0 auto;
-    padding: clamp(2.5rem, 8vw, 4rem) clamp(1.25rem, 6vw, 2.25rem);
-    box-sizing: border-box;
+    gap: 0;
+    max-width: none;
+    margin: 0;
+    padding: 0;
     scroll-snap-align: start;
     scroll-snap-stop: always;
   }
 
   .section.groom-section,
   .section.bride-section {
-    min-height: 0;
-    aspect-ratio: 3 / 4;
+    min-height: 100vh;
+    min-height: 100svh;
+    aspect-ratio: auto;
     scroll-snap-align: none;
     scroll-snap-stop: normal;
-    align-items: flex-start;
-    border-radius: var(--radius-lg);
+    align-items: flex-end;
+    justify-content: center;
+    border-radius: 0;
   }
 
   /* Full photo, nothing covering it — just a bottom-anchored gradient
@@ -937,8 +937,8 @@ html {
   .bride-section__body {
     width: 100%;
     max-width: none;
-    text-align: left;
-    padding: 0 1.75rem 1.75rem;
+    text-align: center;
+    padding: 0 2.5rem 4rem;
   }
 }
 
