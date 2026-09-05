@@ -225,6 +225,22 @@
     document.body.style.overflow = "hidden";
 
     btn.addEventListener("click", function () {
+      // Ask the browser to go fullscreen so the address bar disappears.
+      // Must fire inside this click handler — it's the user gesture the
+      // Fullscreen API requires. Not all browsers support it (notably iOS
+      // Safari for non-video elements), so this is a silent no-op there.
+      var docEl = document.documentElement;
+      var requestFullscreen =
+        docEl.requestFullscreen ||
+        docEl.webkitRequestFullscreen ||
+        docEl.msRequestFullscreen;
+      if (requestFullscreen) {
+        var result = requestFullscreen.call(docEl);
+        if (result && typeof result.catch === "function") {
+          result.catch(function () {});
+        }
+      }
+
       cover.classList.add("is-closing");
       document.body.style.overflow = "";
       setTimeout(function () {
