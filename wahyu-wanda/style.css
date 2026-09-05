@@ -43,11 +43,9 @@
 }
 
 /* The couple's real photo, with a dark gradient scrim on top so the
-   white cover text stays readable. This photo is portrait, like the
-   greeting photo below it — background-position keeps the couple in
-   frame; wide desktop windows crop it tighter than tall phone screens
-   do, so the desktop override nudges the crop lower (see media query
-   near the bottom of this file). */
+   white cover text stays readable. background-position keeps the
+   couple centered — the source photo is landscape, so a tall phone
+   screen crops it heavily on the sides, not top/bottom. */
 .cover__photo {
   position: absolute;
   inset: 0;
@@ -56,7 +54,7 @@
     linear-gradient(180deg, rgba(18, 26, 18, 0.55) 0%, rgba(18, 26, 18, 0.12) 30%, rgba(18, 26, 18, 0.18) 60%, rgba(14, 20, 14, 0.72) 100%),
     url("images/cover-photo.jpg");
   background-size: cover;
-  background-position: center 30%;
+  background-position: 52% 35%;
   background-repeat: no-repeat;
 }
 
@@ -210,8 +208,7 @@
    section gets) — nudge the crop so the couple stays comfortably in
    frame instead of the very top of the ceiling only. */
 @media (min-width: 860px) {
-  .greeting__photo,
-  .cover__photo {
+  .greeting__photo {
     background-position: center 55%;
   }
 }
