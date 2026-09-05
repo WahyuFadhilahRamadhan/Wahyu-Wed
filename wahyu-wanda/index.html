@@ -5,12 +5,30 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <title>Undangan Pernikahan Wahyu & Wanda</title>
   <meta name="description" content="Undangan pernikahan digital Wahyu & Wanda — dipersembahkan oleh Mounstory." />
+
+  <!-- Open Graph — lets WhatsApp/Telegram/Facebook show a photo + title
+       card when this link is shared instead of a bare link, so guests are
+       more likely to open it. og:image must be an absolute URL for link
+       previews to fetch it. -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://mounstory.com/wahyu-wanda/" />
+  <meta property="og:title" content="Undangan Pernikahan Wahyu & Wanda" />
+  <meta property="og:description" content="Undangan pernikahan digital Wahyu & Wanda — dipersembahkan oleh Mounstory." />
+  <meta property="og:image" content="https://mounstory.com/wahyu-wanda/images/og-share.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
+
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="../assets/css/base.css" />
-  <link rel="stylesheet" href="../assets/css/invitation.css" />
-  <link rel="stylesheet" href="style.css" />
+  <!-- ?v= cache-busts these local files so a guest opening the link always
+       gets the latest CSS/JS instead of a stale cached copy — bump this
+       value whenever base.css / invitation.css / animations.js /
+       invitation.js / style.css change. -->
+  <link rel="stylesheet" href="../assets/css/base.css?v=20260905" />
+  <link rel="stylesheet" href="../assets/css/invitation.css?v=20260905" />
+  <link rel="stylesheet" href="style.css?v=20260905" />
 </head>
 <body>
 
@@ -323,8 +341,8 @@
   </div>
 
 
-  <script src="../assets/js/animations.js"></script>
-  <script src="../assets/js/invitation.js"></script>
+  <script src="../assets/js/animations.js?v=20260905"></script>
+  <script src="../assets/js/invitation.js?v=20260905"></script>
   <script>
     Mounstory.Invitation.init("data.json");
     var guestNameDisplayEl = document.getElementById("guestNameDisplay");
