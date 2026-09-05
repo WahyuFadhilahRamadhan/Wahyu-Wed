@@ -695,20 +695,48 @@
   text-shadow: 0 1px 6px rgba(0, 0, 0, 0.4);
 }
 
-.cta-group .form-field label {
-  color: #fff;
-  text-shadow: 0 1px 6px rgba(0, 0, 0, 0.35);
+.gift-inline {
+  width: 100%;
+  max-width: 380px;
+  margin: 0 auto;
 }
 
-.cta-group .radio-option span {
-  background: var(--color-surface);
+/* RSVP and Kirim Ucapan sit in one clean card instead of floating as
+   loose fields directly on the busy photo — much easier to read, and
+   avoids every label needing its own text-shadow to stay legible. */
+.cta-panel {
+  width: 100%;
+  max-width: 440px;
+  margin: 0 auto;
+  background: var(--color-bg);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-soft);
+  padding: 2.25rem 1.75rem;
+  text-align: center;
 }
 
-.cta-group .form-note {
-  display: inline-block;
-  background: var(--color-surface);
-  padding: 0.4em 0.9em;
-  border-radius: var(--radius-sm);
+.cta-panel .eyebrow {
+  color: var(--color-primary);
+}
+
+.cta-panel .section__title {
+  color: var(--color-text);
+  text-shadow: none;
+}
+
+.cta-panel .section__subtitle {
+  color: var(--color-text-light);
+  text-shadow: none;
+}
+
+.cta-panel .form-field label {
+  color: var(--color-text);
+  text-shadow: none;
+}
+
+.cta-panel form,
+.cta-panel .wishes-list {
+  text-align: left;
 }
 
 @media (min-width: 860px) {

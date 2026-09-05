@@ -203,81 +203,89 @@
             <h2 class="section__title reveal reveal-delay-1">Tanda Kasih</h2>
           </div>
           <p class="gift-intro reveal reveal-delay-1" id="giftNote"></p>
-          <button type="button" class="btn btn-primary reveal reveal-delay-2" data-open-gift style="display:block; margin:0 auto;">
-            Kirim Tanda Kasih
-          </button>
+          <div class="gift-inline reveal reveal-delay-2">
+            <div id="banksList"></div>
+            <div class="qris-card" id="qrisCard" style="display:none;">
+              <img id="qrisImage" src="" alt="QRIS" />
+              <p>Scan kode QRIS di atas menggunakan aplikasi e-wallet atau m-banking favoritmu.</p>
+            </div>
+          </div>
         </section>
 
         <!-- RSVP -->
         <section class="section">
-          <div class="section__header">
-            <p class="eyebrow reveal">RSVP</p>
-            <h2 class="section__title reveal reveal-delay-1">Konfirmasi Kehadiran</h2>
-            <p class="section__subtitle reveal reveal-delay-2">Bagi tamu undangan yang akan hadir di acara pernikahan kami, silahkan kirimkan konfirmasi kehadiran dengan mengisi form berikut.</p>
-          </div>
-          <form class="reveal reveal-delay-2" id="rsvpForm">
-            <div class="form-field">
-              <label for="rsvpName">Nama</label>
-              <input type="text" id="rsvpName" name="rsvpName" placeholder="Nama lengkap" required />
+          <div class="cta-panel">
+            <div class="section__header">
+              <p class="eyebrow reveal">RSVP</p>
+              <h2 class="section__title reveal reveal-delay-1">Konfirmasi Kehadiran</h2>
+              <p class="section__subtitle reveal reveal-delay-2">Bagi tamu undangan yang akan hadir di acara pernikahan kami, silahkan kirimkan konfirmasi kehadiran dengan mengisi form berikut.</p>
             </div>
-            <div class="form-field">
-              <label for="rsvpGuests">Jumlah Tamu</label>
-              <select id="rsvpGuests" name="rsvpGuests">
-                <option value="1">1 orang</option>
-                <option value="2">2 orang</option>
-                <option value="3">3 orang</option>
-                <option value="4">4 orang</option>
-              </select>
-            </div>
-            <div class="form-field">
-              <label>Konfirmasi Kehadiran</label>
-              <div class="radio-group">
-                <label class="radio-option">
-                  <input type="radio" name="rsvpAttendance" value="Hadir" checked />
-                  <span>Hadir</span>
-                </label>
-                <label class="radio-option">
-                  <input type="radio" name="rsvpAttendance" value="Tidak Hadir" />
-                  <span>Tidak Hadir</span>
-                </label>
+            <form class="reveal reveal-delay-2" id="rsvpForm">
+              <div class="form-field">
+                <label for="rsvpName">Nama</label>
+                <input type="text" id="rsvpName" name="rsvpName" placeholder="Nama lengkap" required />
               </div>
-            </div>
-            <button type="submit" class="btn btn-primary btn-block">Kirim Konfirmasi</button>
-            <p class="form-note" id="rsvpNote"></p>
-          </form>
+              <div class="form-field">
+                <label for="rsvpGuests">Jumlah Tamu</label>
+                <select id="rsvpGuests" name="rsvpGuests">
+                  <option value="1">1 orang</option>
+                  <option value="2">2 orang</option>
+                  <option value="3">3 orang</option>
+                  <option value="4">4 orang</option>
+                </select>
+              </div>
+              <div class="form-field">
+                <label>Konfirmasi Kehadiran</label>
+                <div class="radio-group">
+                  <label class="radio-option">
+                    <input type="radio" name="rsvpAttendance" value="Hadir" checked />
+                    <span>Hadir</span>
+                  </label>
+                  <label class="radio-option">
+                    <input type="radio" name="rsvpAttendance" value="Tidak Hadir" />
+                    <span>Tidak Hadir</span>
+                  </label>
+                </div>
+              </div>
+              <button type="submit" class="btn btn-primary btn-block">Kirim Konfirmasi</button>
+              <p class="form-note" id="rsvpNote"></p>
+            </form>
+          </div>
         </section>
 
         <!-- Wishes & prayers -->
         <section class="section">
-          <div class="section__header">
-            <p class="eyebrow reveal">Ucapan &amp; Doa</p>
-            <h2 class="section__title reveal reveal-delay-1">Kirim Ucapan</h2>
-          </div>
-          <ul class="wishes-list reveal reveal-delay-1" id="wishesList"></ul>
-          <form class="reveal reveal-delay-2" id="wishesForm">
-            <div class="form-field">
-              <label for="wishName">Nama</label>
-              <input type="text" id="wishName" name="wishName" placeholder="Nama kamu" />
+          <div class="cta-panel">
+            <div class="section__header">
+              <p class="eyebrow reveal">Ucapan &amp; Doa</p>
+              <h2 class="section__title reveal reveal-delay-1">Kirim Ucapan</h2>
             </div>
-            <div class="form-field">
-              <label>Kehadiran</label>
-              <div class="radio-group">
-                <label class="radio-option">
-                  <input type="radio" name="wishAttendance" value="Hadir" checked />
-                  <span>Hadir</span>
-                </label>
-                <label class="radio-option">
-                  <input type="radio" name="wishAttendance" value="Tidak Hadir" />
-                  <span>Tidak Hadir</span>
-                </label>
+            <ul class="wishes-list reveal reveal-delay-1" id="wishesList"></ul>
+            <form class="reveal reveal-delay-2" id="wishesForm">
+              <div class="form-field">
+                <label for="wishName">Nama</label>
+                <input type="text" id="wishName" name="wishName" placeholder="Nama kamu" />
               </div>
-            </div>
-            <div class="form-field">
-              <label for="wishMessage">Ucapan &amp; Doa</label>
-              <textarea id="wishMessage" name="wishMessage" placeholder="Tuliskan ucapan dan doa terbaikmu..." required></textarea>
-            </div>
-            <button type="submit" class="btn btn-primary btn-block">Kirim Ucapan</button>
-          </form>
+              <div class="form-field">
+                <label>Kehadiran</label>
+                <div class="radio-group">
+                  <label class="radio-option">
+                    <input type="radio" name="wishAttendance" value="Hadir" checked />
+                    <span>Hadir</span>
+                  </label>
+                  <label class="radio-option">
+                    <input type="radio" name="wishAttendance" value="Tidak Hadir" />
+                    <span>Tidak Hadir</span>
+                  </label>
+                </div>
+              </div>
+              <div class="form-field">
+                <label for="wishMessage">Ucapan &amp; Doa</label>
+                <textarea id="wishMessage" name="wishMessage" placeholder="Tuliskan ucapan dan doa terbaikmu..." required></textarea>
+              </div>
+              <button type="submit" class="btn btn-primary btn-block">Kirim Ucapan</button>
+            </form>
+          </div>
         </section>
       </div>
 
@@ -318,18 +326,6 @@
     <img src="" alt="Pratinjau galeri" />
   </div>
 
-  <!-- Wedding gift modal -->
-  <div class="gift-modal" id="giftModal">
-    <div class="gift-modal__panel">
-      <button type="button" class="gift-modal__close" data-close-gift aria-label="Tutup">&times;</button>
-      <h3 class="gift-modal__title">Amplop Digital</h3>
-      <div id="banksList"></div>
-      <div class="qris-card" id="qrisCard" style="display:none;">
-        <img id="qrisImage" src="" alt="QRIS" />
-        <p>Scan kode QRIS di atas menggunakan aplikasi e-wallet atau m-banking favoritmu.</p>
-      </div>
-    </div>
-  </div>
 
   <script src="../assets/js/animations.js"></script>
   <script src="../assets/js/invitation.js"></script>
