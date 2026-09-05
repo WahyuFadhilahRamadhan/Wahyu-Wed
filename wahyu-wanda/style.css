@@ -372,11 +372,32 @@
   text-align: center;
 }
 
+/* The countdown photo is landscape, so forcing it into a full-height
+   (100vh) section on a tall phone screen crops it down to a sliver —
+   "cover" has to zoom in far enough to fill that height, cutting away
+   most of the width. Shorten the section on mobile so the crop stays
+   reasonable; desktop viewports are already landscape-shaped, so the
+   full-height treatment (matching every other section) stays there. */
+.section.countdown-section {
+  min-height: 62vh;
+  min-height: 62svh;
+}
+
+@media (min-width: 860px) {
+  .section.countdown-section {
+    min-height: 100vh;
+    min-height: 100svh;
+  }
+}
+
 .countdown-section__photo {
   position: absolute;
   inset: 0;
   z-index: 0;
-  background: linear-gradient(155deg, #3a4a35 0%, #5c6b4d 55%, #a79b78 100%);
+  background: url("images/countdown-photo.jpg");
+  background-size: cover;
+  background-position: center 35%;
+  background-repeat: no-repeat;
 }
 
 .countdown-section__scrim {
@@ -398,11 +419,11 @@
 }
 
 .countdown-section .countdown__item {
-  background: rgba(255, 255, 255, 0.14);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  border: 1px solid rgba(255, 255, 255, 0.35);
-  box-shadow: none;
+  background: rgba(20, 24, 20, 0.45);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
 }
 
 .countdown-section .countdown__value {
