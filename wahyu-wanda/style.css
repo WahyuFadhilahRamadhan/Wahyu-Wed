@@ -444,10 +444,27 @@
 }
 
 .love-story__photo {
+  position: relative;
   aspect-ratio: 3 / 4;
   border-radius: var(--radius-md);
   background: linear-gradient(155deg, #d8cdbd 0%, #c7b9a6 50%, #b7ad82 100%);
   margin-bottom: 1.25rem;
+  overflow: hidden;
+}
+
+/* Each slide is a full-bleed layer that cross-fades in/out — cycling is
+   driven by toggling .is-active from the inline script in index.html. */
+.love-story__slide {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  opacity: 0;
+  transition: opacity 1.2s ease;
+}
+
+.love-story__slide.is-active {
+  opacity: 1;
 }
 
 .love-story__list {
