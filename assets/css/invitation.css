@@ -158,7 +158,12 @@ body.invitation-body {
 
 .invitation-content.is-visible {
   opacity: 1;
-  transform: translateY(0);
+  /* Not translateY(0) — a non-"none" transform value, even a no-op one,
+     makes this element the containing block for any position: fixed
+     descendant (like wahyu-wanda's .cta-fixed-bg), pinning it to this
+     box instead of the viewport. "none" is visually identical here
+     and avoids that. */
+  transform: none;
 }
 
 .section {

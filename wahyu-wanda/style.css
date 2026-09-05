@@ -209,7 +209,7 @@
    frame instead of the very top of the ceiling only. */
 @media (min-width: 860px) {
   .greeting__photo {
-    background-position: center 55%;
+    background-position: center 45%;
   }
 }
 
@@ -396,7 +396,7 @@
   z-index: 0;
   background: url("images/countdown-photo.jpg");
   background-size: cover;
-  background-position: center 35%;
+  background-position: center 40%;
   background-repeat: no-repeat;
 }
 
@@ -627,6 +627,93 @@
 @media (min-width: 860px) {
   .acara-section__photo {
     background-position: center 55%;
+  }
+}
+
+/* Tanda Kasih / RSVP / Kirim Ucapan share one full-bleed photo behind
+   all three. Tried position: sticky for this first, but sticky doesn't
+   reliably stick inside a scroll-snap container (the section jumps
+   caused by scroll-snap-type: y mandatory make it lose its pinned
+   position) — so instead #ctaFixedBg is position: fixed, and a small
+   IntersectionObserver on .cta-group (see the script at the bottom of
+   index.html) toggles it on/off based on whether any part of the group
+   is on screen, which is unaffected by scroll-snap quirks. */
+
+.cta-fixed-bg {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 900ms ease, visibility 0s linear 900ms;
+}
+
+.cta-fixed-bg.is-active {
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 900ms ease, visibility 0s linear 0s;
+}
+
+.cta-fixed-bg__photo {
+  position: absolute;
+  inset: 0;
+  background: url("images/cta-group-bg.jpg");
+  background-size: cover;
+  background-position: center 15%;
+  background-repeat: no-repeat;
+}
+
+.cta-fixed-bg__scrim {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(15, 22, 26, 0.55) 0%, rgba(15, 22, 26, 0.35) 35%, rgba(15, 22, 26, 0.65) 100%);
+}
+
+.cta-group .section {
+  position: relative;
+  z-index: 1;
+  border-bottom: none;
+}
+
+.cta-group .eyebrow {
+  color: rgba(255, 255, 255, 0.88);
+}
+
+.cta-group .section__title {
+  color: #fff;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.45);
+}
+
+.cta-group .section__subtitle {
+  color: rgba(255, 255, 255, 0.85);
+  text-shadow: 0 1px 6px rgba(0, 0, 0, 0.4);
+}
+
+.cta-group .gift-intro {
+  color: rgba(255, 255, 255, 0.85);
+  text-shadow: 0 1px 6px rgba(0, 0, 0, 0.4);
+}
+
+.cta-group .form-field label {
+  color: #fff;
+  text-shadow: 0 1px 6px rgba(0, 0, 0, 0.35);
+}
+
+.cta-group .radio-option span {
+  background: var(--color-surface);
+}
+
+.cta-group .form-note {
+  display: inline-block;
+  background: var(--color-surface);
+  padding: 0.4em 0.9em;
+  border-radius: var(--radius-sm);
+}
+
+@media (min-width: 860px) {
+  .cta-fixed-bg__photo {
+    background-position: center 35%;
   }
 }
 
