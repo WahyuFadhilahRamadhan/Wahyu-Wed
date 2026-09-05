@@ -375,18 +375,21 @@
 /* The countdown photo is landscape, so forcing it into a full-height
    (100vh) section on a tall phone screen crops it down to a sliver —
    "cover" has to zoom in far enough to fill that height, cutting away
-   most of the width. Shorten the section on mobile so the crop stays
-   reasonable; desktop viewports are already landscape-shaped, so the
-   full-height treatment (matching every other section) stays there. */
+   most of the width. On mobile, size the section to the photo's own
+   aspect ratio instead (photo is 2000x1331), so the full photo shows
+   uncropped at whatever width the screen is; desktop viewports are
+   already landscape-shaped, so the full-height treatment (matching
+   every other section) stays there. */
 .section.countdown-section {
-  min-height: 62vh;
-  min-height: 62svh;
+  min-height: 0;
+  aspect-ratio: 2000 / 1331;
 }
 
 @media (min-width: 860px) {
   .section.countdown-section {
     min-height: 100vh;
     min-height: 100svh;
+    aspect-ratio: auto;
   }
 }
 
@@ -574,10 +577,10 @@
 
 /* Acara (Waktu & Tempat) — full-bleed photo behind the section header
    and cards, same pattern as Love Story. The 3 stacked event cards can
-   run taller than one screen on mobile (see the scroll-snap note
-   below), so the photo/scrim are pinned to one viewport-height instead
-   of stretching the full (possibly much taller) section — otherwise
-   "cover" would zoom in absurdly to fill that extra height. */
+   run taller than one screen on mobile, so the photo/scrim stretch to
+   the section's full (possibly-taller-than-100vh) height via top+bottom
+   instead of a fixed height — otherwise the photo runs out partway down
+   and the plain page background shows through behind the last card(s). */
 
 .acara-section {
   position: relative;
@@ -589,8 +592,7 @@
   top: 0;
   left: 0;
   right: 0;
-  height: 100vh;
-  height: 100svh;
+  bottom: 0;
   z-index: 0;
   background: url("images/acara-bg.jpg");
   background-size: cover;
@@ -603,8 +605,7 @@
   top: 0;
   left: 0;
   right: 0;
-  height: 100vh;
-  height: 100svh;
+  bottom: 0;
   z-index: 1;
   background: linear-gradient(180deg, rgba(15, 22, 26, 0.5) 0%, rgba(15, 22, 26, 0.25) 45%, rgba(15, 22, 26, 0.45) 100%);
 }
