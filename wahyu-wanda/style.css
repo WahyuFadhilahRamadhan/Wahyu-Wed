@@ -442,13 +442,18 @@
   position: absolute;
   inset: 0;
   z-index: 1;
-  background: rgba(251, 247, 242, 0.86);
+  background: linear-gradient(180deg, rgba(15, 22, 26, 0.5) 0%, rgba(15, 22, 26, 0.25) 45%, rgba(15, 22, 26, 0.45) 100%);
 }
 
 .love-story-section .love-story__title,
 .love-story-section .love-story__card {
   position: relative;
   z-index: 2;
+}
+
+.love-story-section .love-story__title {
+  color: #fff;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.45);
 }
 
 .love-story__title {
@@ -583,13 +588,22 @@
   height: 100vh;
   height: 100svh;
   z-index: 1;
-  background: rgba(251, 247, 242, 0.86);
+  background: linear-gradient(180deg, rgba(15, 22, 26, 0.5) 0%, rgba(15, 22, 26, 0.25) 45%, rgba(15, 22, 26, 0.45) 100%);
 }
 
 .acara-section .section__header,
 .acara-section .event-grid {
   position: relative;
   z-index: 2;
+}
+
+.acara-section .eyebrow {
+  color: rgba(255, 255, 255, 0.88);
+}
+
+.acara-section .section__title {
+  color: #fff;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.45);
 }
 
 @media (min-width: 860px) {
