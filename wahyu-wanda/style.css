@@ -43,9 +43,11 @@
 }
 
 /* The couple's real photo, with a dark gradient scrim on top so the
-   white cover text stays readable. background-position keeps the
-   couple centered — the source photo is landscape, so a tall phone
-   screen crops it heavily on the sides, not top/bottom. */
+   white cover text stays readable. This photo is portrait, like the
+   greeting photo below it — background-position keeps the couple in
+   frame; wide desktop windows crop it tighter than tall phone screens
+   do, so the desktop override nudges the crop lower (see media query
+   near the bottom of this file). */
 .cover__photo {
   position: absolute;
   inset: 0;
@@ -54,7 +56,7 @@
     linear-gradient(180deg, rgba(18, 26, 18, 0.55) 0%, rgba(18, 26, 18, 0.12) 30%, rgba(18, 26, 18, 0.18) 60%, rgba(14, 20, 14, 0.72) 100%),
     url("images/cover-photo.jpg");
   background-size: cover;
-  background-position: 52% 35%;
+  background-position: center 30%;
   background-repeat: no-repeat;
 }
 
@@ -208,7 +210,8 @@
    section gets) — nudge the crop so the couple stays comfortably in
    frame instead of the very top of the ceiling only. */
 @media (min-width: 860px) {
-  .greeting__photo {
+  .greeting__photo,
+  .cover__photo {
     background-position: center 55%;
   }
 }
@@ -436,11 +439,42 @@
 }
 
 /* Love Story — single card (photo + a short "label - description"
-   list) instead of the shared timeline component. Photo is a
-   placeholder gradient until the real one is supplied. */
+   list) instead of the shared timeline component, plus the same photo
+   full-bleed behind the whole section (same pattern as the other
+   photo sections). */
 
 .love-story-section {
+  position: relative;
+  overflow: hidden;
   text-align: center;
+}
+
+.love-story-section__photo {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background: url("images/love-story-bg.jpg");
+  background-size: cover;
+  background-position: center 25%;
+  background-repeat: no-repeat;
+}
+
+.love-story-section__scrim {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(180deg, rgba(15, 22, 26, 0.5) 0%, rgba(15, 22, 26, 0.25) 45%, rgba(15, 22, 26, 0.45) 100%);
+}
+
+.love-story-section .love-story__title,
+.love-story-section .love-story__card {
+  position: relative;
+  z-index: 2;
+}
+
+.love-story-section .love-story__title {
+  color: #fff;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.45);
 }
 
 .love-story__title {
@@ -464,27 +498,14 @@
 }
 
 .love-story__photo {
-  position: relative;
   aspect-ratio: 3 / 4;
   border-radius: var(--radius-md);
-  background: linear-gradient(155deg, #d8cdbd 0%, #c7b9a6 50%, #b7ad82 100%);
-  margin-bottom: 1.25rem;
-  overflow: hidden;
-}
-
-/* Each slide is a full-bleed layer that cross-fades in/out — cycling is
-   driven by toggling .is-active from the inline script in index.html. */
-.love-story__slide {
-  position: absolute;
-  inset: 0;
+  background-color: #c7b9a6;
   background-size: cover;
   background-position: center;
-  opacity: 0;
-  transition: opacity 1.2s ease;
-}
-
-.love-story__slide.is-active {
-  opacity: 1;
+  background-repeat: no-repeat;
+  margin-bottom: 1.25rem;
+  overflow: hidden;
 }
 
 .love-story__list {
@@ -551,6 +572,64 @@
   .love-story__item {
     font-size: 1.1rem;
     line-height: 1.8;
+  }
+}
+
+/* Acara (Waktu & Tempat) — full-bleed photo behind the section header
+   and cards, same pattern as Love Story. The 3 stacked event cards can
+   run taller than one screen on mobile (see the scroll-snap note
+   below), so the photo/scrim are pinned to one viewport-height instead
+   of stretching the full (possibly much taller) section — otherwise
+   "cover" would zoom in absurdly to fill that extra height. */
+
+.acara-section {
+  position: relative;
+  overflow: hidden;
+}
+
+.acara-section__photo {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 100vh;
+  height: 100svh;
+  z-index: 0;
+  background: url("images/acara-bg.jpg");
+  background-size: cover;
+  background-position: center 30%;
+  background-repeat: no-repeat;
+}
+
+.acara-section__scrim {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 100vh;
+  height: 100svh;
+  z-index: 1;
+  background: linear-gradient(180deg, rgba(15, 22, 26, 0.5) 0%, rgba(15, 22, 26, 0.25) 45%, rgba(15, 22, 26, 0.45) 100%);
+}
+
+.acara-section .section__header,
+.acara-section .event-grid {
+  position: relative;
+  z-index: 2;
+}
+
+.acara-section .eyebrow {
+  color: rgba(255, 255, 255, 0.88);
+}
+
+.acara-section .section__title {
+  color: #fff;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.45);
+}
+
+@media (min-width: 860px) {
+  .acara-section__photo {
+    background-position: center 55%;
   }
 }
 
