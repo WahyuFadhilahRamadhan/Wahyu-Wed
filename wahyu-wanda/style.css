@@ -391,6 +391,19 @@
     min-height: 100svh;
     aspect-ratio: auto;
   }
+
+  /* On this wide crop the groom's face sits just above the box row while
+     the bride's (taller headdress pushes her face lower in frame) is
+     already partly behind it — tighten the gap under the eyebrow and
+     nudge the row up so it grazes both faces evenly instead of only
+     hers. */
+  .countdown-section .eyebrow {
+    margin-bottom: 0.4rem;
+  }
+
+  .countdown-section .countdown {
+    margin-top: -1.6rem;
+  }
 }
 
 .countdown-section__photo {
@@ -629,6 +642,29 @@
   .acara-section__photo {
     background-position: center 55%;
   }
+}
+
+/* Gallery — break up the shared engine's uniform grid of squares with a
+   few taller "feature" tiles (picked by position, via the data-index the
+   renderer already stamps on each item) so the grid reads as a varied
+   mosaic instead of a flat repeating pattern. Row-spanning (not
+   column-spanning) suits these photos best since they're all portrait
+   full-body shots — a taller cell crops them far less than a wide one
+   would. dense packing lets the smaller squares flow in around the
+   taller tiles instead of leaving gaps. */
+.gallery-grid {
+  grid-auto-flow: dense;
+}
+
+.gallery-grid__item[data-index="0"],
+.gallery-grid__item[data-index="4"],
+.gallery-grid__item[data-index="8"] {
+  grid-row: span 2;
+  /* Approximates "1 column wide by 2 rows + gap tall" — an explicit
+     aspect-ratio (rather than auto) keeps this a definite size, since
+     the item's own img is height:100% of it and an auto/implicit
+     height here would leave that percentage unresolved. */
+  aspect-ratio: 1 / 2.05;
 }
 
 /* Tanda Kasih / RSVP / Kirim Ucapan share one full-bleed photo behind
