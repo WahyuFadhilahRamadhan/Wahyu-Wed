@@ -57,9 +57,10 @@
     "note": "Doa restu Anda merupakan karunia yang sangat berarti bagi kami. Namun jika ingin memberi tanda kasih, kami sediakan amplop digital berikut.",
     "banks": [
       { "bankName": "Bank", "accountNumber": "0000000000", "accountName": "Wahyu Fadhilah Ramadha" },
-      { "bankName": "Bank", "accountNumber": "0000000000", "accountName": "Wanda Dwi Harsita" }
-    ],
-    "qrisImage": "images/qris-placeholder.svg"
+      { "bankName": "Bank", "accountNumber": "0000000000", "accountName": "Wanda Dwi Harsita" },
+      { "bankName": "DANA", "accountNumber": "0000000000", "accountName": "Wahyu Fadhilah Ramadhan" },
+      { "bankName": "GoPay", "accountNumber": "0000000000", "accountName": "Wanda Dwi Harsita" }
+    ]
   },
   "wishes": []
 }
