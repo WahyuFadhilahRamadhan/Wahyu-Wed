@@ -921,8 +921,8 @@ html {
     aspect-ratio: auto;
     scroll-snap-align: none;
     scroll-snap-stop: normal;
-    align-items: flex-end;
-    justify-content: center;
+    align-items: center;
+    justify-content: flex-end;
     border-radius: 0;
   }
 
