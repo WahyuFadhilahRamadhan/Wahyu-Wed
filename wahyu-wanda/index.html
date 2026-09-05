@@ -183,89 +183,103 @@
         <div class="gallery-grid" id="galleryGrid"></div>
       </section>
 
-      <!-- Digital gift / amplop -->
-      <section class="section">
-        <div class="section__header">
-          <p class="eyebrow reveal">Amplop Digital</p>
-          <h2 class="section__title reveal reveal-delay-1">Tanda Kasih</h2>
-        </div>
-        <p class="gift-intro reveal reveal-delay-1" id="giftNote"></p>
-        <button type="button" class="btn btn-primary reveal reveal-delay-2" data-open-gift style="display:block; margin:0 auto;">
-          Kirim Tanda Kasih
-        </button>
-      </section>
+      <!-- Tanda Kasih / RSVP / Kirim Ucapan share one full-bleed photo
+           behind all three — a fixed-position layer toggled by
+           #ctaFixedBg's IntersectionObserver (see script at the bottom
+           of this file) rather than position:sticky, which doesn't
+           stick reliably inside a scroll-snap container. Stays visible
+           for as long as any part of .cta-group is on screen, so
+           scrolling through these three reads as one continuous
+           backdrop, then releases into Terima Kasih. -->
+      <div class="cta-fixed-bg" id="ctaFixedBg">
+        <div class="cta-fixed-bg__photo"></div>
+        <div class="cta-fixed-bg__scrim"></div>
+      </div>
+      <div class="cta-group">
+        <!-- Digital gift / amplop -->
+        <section class="section">
+          <div class="section__header">
+            <p class="eyebrow reveal">Amplop Digital</p>
+            <h2 class="section__title reveal reveal-delay-1">Tanda Kasih</h2>
+          </div>
+          <p class="gift-intro reveal reveal-delay-1" id="giftNote"></p>
+          <button type="button" class="btn btn-primary reveal reveal-delay-2" data-open-gift style="display:block; margin:0 auto;">
+            Kirim Tanda Kasih
+          </button>
+        </section>
 
-      <!-- RSVP -->
-      <section class="section">
-        <div class="section__header">
-          <p class="eyebrow reveal">RSVP</p>
-          <h2 class="section__title reveal reveal-delay-1">Konfirmasi Kehadiran</h2>
-          <p class="section__subtitle reveal reveal-delay-2">Bagi tamu undangan yang akan hadir di acara pernikahan kami, silahkan kirimkan konfirmasi kehadiran dengan mengisi form berikut.</p>
-        </div>
-        <form class="reveal reveal-delay-2" id="rsvpForm">
-          <div class="form-field">
-            <label for="rsvpName">Nama</label>
-            <input type="text" id="rsvpName" name="rsvpName" placeholder="Nama lengkap" required />
+        <!-- RSVP -->
+        <section class="section">
+          <div class="section__header">
+            <p class="eyebrow reveal">RSVP</p>
+            <h2 class="section__title reveal reveal-delay-1">Konfirmasi Kehadiran</h2>
+            <p class="section__subtitle reveal reveal-delay-2">Bagi tamu undangan yang akan hadir di acara pernikahan kami, silahkan kirimkan konfirmasi kehadiran dengan mengisi form berikut.</p>
           </div>
-          <div class="form-field">
-            <label for="rsvpGuests">Jumlah Tamu</label>
-            <select id="rsvpGuests" name="rsvpGuests">
-              <option value="1">1 orang</option>
-              <option value="2">2 orang</option>
-              <option value="3">3 orang</option>
-              <option value="4">4 orang</option>
-            </select>
-          </div>
-          <div class="form-field">
-            <label>Konfirmasi Kehadiran</label>
-            <div class="radio-group">
-              <label class="radio-option">
-                <input type="radio" name="rsvpAttendance" value="Hadir" checked />
-                <span>Hadir</span>
-              </label>
-              <label class="radio-option">
-                <input type="radio" name="rsvpAttendance" value="Tidak Hadir" />
-                <span>Tidak Hadir</span>
-              </label>
+          <form class="reveal reveal-delay-2" id="rsvpForm">
+            <div class="form-field">
+              <label for="rsvpName">Nama</label>
+              <input type="text" id="rsvpName" name="rsvpName" placeholder="Nama lengkap" required />
             </div>
-          </div>
-          <button type="submit" class="btn btn-primary btn-block">Kirim Konfirmasi</button>
-          <p class="form-note" id="rsvpNote"></p>
-        </form>
-      </section>
+            <div class="form-field">
+              <label for="rsvpGuests">Jumlah Tamu</label>
+              <select id="rsvpGuests" name="rsvpGuests">
+                <option value="1">1 orang</option>
+                <option value="2">2 orang</option>
+                <option value="3">3 orang</option>
+                <option value="4">4 orang</option>
+              </select>
+            </div>
+            <div class="form-field">
+              <label>Konfirmasi Kehadiran</label>
+              <div class="radio-group">
+                <label class="radio-option">
+                  <input type="radio" name="rsvpAttendance" value="Hadir" checked />
+                  <span>Hadir</span>
+                </label>
+                <label class="radio-option">
+                  <input type="radio" name="rsvpAttendance" value="Tidak Hadir" />
+                  <span>Tidak Hadir</span>
+                </label>
+              </div>
+            </div>
+            <button type="submit" class="btn btn-primary btn-block">Kirim Konfirmasi</button>
+            <p class="form-note" id="rsvpNote"></p>
+          </form>
+        </section>
 
-      <!-- Wishes & prayers -->
-      <section class="section">
-        <div class="section__header">
-          <p class="eyebrow reveal">Ucapan &amp; Doa</p>
-          <h2 class="section__title reveal reveal-delay-1">Kirim Ucapan</h2>
-        </div>
-        <ul class="wishes-list reveal reveal-delay-1" id="wishesList"></ul>
-        <form class="reveal reveal-delay-2" id="wishesForm">
-          <div class="form-field">
-            <label for="wishName">Nama</label>
-            <input type="text" id="wishName" name="wishName" placeholder="Nama kamu" />
+        <!-- Wishes & prayers -->
+        <section class="section">
+          <div class="section__header">
+            <p class="eyebrow reveal">Ucapan &amp; Doa</p>
+            <h2 class="section__title reveal reveal-delay-1">Kirim Ucapan</h2>
           </div>
-          <div class="form-field">
-            <label>Kehadiran</label>
-            <div class="radio-group">
-              <label class="radio-option">
-                <input type="radio" name="wishAttendance" value="Hadir" checked />
-                <span>Hadir</span>
-              </label>
-              <label class="radio-option">
-                <input type="radio" name="wishAttendance" value="Tidak Hadir" />
-                <span>Tidak Hadir</span>
-              </label>
+          <ul class="wishes-list reveal reveal-delay-1" id="wishesList"></ul>
+          <form class="reveal reveal-delay-2" id="wishesForm">
+            <div class="form-field">
+              <label for="wishName">Nama</label>
+              <input type="text" id="wishName" name="wishName" placeholder="Nama kamu" />
             </div>
-          </div>
-          <div class="form-field">
-            <label for="wishMessage">Ucapan &amp; Doa</label>
-            <textarea id="wishMessage" name="wishMessage" placeholder="Tuliskan ucapan dan doa terbaikmu..." required></textarea>
-          </div>
-          <button type="submit" class="btn btn-primary btn-block">Kirim Ucapan</button>
-        </form>
-      </section>
+            <div class="form-field">
+              <label>Kehadiran</label>
+              <div class="radio-group">
+                <label class="radio-option">
+                  <input type="radio" name="wishAttendance" value="Hadir" checked />
+                  <span>Hadir</span>
+                </label>
+                <label class="radio-option">
+                  <input type="radio" name="wishAttendance" value="Tidak Hadir" />
+                  <span>Tidak Hadir</span>
+                </label>
+              </div>
+            </div>
+            <div class="form-field">
+              <label for="wishMessage">Ucapan &amp; Doa</label>
+              <textarea id="wishMessage" name="wishMessage" placeholder="Tuliskan ucapan dan doa terbaikmu..." required></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary btn-block">Kirim Ucapan</button>
+          </form>
+        </section>
+      </div>
 
       <!-- Terima kasih — closing section, right before the footer, since
            this is the end of the invitation. -->
@@ -323,6 +337,23 @@
     Mounstory.Invitation.init("data.json");
     var guestNameDisplayEl = document.getElementById("guestNameDisplay");
     if (guestNameDisplayEl) guestNameDisplayEl.textContent = Mounstory.Invitation.getGuestName();
+
+    // Tanda Kasih / RSVP / Kirim Ucapan share one full-bleed background —
+    // toggle it on for as long as any part of that group is on screen.
+    (function () {
+      var group = document.querySelector(".cta-group");
+      var fixedBg = document.getElementById("ctaFixedBg");
+      if (!group || !fixedBg || !("IntersectionObserver" in window)) return;
+      var observer = new IntersectionObserver(
+        function (entries) {
+          entries.forEach(function (entry) {
+            fixedBg.classList.toggle("is-active", entry.isIntersecting);
+          });
+        },
+        { threshold: 0 }
+      );
+      observer.observe(group);
+    })();
   </script>
 </body>
 </html>

@@ -151,7 +151,7 @@ ul, ol {
 .reveal {
   opacity: 0;
   transform: translateY(42px);
-  transition: opacity 650ms ease-out, transform 650ms ease-out;
+  transition: opacity 950ms ease-out, transform 950ms ease-out;
 }
 
 .reveal.is-visible {
@@ -170,7 +170,7 @@ ul, ol {
 .bg-reveal {
   opacity: 0;
   transform: scale(1.04);
-  transition: opacity 900ms ease-out, transform 1200ms ease-out;
+  transition: opacity 1400ms ease-out, transform 1800ms ease-out;
 }
 
 .bg-reveal.is-visible {
