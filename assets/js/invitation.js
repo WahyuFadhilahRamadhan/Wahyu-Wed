@@ -233,7 +233,9 @@
         // dismissed — starting it earlier flags above-the-fold sections
         // "visible" while they're still hidden behind the cover, so their
         // fade-in plays out invisibly and the guest never sees any motion.
-        Mounstory.initScrollReveal();
+        // .bg-reveal is the same observer, applied to full-bleed section
+        // photos instead of text content (see base.css).
+        Mounstory.initScrollReveal(".reveal, .bg-reveal");
       }, 150);
       if (typeof onOpen === "function") onOpen();
     });
