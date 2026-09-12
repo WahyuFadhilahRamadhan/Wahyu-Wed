@@ -738,6 +738,34 @@
   margin: 0 auto;
 }
 
+/* Desktop has the room to lay the 4 payment cards out side by side
+   instead of stacking them; each card switches to a column layout
+   (info, then the copy button below it) since a wide flex row reads
+   cramped once the card itself is narrow. */
+@media (min-width: 860px) {
+  .gift-inline {
+    max-width: 1040px;
+  }
+
+  #banksList {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+  }
+
+  .gift-inline .bank-card {
+    flex-direction: column;
+    align-items: flex-start;
+    height: 100%;
+    margin-bottom: 0;
+  }
+
+  .gift-inline .bank-card__copy {
+    align-self: flex-start;
+    margin-top: 0.6rem;
+  }
+}
+
 /* RSVP and Kirim Ucapan stay transparent (no card/frame) — just a
    tidy, consistently-spaced column directly on the shared photo,
    with white text + shadow (from .cta-group below) for legibility. */
@@ -888,10 +916,33 @@ html {
   transform: none;
 }
 
+/* "Buka Undangan" slides the whole cover photo up and off-screen
+   instead of the shared engine's plain fade — a longer, more
+   deliberate transition since this is the guest's first interaction
+   with the page. */
+.cover.is-closing {
+  transform: translateY(-100%);
+  transition: transform 1100ms cubic-bezier(0.65, 0, 0.35, 1), opacity 1100ms ease-in-out, visibility 1100ms;
+}
+
 @media (min-width: 480px) {
   .music-toggle {
     right: 1.25rem;
   }
+}
+
+/* Play/pause icon instead of the shared engine's spinning-disc treatment
+   — a plain triangle at rest, bars once playing. */
+.music-toggle__icon--pause {
+  display: none;
+}
+
+.music-toggle.is-playing .music-toggle__icon--play {
+  display: none;
+}
+
+.music-toggle.is-playing .music-toggle__icon--pause {
+  display: block;
 }
 
 /* Varied scroll-reveal directions — the shared .reveal is a plain
