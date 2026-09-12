@@ -376,7 +376,7 @@
       e.preventDefault();
       var wish = {
         name: form.elements.wishName.value.trim() || "Tamu Undangan",
-        attendance: form.elements.wishAttendance.value,
+        attendance: form.elements.wishAttendance ? form.elements.wishAttendance.value : undefined,
         message: form.elements.wishMessage.value.trim(),
       };
       if (!wish.message) return;
