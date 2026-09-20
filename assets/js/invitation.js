@@ -368,9 +368,18 @@
     if (!form) return;
     var note = document.getElementById("rsvpNote");
     var webhookUrl = data && data.integrations && data.integrations.webhookUrl;
+    var submitBtn = form.querySelector('button[type="submit"]');
 
     form.addEventListener("submit", function (e) {
       e.preventDefault();
+      // A guest double-tapping "Kirim Konfirmasi" (slow connection, or
+      // just impatience) used to fire this twice — two identical rows in
+      // the couple's sheet. Briefly disabling the button makes a second,
+      // near-instant tap a no-op, while still allowing a genuine second
+      // submission (e.g. correcting a typo) moments later.
+      if (submitBtn && submitBtn.disabled) return;
+      if (submitBtn) submitBtn.disabled = true;
+
       var payload = {
         name: form.elements.rsvpName.value.trim(),
         guests: form.elements.rsvpGuests ? form.elements.rsvpGuests.value : undefined,
@@ -384,6 +393,7 @@
         note.classList.add("is-visible");
       }
       form.reset();
+      if (submitBtn) setTimeout(function () { submitBtn.disabled = false; }, 1500);
     });
   }
 
@@ -398,15 +408,24 @@
     if (!form) return;
     var list = document.getElementById("wishesList");
     var webhookUrl = data && data.integrations && data.integrations.webhookUrl;
+    var submitBtn = form.querySelector('button[type="submit"]');
 
     form.addEventListener("submit", function (e) {
       e.preventDefault();
+      if (submitBtn && submitBtn.disabled) return;
+
       var wish = {
         name: form.elements.wishName.value.trim() || "Tamu Undangan",
         attendance: form.elements.wishAttendance ? form.elements.wishAttendance.value : undefined,
         message: form.elements.wishMessage.value.trim(),
       };
       if (!wish.message) return;
+
+      // Same double-tap guard as RSVP — see the comment there.
+      if (submitBtn) {
+        submitBtn.disabled = true;
+        setTimeout(function () { submitBtn.disabled = false; }, 1500);
+      }
 
       console.log("[Wish submitted]", wish);
       postToWebhook(webhookUrl, Object.assign({ type: "wish" }, wish));

@@ -24,22 +24,34 @@ function doPost(e) {
       .setMimeType(ContentService.MimeType.JSON);
   }
 
-  var ss = SpreadsheetApp.getActiveSpreadsheet();
-  var tabName = payload.type === "rsvp" ? "RSVP" : "Ucapan";
-  var sheet = ss.getSheetByName(tabName);
-  if (!sheet) {
-    sheet = ss.insertSheet(tabName);
-    var header = payload.type === "rsvp"
-      ? ["Waktu", "Nama", "Jumlah Tamu", "Kehadiran"]
-      : ["Waktu", "Nama", "Ucapan & Doa"];
-    sheet.appendRow(header);
-  }
+  // If the invitation link goes out to a big family WhatsApp group,
+  // several guests can easily submit within the same second. Without a
+  // lock, two requests can both see "the tab doesn't exist yet" and both
+  // try to create it — the second one then throws (a sheet name can't be
+  // duplicated), silently losing that guest's RSVP or wish. The lock
+  // makes every request wait its turn instead of racing.
+  var lock = LockService.getScriptLock();
+  lock.waitLock(30000);
+  try {
+    var ss = SpreadsheetApp.getActiveSpreadsheet();
+    var tabName = payload.type === "rsvp" ? "RSVP" : "Ucapan";
+    var sheet = ss.getSheetByName(tabName);
+    if (!sheet) {
+      sheet = ss.insertSheet(tabName);
+      var header = payload.type === "rsvp"
+        ? ["Waktu", "Nama", "Jumlah Tamu", "Kehadiran"]
+        : ["Waktu", "Nama", "Ucapan & Doa"];
+      sheet.appendRow(header);
+    }
 
-  var now = new Date();
-  if (payload.type === "rsvp") {
-    sheet.appendRow([now, payload.name || "", payload.guests || "", payload.attendance || ""]);
-  } else {
-    sheet.appendRow([now, payload.name || "", payload.message || ""]);
+    var now = new Date();
+    if (payload.type === "rsvp") {
+      sheet.appendRow([now, payload.name || "", payload.guests || "", payload.attendance || ""]);
+    } else {
+      sheet.appendRow([now, payload.name || "", payload.message || ""]);
+    }
+  } finally {
+    lock.releaseLock();
   }
 
   return ContentService.createTextOutput(JSON.stringify({ ok: true }))
