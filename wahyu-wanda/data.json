@@ -1,8 +1,11 @@
 {
   "meta": {
-    "title": "Wahyu & Wanda — Undangan Pernikahan",
+    "title": "Wahyu & Wanda \u2014 Undangan Pernikahan",
     "coupleShort": "Wahyu & Wanda",
     "musicSrc": "audio/endless-love.mp3"
+  },
+  "integrations": {
+    "webhookUrl": ""
   },
   "groom": {
     "fullName": "Wahyu Fadhilah Ramadhan, S.ST",
@@ -60,10 +63,26 @@
   "gift": {
     "note": "Tanpa mengurangi rasa hormat kami bagi tamu yang ingin mengirimkan hadiah kepada kedua mempelai dapat mengirimkannya melalui :",
     "banks": [
-      { "bankName": "Bank", "accountNumber": "0000000000", "accountName": "Wahyu Fadhilah Ramadha" },
-      { "bankName": "Bank", "accountNumber": "0000000000", "accountName": "Wanda Dwi Harsita" },
-      { "bankName": "DANA", "accountNumber": "0000000000", "accountName": "Wahyu Fadhilah Ramadhan" },
-      { "bankName": "GoPay", "accountNumber": "0000000000", "accountName": "Wanda Dwi Harsita" }
+      {
+        "bankName": "Bank",
+        "accountNumber": "0000000000",
+        "accountName": "Wahyu Fadhilah Ramadha"
+      },
+      {
+        "bankName": "Bank",
+        "accountNumber": "0000000000",
+        "accountName": "Wanda Dwi Harsita"
+      },
+      {
+        "bankName": "DANA",
+        "accountNumber": "0000000000",
+        "accountName": "Wahyu Fadhilah Ramadhan"
+      },
+      {
+        "bankName": "GoPay",
+        "accountNumber": "0000000000",
+        "accountName": "Wanda Dwi Harsita"
+      }
     ]
   },
   "wishes": []

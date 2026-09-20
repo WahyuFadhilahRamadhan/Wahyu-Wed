@@ -35,6 +35,21 @@
     });
   }
 
+  /** Rides out a brief network hiccup (very plausible on mobile, or when
+      the invitation link goes out to a group and many guests load the
+      page around the same time) instead of failing on the first blip. */
+  function fetchDataWithRetry(path, retriesLeft) {
+    retriesLeft = retriesLeft == null ? 2 : retriesLeft;
+    return fetchData(path).catch(function (err) {
+      if (retriesLeft <= 0) throw err;
+      return new Promise(function (resolve) {
+        setTimeout(resolve, 800);
+      }).then(function () {
+        return fetchDataWithRetry(path, retriesLeft - 1);
+      });
+    });
+  }
+
   /* ---------------------------------------------------------------------
      Rendering
      ------------------------------------------------------------------- */
@@ -354,42 +369,82 @@
   }
 
   /* ---------------------------------------------------------------------
-     RSVP form (dummy submit — no backend yet)
+     Optional private webhook (e.g. a Google Apps Script Web App tied to
+     the couple's own Sheet) — fire-and-forget so a slow/failed request
+     never blocks the guest's own submit flow. no-cors means the response
+     is unreadable here, which is fine: we don't need to confirm delivery
+     client-side, just best-effort send it.
      ------------------------------------------------------------------- */
 
-  function initRSVPForm() {
+  function postToWebhook(url, payload) {
+    if (!url || typeof fetch !== "function") return;
+    try {
+      fetch(url, {
+        method: "POST",
+        mode: "no-cors",
+        headers: { "Content-Type": "text/plain;charset=utf-8" },
+        body: JSON.stringify(payload),
+      }).catch(function () {});
+    } catch (err) {
+      /* best-effort only */
+    }
+  }
+
+  /* ---------------------------------------------------------------------
+     RSVP form
+     ------------------------------------------------------------------- */
+
+  function initRSVPForm(data) {
     var form = document.getElementById("rsvpForm");
     if (!form) return;
     var note = document.getElementById("rsvpNote");
+    var webhookUrl = data && data.integrations && data.integrations.webhookUrl;
+    var submitBtn = form.querySelector('button[type="submit"]');
 
     form.addEventListener("submit", function (e) {
       e.preventDefault();
+      // A guest double-tapping "Kirim Konfirmasi" (slow connection, or
+      // just impatience) used to fire this twice — two identical rows in
+      // the couple's sheet. Briefly disabling the button makes a second,
+      // near-instant tap a no-op, while still allowing a genuine second
+      // submission (e.g. correcting a typo) moments later.
+      if (submitBtn && submitBtn.disabled) return;
+      if (submitBtn) submitBtn.disabled = true;
+
       var payload = {
         name: form.elements.rsvpName.value.trim(),
         guests: form.elements.rsvpGuests ? form.elements.rsvpGuests.value : undefined,
         attendance: form.elements.rsvpAttendance.value,
       };
       console.log("[RSVP submitted]", payload);
+      postToWebhook(webhookUrl, Object.assign({ type: "rsvp" }, payload));
 
       if (note) {
         note.textContent = "Terima kasih, " + (payload.name || "Tamu") + "! Konfirmasi kehadiranmu sudah kami catat.";
         note.classList.add("is-visible");
       }
       form.reset();
+      if (submitBtn) setTimeout(function () { submitBtn.disabled = false; }, 1500);
     });
   }
 
   /* ---------------------------------------------------------------------
-     Wishes form (client-side only, prepends to the visible list)
+     Wishes form — prepends to the visible list only on pages that keep
+     one (id="wishesList"); pages without it (a private-only guestbook)
+     still submit and forward to the webhook, just skip the visual insert.
      ------------------------------------------------------------------- */
 
-  function initWishesForm() {
+  function initWishesForm(data) {
     var form = document.getElementById("wishesForm");
+    if (!form) return;
     var list = document.getElementById("wishesList");
-    if (!form || !list) return;
+    var webhookUrl = data && data.integrations && data.integrations.webhookUrl;
+    var submitBtn = form.querySelector('button[type="submit"]');
 
     form.addEventListener("submit", function (e) {
       e.preventDefault();
+      if (submitBtn && submitBtn.disabled) return;
+
       var wish = {
         name: form.elements.wishName.value.trim() || "Tamu Undangan",
         attendance: form.elements.wishAttendance ? form.elements.wishAttendance.value : undefined,
@@ -397,8 +452,15 @@
       };
       if (!wish.message) return;
 
+      // Same double-tap guard as RSVP — see the comment there.
+      if (submitBtn) {
+        submitBtn.disabled = true;
+        setTimeout(function () { submitBtn.disabled = false; }, 1500);
+      }
+
       console.log("[Wish submitted]", wish);
-      list.insertAdjacentHTML("afterbegin", wishItemHTML(wish));
+      postToWebhook(webhookUrl, Object.assign({ type: "wish" }, wish));
+      if (list) list.insertAdjacentHTML("afterbegin", wishItemHTML(wish));
       form.reset();
       Mounstory.showToast("Ucapan terkirim, terima kasih!");
     });
@@ -533,7 +595,27 @@
   function init(dataPath) {
     document.body.classList.add("invitation-body");
 
-    fetchData(dataPath)
+    var dataReady = fetchDataWithRetry(dataPath);
+
+    // The cover has to work no matter what — a guest stuck staring at a
+    // dead "Buka Undangan" button because of one bad network blip is a
+    // total failure of the invitation, even though the richer content
+    // behind it can't render without data.json. So this does not wait on
+    // the fetch; only the optional auto-play-music step (which needs
+    // data.meta.musicSrc) does, and it's written to just skip quietly if
+    // data never arrives.
+    initCover(function () {
+      dataReady
+        .then(function (data) {
+          if (data.meta && data.meta.musicSrc) {
+            var toggle = document.getElementById("musicToggle");
+            if (toggle) toggle.click();
+          }
+        })
+        .catch(function () {});
+    });
+
+    dataReady
       .then(function (data) {
         renderCouple(data);
         renderEvent(data);
@@ -542,16 +624,10 @@
         renderWishes(data);
         renderLoveStory(data);
 
-        initCover(function () {
-          if (data.meta && data.meta.musicSrc) {
-            var toggle = document.getElementById("musicToggle");
-            if (toggle) toggle.click();
-          }
-        });
         initCountdown(data.event && data.event.weddingDate);
         initMusicPlayer(data.meta && data.meta.musicSrc);
-        initRSVPForm();
-        initWishesForm();
+        initRSVPForm(data);
+        initWishesForm(data);
         initWishLikes();
         initCopyButtons();
         initGalleryLightbox();
@@ -559,7 +635,7 @@
       })
       .catch(function (err) {
         console.error(err);
-        Mounstory.showToast("Gagal memuat data undangan");
+        Mounstory.showToast("Sebagian konten gagal dimuat. Coba muat ulang halaman.");
       });
   }
 
