@@ -721,25 +721,31 @@
   margin: 0 auto;
 }
 
-/* Desktop has the room to lay the 4 payment cards out side by side
-   instead of stacking them; each card switches to a column layout
-   (info, then the copy button below it) since a wide flex row reads
-   cramped once the card itself is narrow. */
+/* Desktop has the room to lay the payment cards out side by side
+   instead of stacking them full-width; each card switches to a column
+   layout (info, then the copy button below it) since a wide flex row
+   reads cramped once the card itself is narrow. Flex-wrap + centering
+   (rather than a strict 4-column grid) means a non-multiple-of-4 count
+   — 5, 6, whatever the couple adds — wraps its last row centered
+   instead of stranding a lone card flush left with empty space beside
+   it. */
 @media (min-width: 860px) {
   .gift-inline {
     max-width: 1040px;
   }
 
   #banksList {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
     gap: 1rem;
   }
 
   .gift-inline .bank-card {
+    flex: 0 1 240px;
+    max-width: 240px;
     flex-direction: column;
     align-items: flex-start;
-    height: 100%;
     margin-bottom: 0;
   }
 
