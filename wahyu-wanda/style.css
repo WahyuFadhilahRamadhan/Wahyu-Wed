@@ -646,6 +646,27 @@
   color: rgba(255, 255, 255, 0.88);
 }
 
+/* Event (lokasi) cards read as frosted glass over the shared photo
+   instead of solid white boxes — same treatment as the countdown
+   boxes elsewhere on this page. */
+.acara-section .event-card {
+  background: rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+}
+
+.acara-section .event-card__date,
+.acara-section .event-card__venue {
+  color: #fff;
+}
+
+.acara-section .event-card__time,
+.acara-section .event-card__address {
+  color: rgba(255, 255, 255, 0.75);
+}
+
 .acara-section .section__title {
   color: #fff;
   text-shadow: 0 2px 10px rgba(0, 0, 0, 0.45);
@@ -726,6 +747,32 @@
 .cta-group .gift-intro {
   color: rgba(255, 255, 255, 0.85);
   text-shadow: 0 1px 6px rgba(0, 0, 0, 0.4);
+}
+
+/* Wedding Gift cards read as frosted glass over the shared photo
+   instead of solid white boxes — same treatment as the countdown
+   boxes and the Acara (lokasi) cards elsewhere on this page. */
+.cta-group .bank-card {
+  background: rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+}
+
+.cta-group .bank-card__info strong,
+.cta-group .bank-card__number {
+  color: #fff;
+}
+
+.cta-group .bank-card__name {
+  color: rgba(255, 255, 255, 0.75);
+}
+
+.cta-group .bank-card__copy {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.4);
+  color: #fff;
 }
 
 .gift-inline {
