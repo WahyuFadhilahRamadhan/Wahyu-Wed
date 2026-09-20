@@ -650,7 +650,11 @@
    instead of solid white boxes — same treatment as the countdown
    boxes elsewhere on this page. */
 .acara-section .event-card {
-  background: rgba(255, 255, 255, 0.12);
+  /* A light frosted tint reads fine over a dark part of the photo but
+     washes out white text wherever the photo underneath it is bright
+     (e.g. skin tones, gold jewelry) — a dark tint keeps the card
+     readable no matter what's behind it, same as the countdown boxes. */
+  background: rgba(15, 22, 26, 0.55);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   border: 1px solid rgba(255, 255, 255, 0.35);
@@ -660,11 +664,17 @@
 .acara-section .event-card__date,
 .acara-section .event-card__venue {
   color: #fff;
+  text-shadow: 0 1px 6px rgba(0, 0, 0, 0.5);
 }
 
 .acara-section .event-card__time,
 .acara-section .event-card__address {
-  color: rgba(255, 255, 255, 0.75);
+  color: rgba(255, 255, 255, 0.8);
+  text-shadow: 0 1px 6px rgba(0, 0, 0, 0.5);
+}
+
+.acara-section .event-card__label {
+  text-shadow: 0 1px 6px rgba(0, 0, 0, 0.5);
 }
 
 .acara-section .section__title {
@@ -753,7 +763,10 @@
    instead of solid white boxes — same treatment as the countdown
    boxes and the Acara (lokasi) cards elsewhere on this page. */
 .cta-group .bank-card {
-  background: rgba(255, 255, 255, 0.12);
+  /* Dark tint (not a light frosted one) so the card stays readable no
+     matter how bright the photo underneath it is — see the same note
+     on .acara-section .event-card. */
+  background: rgba(15, 22, 26, 0.55);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   border: 1px solid rgba(255, 255, 255, 0.35);
@@ -763,10 +776,12 @@
 .cta-group .bank-card__info strong,
 .cta-group .bank-card__number {
   color: #fff;
+  text-shadow: 0 1px 6px rgba(0, 0, 0, 0.5);
 }
 
 .cta-group .bank-card__name {
-  color: rgba(255, 255, 255, 0.75);
+  color: rgba(255, 255, 255, 0.8);
+  text-shadow: 0 1px 6px rgba(0, 0, 0, 0.5);
 }
 
 .cta-group .bank-card__copy {
