@@ -11,11 +11,13 @@
 
   var Mounstory = (global.Mounstory = global.Mounstory || {});
 
-  /** Escapes text before it is dropped into innerHTML. */
+  /** Escapes text before it is dropped into innerHTML — including quotes,
+      since some callers (e.g. the bank copy button's data-copy) also drop
+      the result straight into an HTML attribute value. */
   function escapeHTML(str) {
     var div = document.createElement("div");
     div.textContent = String(str == null ? "" : str);
-    return div.innerHTML;
+    return div.innerHTML.replace(/"/g, "&quot;").replace(/'/g, "&#39;");
   }
 
   /** Reads ?to= from the URL, decoded, falling back to a default. */
@@ -30,6 +32,21 @@
     return fetch(path, { cache: "no-store" }).then(function (res) {
       if (!res.ok) throw new Error("Gagal memuat data undangan: " + res.status);
       return res.json();
+    });
+  }
+
+  /** Rides out a brief network hiccup (very plausible on mobile, or when
+      the invitation link goes out to a group and many guests load the
+      page around the same time) instead of failing on the first blip. */
+  function fetchDataWithRetry(path, retriesLeft) {
+    retriesLeft = retriesLeft == null ? 2 : retriesLeft;
+    return fetchData(path).catch(function (err) {
+      if (retriesLeft <= 0) throw err;
+      return new Promise(function (resolve) {
+        setTimeout(resolve, 800);
+      }).then(function () {
+        return fetchDataWithRetry(path, retriesLeft - 1);
+      });
     });
   }
 
@@ -224,7 +241,16 @@
 
     document.body.style.overflow = "hidden";
 
+    // A guest tapping "Buka Undangan" more than once (a slow phone, or
+    // just impatience) used to re-run everything below on every tap —
+    // most of it is harmless to repeat, but re-firing onOpen() re-clicks
+    // the music toggle, which *pauses* the music it just started. One
+    // flag makes every tap after the first a no-op.
+    var hasOpened = false;
     btn.addEventListener("click", function () {
+      if (hasOpened) return;
+      hasOpened = true;
+
       // Ask the browser to go fullscreen so the address bar disappears.
       // Must fire inside this click handler — it's the user gesture the
       // Fullscreen API requires. Not all browsers support it (notably iOS
@@ -326,10 +352,15 @@
 
     toggle.addEventListener("click", function () {
       if (audio.paused) {
-        audio.play().catch(function () {
+        // Only flip the icon once playback actually starts — the browser
+        // can still reject this (autoplay policy, a slow/blocked audio
+        // file), and the button showing "pause" while nothing is playing
+        // is more confusing than the icon just not changing.
+        audio.play().then(function () {
+          toggle.classList.add("is-playing");
+        }).catch(function () {
           Mounstory.showToast("Tidak dapat memutar musik saat ini");
         });
-        toggle.classList.add("is-playing");
       } else {
         audio.pause();
         toggle.classList.remove("is-playing");
@@ -338,42 +369,82 @@
   }
 
   /* ---------------------------------------------------------------------
-     RSVP form (dummy submit — no backend yet)
+     Optional private webhook (e.g. a Google Apps Script Web App tied to
+     the couple's own Sheet) — fire-and-forget so a slow/failed request
+     never blocks the guest's own submit flow. no-cors means the response
+     is unreadable here, which is fine: we don't need to confirm delivery
+     client-side, just best-effort send it.
      ------------------------------------------------------------------- */
 
-  function initRSVPForm() {
+  function postToWebhook(url, payload) {
+    if (!url || typeof fetch !== "function") return;
+    try {
+      fetch(url, {
+        method: "POST",
+        mode: "no-cors",
+        headers: { "Content-Type": "text/plain;charset=utf-8" },
+        body: JSON.stringify(payload),
+      }).catch(function () {});
+    } catch (err) {
+      /* best-effort only */
+    }
+  }
+
+  /* ---------------------------------------------------------------------
+     RSVP form
+     ------------------------------------------------------------------- */
+
+  function initRSVPForm(data) {
     var form = document.getElementById("rsvpForm");
     if (!form) return;
     var note = document.getElementById("rsvpNote");
+    var webhookUrl = data && data.integrations && data.integrations.webhookUrl;
+    var submitBtn = form.querySelector('button[type="submit"]');
 
     form.addEventListener("submit", function (e) {
       e.preventDefault();
+      // A guest double-tapping "Kirim Konfirmasi" (slow connection, or
+      // just impatience) used to fire this twice — two identical rows in
+      // the couple's sheet. Briefly disabling the button makes a second,
+      // near-instant tap a no-op, while still allowing a genuine second
+      // submission (e.g. correcting a typo) moments later.
+      if (submitBtn && submitBtn.disabled) return;
+      if (submitBtn) submitBtn.disabled = true;
+
       var payload = {
         name: form.elements.rsvpName.value.trim(),
         guests: form.elements.rsvpGuests ? form.elements.rsvpGuests.value : undefined,
         attendance: form.elements.rsvpAttendance.value,
       };
       console.log("[RSVP submitted]", payload);
+      postToWebhook(webhookUrl, Object.assign({ type: "rsvp" }, payload));
 
       if (note) {
         note.textContent = "Terima kasih, " + (payload.name || "Tamu") + "! Konfirmasi kehadiranmu sudah kami catat.";
         note.classList.add("is-visible");
       }
       form.reset();
+      if (submitBtn) setTimeout(function () { submitBtn.disabled = false; }, 1500);
     });
   }
 
   /* ---------------------------------------------------------------------
-     Wishes form (client-side only, prepends to the visible list)
+     Wishes form — prepends to the visible list only on pages that keep
+     one (id="wishesList"); pages without it (a private-only guestbook)
+     still submit and forward to the webhook, just skip the visual insert.
      ------------------------------------------------------------------- */
 
-  function initWishesForm() {
+  function initWishesForm(data) {
     var form = document.getElementById("wishesForm");
+    if (!form) return;
     var list = document.getElementById("wishesList");
-    if (!form || !list) return;
+    var webhookUrl = data && data.integrations && data.integrations.webhookUrl;
+    var submitBtn = form.querySelector('button[type="submit"]');
 
     form.addEventListener("submit", function (e) {
       e.preventDefault();
+      if (submitBtn && submitBtn.disabled) return;
+
       var wish = {
         name: form.elements.wishName.value.trim() || "Tamu Undangan",
         attendance: form.elements.wishAttendance ? form.elements.wishAttendance.value : undefined,
@@ -381,8 +452,15 @@
       };
       if (!wish.message) return;
 
+      // Same double-tap guard as RSVP — see the comment there.
+      if (submitBtn) {
+        submitBtn.disabled = true;
+        setTimeout(function () { submitBtn.disabled = false; }, 1500);
+      }
+
       console.log("[Wish submitted]", wish);
-      list.insertAdjacentHTML("afterbegin", wishItemHTML(wish));
+      postToWebhook(webhookUrl, Object.assign({ type: "wish" }, wish));
+      if (list) list.insertAdjacentHTML("afterbegin", wishItemHTML(wish));
       form.reset();
       Mounstory.showToast("Ucapan terkirim, terima kasih!");
     });
@@ -392,20 +470,54 @@
      Copy-to-clipboard for bank account numbers
      ------------------------------------------------------------------- */
 
+  /** Legacy fallback for contexts without the async Clipboard API (older
+      mobile browsers, or the page loaded over plain http:// instead of
+      https://, which disables navigator.clipboard entirely). Returns
+      whether the copy actually happened. */
+  function legacyCopy(value) {
+    var textarea = document.createElement("textarea");
+    textarea.value = value;
+    textarea.style.position = "fixed";
+    textarea.style.opacity = "0";
+    document.body.appendChild(textarea);
+    textarea.focus();
+    textarea.select();
+    var ok = false;
+    try {
+      ok = document.execCommand("copy");
+    } catch (err) {
+      ok = false;
+    }
+    document.body.removeChild(textarea);
+    return ok;
+  }
+
   function initCopyButtons() {
     document.addEventListener("click", function (e) {
       var btn = e.target.closest("[data-copy]");
       if (!btn) return;
       var value = btn.getAttribute("data-copy");
 
-      var done = function () {
+      var ok = function () {
         Mounstory.showToast("Nomor rekening disalin");
+      };
+      // Telling the guest "copied" when nothing was actually copied (the
+      // old unconditional fallback) leaves them pasting a blank field
+      // into their banking app with no clue why — only show success once
+      // a copy method has actually run.
+      var fail = function () {
+        Mounstory.showToast("Gagal menyalin, coba salin manual: " + value, 4000);
       };
 
       if (navigator.clipboard && navigator.clipboard.writeText) {
-        navigator.clipboard.writeText(value).then(done).catch(done);
+        navigator.clipboard.writeText(value).then(ok).catch(function () {
+          if (legacyCopy(value)) ok();
+          else fail();
+        });
+      } else if (legacyCopy(value)) {
+        ok();
       } else {
-        done();
+        fail();
       }
     });
   }
@@ -483,7 +595,27 @@
   function init(dataPath) {
     document.body.classList.add("invitation-body");
 
-    fetchData(dataPath)
+    var dataReady = fetchDataWithRetry(dataPath);
+
+    // The cover has to work no matter what — a guest stuck staring at a
+    // dead "Buka Undangan" button because of one bad network blip is a
+    // total failure of the invitation, even though the richer content
+    // behind it can't render without data.json. So this does not wait on
+    // the fetch; only the optional auto-play-music step (which needs
+    // data.meta.musicSrc) does, and it's written to just skip quietly if
+    // data never arrives.
+    initCover(function () {
+      dataReady
+        .then(function (data) {
+          if (data.meta && data.meta.musicSrc) {
+            var toggle = document.getElementById("musicToggle");
+            if (toggle) toggle.click();
+          }
+        })
+        .catch(function () {});
+    });
+
+    dataReady
       .then(function (data) {
         renderCouple(data);
         renderEvent(data);
@@ -492,16 +624,10 @@
         renderWishes(data);
         renderLoveStory(data);
 
-        initCover(function () {
-          if (data.meta && data.meta.musicSrc) {
-            var toggle = document.getElementById("musicToggle");
-            if (toggle) toggle.click();
-          }
-        });
         initCountdown(data.event && data.event.weddingDate);
         initMusicPlayer(data.meta && data.meta.musicSrc);
-        initRSVPForm();
-        initWishesForm();
+        initRSVPForm(data);
+        initWishesForm(data);
         initWishLikes();
         initCopyButtons();
         initGalleryLightbox();
@@ -509,7 +635,7 @@
       })
       .catch(function (err) {
         console.error(err);
-        Mounstory.showToast("Gagal memuat data undangan");
+        Mounstory.showToast("Sebagian konten gagal dimuat. Coba muat ulang halaman.");
       });
   }
 

@@ -759,8 +759,7 @@
   text-align: center;
 }
 
-.cta-panel form,
-.cta-panel .wishes-list {
+.cta-panel form {
   text-align: left;
 }
 
@@ -866,8 +865,7 @@ html {
   }
 
   #rsvpForm,
-  #wishesForm,
-  .wishes-list {
+  #wishesForm {
     max-width: 480px;
     margin-left: auto;
     margin-right: auto;

@@ -1,8 +1,11 @@
 {
   "meta": {
-    "title": "Wahyu & Wanda — Undangan Pernikahan",
+    "title": "Wahyu & Wanda \u2014 Undangan Pernikahan",
     "coupleShort": "Wahyu & Wanda",
     "musicSrc": "audio/endless-love.mp3"
+  },
+  "integrations": {
+    "webhookUrl": ""
   },
   "groom": {
     "fullName": "Wahyu Fadhilah Ramadhan, S.ST",
