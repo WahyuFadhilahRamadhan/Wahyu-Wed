@@ -11,11 +11,13 @@
 
   var Mounstory = (global.Mounstory = global.Mounstory || {});
 
-  /** Escapes text before it is dropped into innerHTML. */
+  /** Escapes text before it is dropped into innerHTML — including quotes,
+      since some callers (e.g. the bank copy button's data-copy) also drop
+      the result straight into an HTML attribute value. */
   function escapeHTML(str) {
     var div = document.createElement("div");
     div.textContent = String(str == null ? "" : str);
-    return div.innerHTML;
+    return div.innerHTML.replace(/"/g, "&quot;").replace(/'/g, "&#39;");
   }
 
   /** Reads ?to= from the URL, decoded, falling back to a default. */
@@ -239,7 +241,16 @@
 
     document.body.style.overflow = "hidden";
 
+    // A guest tapping "Buka Undangan" more than once (a slow phone, or
+    // just impatience) used to re-run everything below on every tap —
+    // most of it is harmless to repeat, but re-firing onOpen() re-clicks
+    // the music toggle, which *pauses* the music it just started. One
+    // flag makes every tap after the first a no-op.
+    var hasOpened = false;
     btn.addEventListener("click", function () {
+      if (hasOpened) return;
+      hasOpened = true;
+
       // Ask the browser to go fullscreen so the address bar disappears.
       // Must fire inside this click handler — it's the user gesture the
       // Fullscreen API requires. Not all browsers support it (notably iOS
@@ -341,10 +352,15 @@
 
     toggle.addEventListener("click", function () {
       if (audio.paused) {
-        audio.play().catch(function () {
+        // Only flip the icon once playback actually starts — the browser
+        // can still reject this (autoplay policy, a slow/blocked audio
+        // file), and the button showing "pause" while nothing is playing
+        // is more confusing than the icon just not changing.
+        audio.play().then(function () {
+          toggle.classList.add("is-playing");
+        }).catch(function () {
           Mounstory.showToast("Tidak dapat memutar musik saat ini");
         });
-        toggle.classList.add("is-playing");
       } else {
         audio.pause();
         toggle.classList.remove("is-playing");
@@ -454,20 +470,54 @@
      Copy-to-clipboard for bank account numbers
      ------------------------------------------------------------------- */
 
+  /** Legacy fallback for contexts without the async Clipboard API (older
+      mobile browsers, or the page loaded over plain http:// instead of
+      https://, which disables navigator.clipboard entirely). Returns
+      whether the copy actually happened. */
+  function legacyCopy(value) {
+    var textarea = document.createElement("textarea");
+    textarea.value = value;
+    textarea.style.position = "fixed";
+    textarea.style.opacity = "0";
+    document.body.appendChild(textarea);
+    textarea.focus();
+    textarea.select();
+    var ok = false;
+    try {
+      ok = document.execCommand("copy");
+    } catch (err) {
+      ok = false;
+    }
+    document.body.removeChild(textarea);
+    return ok;
+  }
+
   function initCopyButtons() {
     document.addEventListener("click", function (e) {
       var btn = e.target.closest("[data-copy]");
       if (!btn) return;
       var value = btn.getAttribute("data-copy");
 
-      var done = function () {
+      var ok = function () {
         Mounstory.showToast("Nomor rekening disalin");
+      };
+      // Telling the guest "copied" when nothing was actually copied (the
+      // old unconditional fallback) leaves them pasting a blank field
+      // into their banking app with no clue why — only show success once
+      // a copy method has actually run.
+      var fail = function () {
+        Mounstory.showToast("Gagal menyalin, coba salin manual: " + value, 4000);
       };
 
       if (navigator.clipboard && navigator.clipboard.writeText) {
-        navigator.clipboard.writeText(value).then(done).catch(done);
+        navigator.clipboard.writeText(value).then(ok).catch(function () {
+          if (legacyCopy(value)) ok();
+          else fail();
+        });
+      } else if (legacyCopy(value)) {
+        ok();
       } else {
-        done();
+        fail();
       }
     });
   }

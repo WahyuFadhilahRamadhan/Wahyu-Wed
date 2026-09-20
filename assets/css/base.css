@@ -55,6 +55,12 @@ body {
   font-size: clamp(0.95rem, 0.9rem + 0.3vw, 1.05rem);
   line-height: 1.65;
   -webkit-font-smoothing: antialiased;
+  /* Every page renders guest-controlled text (the ?to= name in the URL)
+     and couple-authored text (venue addresses, bank names) with no length
+     cap. A single long unbroken word — e.g. a name mail-merged without
+     spaces — would otherwise overflow its box and get clipped off-screen
+     instead of wrapping. */
+  overflow-wrap: break-word;
 }
 
 img {
