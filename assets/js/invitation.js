@@ -33,6 +33,21 @@
     });
   }
 
+  /** Rides out a brief network hiccup (very plausible on mobile, or when
+      the invitation link goes out to a group and many guests load the
+      page around the same time) instead of failing on the first blip. */
+  function fetchDataWithRetry(path, retriesLeft) {
+    retriesLeft = retriesLeft == null ? 2 : retriesLeft;
+    return fetchData(path).catch(function (err) {
+      if (retriesLeft <= 0) throw err;
+      return new Promise(function (resolve) {
+        setTimeout(resolve, 800);
+      }).then(function () {
+        return fetchDataWithRetry(path, retriesLeft - 1);
+      });
+    });
+  }
+
   /* ---------------------------------------------------------------------
      Rendering
      ------------------------------------------------------------------- */
@@ -530,7 +545,27 @@
   function init(dataPath) {
     document.body.classList.add("invitation-body");
 
-    fetchData(dataPath)
+    var dataReady = fetchDataWithRetry(dataPath);
+
+    // The cover has to work no matter what — a guest stuck staring at a
+    // dead "Buka Undangan" button because of one bad network blip is a
+    // total failure of the invitation, even though the richer content
+    // behind it can't render without data.json. So this does not wait on
+    // the fetch; only the optional auto-play-music step (which needs
+    // data.meta.musicSrc) does, and it's written to just skip quietly if
+    // data never arrives.
+    initCover(function () {
+      dataReady
+        .then(function (data) {
+          if (data.meta && data.meta.musicSrc) {
+            var toggle = document.getElementById("musicToggle");
+            if (toggle) toggle.click();
+          }
+        })
+        .catch(function () {});
+    });
+
+    dataReady
       .then(function (data) {
         renderCouple(data);
         renderEvent(data);
@@ -539,12 +574,6 @@
         renderWishes(data);
         renderLoveStory(data);
 
-        initCover(function () {
-          if (data.meta && data.meta.musicSrc) {
-            var toggle = document.getElementById("musicToggle");
-            if (toggle) toggle.click();
-          }
-        });
         initCountdown(data.event && data.event.weddingDate);
         initMusicPlayer(data.meta && data.meta.musicSrc);
         initRSVPForm(data);
@@ -556,7 +585,7 @@
       })
       .catch(function (err) {
         console.error(err);
-        Mounstory.showToast("Gagal memuat data undangan");
+        Mounstory.showToast("Sebagian konten gagal dimuat. Coba muat ulang halaman.");
       });
   }
 
