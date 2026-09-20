@@ -338,13 +338,36 @@
   }
 
   /* ---------------------------------------------------------------------
-     RSVP form (dummy submit — no backend yet)
+     Optional private webhook (e.g. a Google Apps Script Web App tied to
+     the couple's own Sheet) — fire-and-forget so a slow/failed request
+     never blocks the guest's own submit flow. no-cors means the response
+     is unreadable here, which is fine: we don't need to confirm delivery
+     client-side, just best-effort send it.
      ------------------------------------------------------------------- */
 
-  function initRSVPForm() {
+  function postToWebhook(url, payload) {
+    if (!url || typeof fetch !== "function") return;
+    try {
+      fetch(url, {
+        method: "POST",
+        mode: "no-cors",
+        headers: { "Content-Type": "text/plain;charset=utf-8" },
+        body: JSON.stringify(payload),
+      }).catch(function () {});
+    } catch (err) {
+      /* best-effort only */
+    }
+  }
+
+  /* ---------------------------------------------------------------------
+     RSVP form
+     ------------------------------------------------------------------- */
+
+  function initRSVPForm(data) {
     var form = document.getElementById("rsvpForm");
     if (!form) return;
     var note = document.getElementById("rsvpNote");
+    var webhookUrl = data && data.integrations && data.integrations.webhookUrl;
 
     form.addEventListener("submit", function (e) {
       e.preventDefault();
@@ -354,6 +377,7 @@
         attendance: form.elements.rsvpAttendance.value,
       };
       console.log("[RSVP submitted]", payload);
+      postToWebhook(webhookUrl, Object.assign({ type: "rsvp" }, payload));
 
       if (note) {
         note.textContent = "Terima kasih, " + (payload.name || "Tamu") + "! Konfirmasi kehadiranmu sudah kami catat.";
@@ -364,13 +388,16 @@
   }
 
   /* ---------------------------------------------------------------------
-     Wishes form (client-side only, prepends to the visible list)
+     Wishes form — prepends to the visible list only on pages that keep
+     one (id="wishesList"); pages without it (a private-only guestbook)
+     still submit and forward to the webhook, just skip the visual insert.
      ------------------------------------------------------------------- */
 
-  function initWishesForm() {
+  function initWishesForm(data) {
     var form = document.getElementById("wishesForm");
+    if (!form) return;
     var list = document.getElementById("wishesList");
-    if (!form || !list) return;
+    var webhookUrl = data && data.integrations && data.integrations.webhookUrl;
 
     form.addEventListener("submit", function (e) {
       e.preventDefault();
@@ -382,7 +409,8 @@
       if (!wish.message) return;
 
       console.log("[Wish submitted]", wish);
-      list.insertAdjacentHTML("afterbegin", wishItemHTML(wish));
+      postToWebhook(webhookUrl, Object.assign({ type: "wish" }, wish));
+      if (list) list.insertAdjacentHTML("afterbegin", wishItemHTML(wish));
       form.reset();
       Mounstory.showToast("Ucapan terkirim, terima kasih!");
     });
@@ -500,8 +528,8 @@
         });
         initCountdown(data.event && data.event.weddingDate);
         initMusicPlayer(data.meta && data.meta.musicSrc);
-        initRSVPForm();
-        initWishesForm();
+        initRSVPForm(data);
+        initWishesForm(data);
         initWishLikes();
         initCopyButtons();
         initGalleryLightbox();
