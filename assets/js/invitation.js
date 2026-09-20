@@ -11,11 +11,13 @@
 
   var Mounstory = (global.Mounstory = global.Mounstory || {});
 
-  /** Escapes text before it is dropped into innerHTML. */
+  /** Escapes text before it is dropped into innerHTML — including quotes,
+      since some callers (e.g. the bank copy button's data-copy) also drop
+      the result straight into an HTML attribute value. */
   function escapeHTML(str) {
     var div = document.createElement("div");
     div.textContent = String(str == null ? "" : str);
-    return div.innerHTML;
+    return div.innerHTML.replace(/"/g, "&quot;").replace(/'/g, "&#39;");
   }
 
   /** Reads ?to= from the URL, decoded, falling back to a default. */
