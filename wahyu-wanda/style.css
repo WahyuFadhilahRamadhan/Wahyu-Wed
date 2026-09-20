@@ -403,7 +403,6 @@
 
   .countdown-section .countdown {
     margin-top: -1.6rem;
-    max-width: 640px;
   }
 }
 
@@ -1071,16 +1070,32 @@ html {
 /* Countdown on desktop — the shared component caps at 420px wide,
    which reads as a tiny, isolated widget once this page's sections
    are wider. Bigger boxes and numerals to match the rest of the
-   desktop type scale. */
+   desktop type scale.
+
+   The shared grid (repeat(4, 1fr)) sizes each column off its own
+   content, so a box's width silently followed however wide its digit
+   happened to render — not what a "frame" should do. Switching to flex
+   with an explicit, fixed-size item (width 40% of a shared unit,
+   aspect-ratio 2/3 for a 60% height) makes every box the exact same
+   fixed rectangle no matter what digits are inside. */
 
 @media (min-width: 860px) {
   .countdown {
-    max-width: 640px;
+    display: flex;
+    justify-content: center;
+    max-width: none;
     gap: 1.5rem;
   }
 
   .countdown__item {
-    padding: 1.75rem 0.5rem;
+    flex: 0 0 auto;
+    width: 6.5rem;
+    aspect-ratio: 2 / 3;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 0.5rem;
     border-radius: var(--radius-md);
   }
 
