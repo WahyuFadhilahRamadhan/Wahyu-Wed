@@ -904,39 +904,20 @@ html {
   background: rgba(147, 165, 145, 0.16);
 }
 
-/* Gallery — every source photo is portrait, but a grid of uniform
-   squares (the shared default) still reads as flat and repetitive.
-   Most cells stay the shared square; a few get stretched into a
-   taller portrait cell or a wider landscape cell (via a small fixed
-   row unit + row/column spans — the standard CSS-grid masonry trick,
-   since aspect-ratio alone can't vary while grid-auto-rows is fixed).
-   object-fit: cover (from the shared component) crops each photo to
-   whatever shape its cell ends up, same as it already does for the
-   uniform squares. */
-.gallery-grid {
-  grid-auto-rows: 32px;
-  grid-auto-flow: dense;
-}
-
+/* Gallery — a masonry attempt (row/column-span cells at varying
+   shapes) looked fine in isolation but fell apart with real photos:
+   forcing a portrait source image into a short landscape-shaped cell
+   crops straight through people's heads or feet, and grid-auto-flow:
+   dense left visible gaps once the span sizes didn't tile the row
+   exactly. Simplest fix that's actually reliable: every cell is the
+   same size, close to the source photos' own ~2:3 portrait ratio (see
+   images/gallery-wahyu-wanda-*.jpg) so object-fit: cover (from the
+   shared component) barely has to crop anything, and a uniform grid
+   can never have gaps or reordering. Square corners instead of the
+   shared component's rounded ones, per request. */
 .gallery-grid .gallery-grid__item {
-  aspect-ratio: auto;
-  grid-row: span 4;
-}
-
-.gallery-grid .gallery-grid__item:nth-child(4n+1) {
-  grid-row: span 6;
-}
-
-/* A 2-column-wide "landscape" cell only where the column count divides
-   evenly by 2 (2-col at the smallest phones, 4-col on desktop) — at
-   the in-between 3-col width (480–859px) a 2-span item leaves a single
-   leftover column that `dense` packing fills by pulling a later photo
-   out of order, which is what made this look jumbled. */
-@media (max-width: 479px), (min-width: 860px) {
-  .gallery-grid .gallery-grid__item:nth-child(4n+3) {
-    grid-column: span 2;
-    grid-row: span 4;
-  }
+  aspect-ratio: 2 / 3;
+  border-radius: 0;
 }
 
 /* Wide-screen layout — the shared engine keeps every page a narrow
