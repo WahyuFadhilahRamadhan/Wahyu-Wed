@@ -392,17 +392,13 @@
     aspect-ratio: auto;
   }
 
-  /* On this wide crop the groom's face sits just above the box row while
-     the bride's (taller headdress pushes her face lower in frame) is
-     already partly behind it — tighten the gap under the eyebrow and
-     nudge the row up so it grazes both faces evenly instead of only
-     hers. */
-  .countdown-section .eyebrow {
-    margin-bottom: 0.4rem;
-  }
-
-  .countdown-section .countdown {
-    margin-top: -1.6rem;
+  /* Raised further up (as one unit — label and boxes together, so
+     they keep their own spacing instead of colliding) until the row
+     sits over the groom's lower face; the photo itself has almost no
+     room left to crop differently at this viewport, so the row moves
+     instead of the photo. */
+  .countdown-section__body {
+    margin-top: -11rem;
   }
 }
 
@@ -927,13 +923,20 @@ html {
   grid-row: span 4;
 }
 
-.gallery-grid .gallery-grid__item:nth-child(6n+1) {
+.gallery-grid .gallery-grid__item:nth-child(4n+1) {
   grid-row: span 6;
 }
 
-.gallery-grid .gallery-grid__item:nth-child(6n+4) {
-  grid-column: span 2;
-  grid-row: span 4;
+/* A 2-column-wide "landscape" cell only where the column count divides
+   evenly by 2 (2-col at the smallest phones, 4-col on desktop) — at
+   the in-between 3-col width (480–859px) a 2-span item leaves a single
+   leftover column that `dense` packing fills by pulling a later photo
+   out of order, which is what made this look jumbled. */
+@media (max-width: 479px), (min-width: 860px) {
+  .gallery-grid .gallery-grid__item:nth-child(4n+3) {
+    grid-column: span 2;
+    grid-row: span 4;
+  }
 }
 
 /* Wide-screen layout — the shared engine keeps every page a narrow
