@@ -412,8 +412,19 @@
   z-index: 0;
   background: url("images/countdown-photo.jpg");
   background-size: cover;
-  background-position: center 40%;
+  /* Mobile's tall, narrow crop puts the countdown boxes right at the
+     couple's neck/chin — pushed down further here so the boxes clear
+     their faces instead of cutting across them. Desktop's much wider
+     crop already clears their faces at the original position, so it
+     gets its own value below rather than inheriting this one. */
+  background-position: center 50%;
   background-repeat: no-repeat;
+}
+
+@media (min-width: 860px) {
+  .countdown-section__photo {
+    background-position: center 40%;
+  }
 }
 
 .countdown-section__scrim {
@@ -649,22 +660,16 @@
 /* Event (lokasi) cards read as frosted glass over the shared photo
    instead of solid white boxes — same treatment as the countdown
    boxes elsewhere on this page. */
+/* A light frosted card (not fully solid, but not too see-through
+   either) reads as part of the photo instead of a bare white box —
+   dark text (the shared component's own default colors) stays legible
+   on it regardless of what's behind it. */
 .acara-section .event-card {
-  background: rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.55);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.35);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
-}
-
-.acara-section .event-card__date,
-.acara-section .event-card__venue {
-  color: #fff;
-}
-
-.acara-section .event-card__time,
-.acara-section .event-card__address {
-  color: rgba(255, 255, 255, 0.75);
+  border: 1px solid rgba(255, 255, 255, 0.65);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
 }
 
 .acara-section .section__title {
@@ -749,30 +754,35 @@
   text-shadow: 0 1px 6px rgba(0, 0, 0, 0.4);
 }
 
+/* Gallery keeps the small-kicker + real-heading pattern (like Acara)
+   instead of .cta-group's default "the eyebrow IS the only heading"
+   treatment above — it already has its own <h2>, so reset the eyebrow
+   back to the shared component's base kicker style, just recolored
+   for the photo behind it. */
+.gallery-cta-section .eyebrow {
+  color: rgba(255, 255, 255, 0.88);
+  text-shadow: none;
+  font-family: var(--font-sans);
+  font-size: clamp(0.7rem, 0.65rem + 0.2vw, 0.8rem);
+  font-weight: 600;
+  letter-spacing: 0.25em;
+}
+
+.gallery-cta-section .section__title {
+  color: #fff;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.45);
+}
+
 /* Wedding Gift cards read as frosted glass over the shared photo
    instead of solid white boxes — same treatment as the countdown
    boxes and the Acara (lokasi) cards elsewhere on this page. */
+/* Same light frosted treatment as the Acara cards — see the note there. */
 .cta-group .bank-card {
-  background: rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.55);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.35);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
-}
-
-.cta-group .bank-card__info strong,
-.cta-group .bank-card__number {
-  color: #fff;
-}
-
-.cta-group .bank-card__name {
-  color: rgba(255, 255, 255, 0.75);
-}
-
-.cta-group .bank-card__copy {
-  background: rgba(255, 255, 255, 0.1);
-  border-color: rgba(255, 255, 255, 0.4);
-  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.65);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
 }
 
 .gift-inline {
@@ -898,6 +908,34 @@ html {
   background: rgba(147, 165, 145, 0.16);
 }
 
+/* Gallery — every source photo is portrait, but a grid of uniform
+   squares (the shared default) still reads as flat and repetitive.
+   Most cells stay the shared square; a few get stretched into a
+   taller portrait cell or a wider landscape cell (via a small fixed
+   row unit + row/column spans — the standard CSS-grid masonry trick,
+   since aspect-ratio alone can't vary while grid-auto-rows is fixed).
+   object-fit: cover (from the shared component) crops each photo to
+   whatever shape its cell ends up, same as it already does for the
+   uniform squares. */
+.gallery-grid {
+  grid-auto-rows: 32px;
+  grid-auto-flow: dense;
+}
+
+.gallery-grid .gallery-grid__item {
+  aspect-ratio: auto;
+  grid-row: span 4;
+}
+
+.gallery-grid .gallery-grid__item:nth-child(6n+1) {
+  grid-row: span 6;
+}
+
+.gallery-grid .gallery-grid__item:nth-child(6n+4) {
+  grid-column: span 2;
+  grid-row: span 4;
+}
+
 /* Wide-screen layout — the shared engine keeps every page a narrow
    phone-width "card" even on desktop, which leaves most of a wide
    browser window empty. From tablet-landscape up, this page's own
@@ -930,8 +968,7 @@ html {
     grid-template-columns: repeat(4, 1fr);
   }
 
-  #rsvpForm,
-  #wishesForm {
+  #rsvpWishForm {
     max-width: 480px;
     margin-left: auto;
     margin-right: auto;

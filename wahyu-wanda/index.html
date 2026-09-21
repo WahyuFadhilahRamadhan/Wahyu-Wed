@@ -176,16 +176,7 @@
         </div>
       </section>
 
-      <!-- Gallery -->
-      <section class="section">
-        <div class="section__header">
-          <p class="eyebrow reveal">Galeri</p>
-          <h2 class="section__title reveal reveal-delay-1">Our Moment</h2>
-        </div>
-        <div class="gallery-grid" id="galleryGrid"></div>
-      </section>
-
-      <!-- Tanda Kasih / RSVP / Kirim Ucapan share one full-bleed photo
+      <!-- Galeri / Tanda Kasih / RSVP+Ucapan share one full-bleed photo
            behind all three — a fixed-position layer toggled by
            #ctaFixedBg's IntersectionObserver (see script at the bottom
            of this file) rather than position:sticky, which doesn't
@@ -198,6 +189,18 @@
         <div class="cta-fixed-bg__scrim"></div>
       </div>
       <div class="cta-group">
+        <!-- Gallery — its eyebrow/title get reset back to the small
+             kicker + real heading pattern via .gallery-cta-section in
+             style.css, since .cta-group's default treats the eyebrow
+             itself as the only heading (Wedding Gift/RSVP have no h2). -->
+        <section class="section gallery-cta-section">
+          <div class="section__header">
+            <p class="eyebrow reveal">Galeri</p>
+            <h2 class="section__title reveal reveal-delay-1">Our Moment</h2>
+          </div>
+          <div class="gallery-grid" id="galleryGrid"></div>
+        </section>
+
         <!-- Digital gift / amplop -->
         <section class="section">
           <div class="section__header">
@@ -209,14 +212,20 @@
           </div>
         </section>
 
-        <!-- RSVP -->
+        <!-- RSVP + Wedding Wish combined into one form/submission — a
+             guest confirms attendance and leaves a wish in the same
+             step instead of two separate forms. Wired up by the
+             page-specific script at the bottom of this file (not the
+             shared engine's initRSVPForm/initWishesForm, which expect
+             two separate forms and are left untouched for every other
+             page). -->
         <section class="section">
           <div class="cta-panel">
             <div class="section__header">
               <p class="eyebrow reveal">RSVP</p>
-              <p class="section__subtitle reveal reveal-delay-2">Bagi tamu undangan yang akan hadir di acara pernikahan kami, silahkan kirimkan konfirmasi kehadiran dengan mengisi form berikut.</p>
+              <p class="section__subtitle reveal reveal-delay-2">Bagi tamu undangan yang akan hadir di acara pernikahan kami, silahkan kirimkan konfirmasi kehadiran serta ucapan dan doa dengan mengisi form berikut.</p>
             </div>
-            <form class="reveal reveal-delay-2" id="rsvpForm">
+            <form class="reveal reveal-delay-2" id="rsvpWishForm">
               <div class="form-field">
                 <label for="rsvpName">Nama</label>
                 <input type="text" id="rsvpName" name="rsvpName" placeholder="Nama lengkap" required />
@@ -243,35 +252,20 @@
                   </label>
                 </div>
               </div>
+              <div class="form-field">
+                <label for="wishMessage">Ucapan &amp; Doa</label>
+                <textarea id="wishMessage" name="wishMessage" placeholder="Tuliskan ucapan dan doa terbaikmu... (opsional)"></textarea>
+              </div>
               <button type="submit" class="btn btn-primary btn-block">Kirim Konfirmasi</button>
               <p class="form-note" id="rsvpNote"></p>
             </form>
           </div>
         </section>
-
-        <!-- Wishes & prayers -->
-        <section class="section">
-          <div class="cta-panel">
-            <div class="section__header">
-              <p class="eyebrow reveal">Wedding Wish</p>
-            </div>
-            <form class="reveal reveal-delay-2" id="wishesForm">
-              <div class="form-field">
-                <label for="wishName">Nama</label>
-                <input type="text" id="wishName" name="wishName" placeholder="Nama kamu" />
-              </div>
-              <div class="form-field">
-                <label for="wishMessage">Ucapan &amp; Doa</label>
-                <textarea id="wishMessage" name="wishMessage" placeholder="Tuliskan ucapan dan doa terbaikmu..." required></textarea>
-              </div>
-              <button type="submit" class="btn btn-primary btn-block">Kirim Ucapan</button>
-            </form>
-          </div>
-        </section>
       </div>
 
-      <!-- Terima kasih — closing section, right before the footer, since
-           this is the end of the invitation. -->
+      <!-- Terima kasih — closing section, since this is the end of the
+           invitation (the plain white credit footer after it was
+           dropped). -->
       <section class="section thanks-section">
         <div class="thanks-section__photo bg-reveal"></div>
         <div class="thanks-section__scrim bg-reveal"></div>
@@ -283,11 +277,6 @@
           <p class="thanks-section__names reveal reveal-delay-2" id="thanksNames">&nbsp;</p>
         </div>
       </section>
-
-      <!-- Footer -->
-      <footer class="invitation-footer">
-        <p class="reveal">by <a href="https://mounstory.com" style="color: var(--color-primary); text-decoration:none;">mounstory</a></p>
-      </footer>
 
     </main>
   </div>
@@ -332,6 +321,68 @@
         { threshold: 0 }
       );
       observer.observe(group);
+    })();
+
+    // RSVP + Wedding Wish combined form — this page-specific handler
+    // (not the shared engine's initRSVPForm/initWishesForm, which each
+    // expect their own separate form) reads data.json itself for the
+    // webhook URL, then forwards one "rsvp" payload always and a
+    // "wish" payload too if a message was written — matching the exact
+    // two payload shapes the couple's Apps Script (see
+    // RSVP_SHEET_SETUP.md) already expects, so no backend change
+    // needed.
+    (function () {
+      var form = document.getElementById("rsvpWishForm");
+      if (!form) return;
+      var note = document.getElementById("rsvpNote");
+      var submitBtn = form.querySelector('button[type="submit"]');
+      var webhookUrl = "";
+
+      fetch("data.json", { cache: "no-store" })
+        .then(function (res) { return res.json(); })
+        .then(function (data) {
+          webhookUrl = (data.integrations && data.integrations.webhookUrl) || "";
+        })
+        .catch(function () {});
+
+      function postToWebhook(payload) {
+        if (!webhookUrl || typeof fetch !== "function") return;
+        try {
+          fetch(webhookUrl, {
+            method: "POST",
+            mode: "no-cors",
+            headers: { "Content-Type": "text/plain;charset=utf-8" },
+            body: JSON.stringify(payload),
+          }).catch(function () {});
+        } catch (err) {
+          /* best-effort only */
+        }
+      }
+
+      form.addEventListener("submit", function (e) {
+        e.preventDefault();
+        if (submitBtn && submitBtn.disabled) return;
+        if (submitBtn) submitBtn.disabled = true;
+
+        var name = form.elements.rsvpName.value.trim();
+        var guests = form.elements.rsvpGuests ? form.elements.rsvpGuests.value : undefined;
+        var attendance = form.elements.rsvpAttendance.value;
+        var message = form.elements.wishMessage.value.trim();
+
+        postToWebhook({ type: "rsvp", name: name, guests: guests, attendance: attendance });
+        if (message) {
+          postToWebhook({ type: "wish", name: name, attendance: attendance, message: message });
+        }
+
+        if (note) {
+          note.textContent =
+            "Terima kasih, " + (name || "Tamu") + "! Konfirmasi kehadiran" +
+            (message ? " dan ucapanmu" : "mu") + " sudah kami catat.";
+          note.classList.add("is-visible");
+        }
+        form.reset();
+        if (submitBtn) setTimeout(function () { submitBtn.disabled = false; }, 1500);
+      });
     })();
   </script>
 </body>

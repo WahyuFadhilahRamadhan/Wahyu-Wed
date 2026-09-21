@@ -25,7 +25,7 @@
     "akad": {
       "label": "Akad Nikah",
       "date": "Jumat, 16 Oktober 2026",
-      "time": "Waktu menyusul",
+      "time": "09.30 s.d. Selesai",
       "venueName": "Perumahan Bungo Mas Tahap 1",
       "address": "Blok D No. 4, Koto Tangah, Kota Padang",
       "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Perumahan%20Bungo%20Mas%20Tahap%201%20Blok%20D%20No.%204%2C%20Koto%20Tangah%2C%20Kota%20Padang"
@@ -33,7 +33,7 @@
     "resepsiWanita": {
       "label": "Resepsi (Kediaman Wanita)",
       "date": "Sabtu, 17 Oktober 2026",
-      "time": "Waktu menyusul",
+      "time": "10.30 – 17.30",
       "venueName": "Perumahan Bungo Mas Tahap 1",
       "address": "Blok D No. 4, Koto Tangah, Kota Padang",
       "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Perumahan%20Bungo%20Mas%20Tahap%201%20Blok%20D%20No.%204%2C%20Koto%20Tangah%2C%20Kota%20Padang"
@@ -41,7 +41,7 @@
     "resepsiPria": {
       "label": "Resepsi (Kediaman Pria)",
       "date": "Minggu, 18 Oktober 2026",
-      "time": "Waktu menyusul",
+      "time": "10.30 – 17.30",
       "venueName": "Perumahan Geri Permai",
       "address": "Blok C No. 22, Lubuk Buaya, Koto Tangah, Kota Padang",
       "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Perumahan%20Geri%20Permai%20Blok%20C%20No.%2022%2C%20Lubuk%20Buaya%2C%20Koto%20Tangah%2C%20Kota%20Padang"
@@ -61,7 +61,7 @@
     "images/gallery-wahyu-wanda-7.jpg"
   ],
   "gift": {
-    "note": "Tanpa mengurangi rasa hormat kami, bagi tamu yang ingin mengirimkan hadiah kepada kedua mempelai dapat mengirimkannya melalui :",
+    "note": "Tanpa mengurangi rasa hormat, bagi tamu yang ingin mengirimkan hadiah kepada kedua mempelai dapat mengirimkannya melalui :",
     "banks": [
       {
         "bankName": "Bank Mandiri",
@@ -69,18 +69,8 @@
         "accountName": "Wahyu Fadhilah Ramadhan"
       },
       {
-        "bankName": "DANA/GOPAY",
-        "accountNumber": "081266176441",
-        "accountName": "Wahyu Fadhilah Ramadhan"
-      },
-      {
         "bankName": "Bank Nagari",
         "accountNumber": "21030216590655",
-        "accountName": "Wanda Dwi Harsita"
-      },
-      {
-        "bankName": "DANA/GOPAY",
-        "accountNumber": "081374372783",
         "accountName": "Wanda Dwi Harsita"
       }
     ]
