@@ -394,11 +394,19 @@
 
   /* Raised further up (as one unit — label and boxes together, so
      they keep their own spacing instead of colliding) until the row
-     sits over the groom's lower face; the photo itself has almost no
-     room left to crop differently at this viewport, so the row moves
-     instead of the photo. */
+     covers the groom's whole face, eyes included — tried shifting the
+     photo itself first (per request), but it has almost no room left
+     to crop differently at this viewport (confirmed by testing the
+     full 0–100% range: barely any visible movement), so the row moves
+     instead. Needs the label pulled back in tight against the box row
+     too (its own margin-bottom below), otherwise the gap between them
+     re-exposes his eyes even with the row raised this far. */
+  .countdown-section .eyebrow {
+    margin-bottom: 0.4rem;
+  }
+
   .countdown-section__body {
-    margin-top: -11rem;
+    margin-top: -14rem;
   }
 }
 
