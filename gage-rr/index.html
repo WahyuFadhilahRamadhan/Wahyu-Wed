@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Kalkulator Gage R&amp;R — Mounstory Tools</title>
+<meta name="description" content="Kalkulator Gage R&R (Measurement System Analysis) — metode Average & Range dan ANOVA, sesuai AIAG MSA." />
+<link rel="stylesheet" href="assets/css/style.css" />
+</head>
+<body>
+<header class="page-header">
+  <div class="wrap">
+    <p class="eyebrow">Mounstory Tools</p>
+    <h1>Kalkulator Gage R&amp;R</h1>
+    <p class="lede">
+      Measurement System Analysis (MSA) untuk menilai repeatability &amp; reproducibility alat ukur,
+      mengikuti pedoman AIAG MSA (metode Average &amp; Range dan ANOVA).
+    </p>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <section class="card" id="setup-card">
+    <h2>1. Setup Studi</h2>
+    <div class="grid-form">
+      <label>
+        Jumlah Part
+        <input type="number" id="numParts" min="2" max="15" value="10" />
+      </label>
+      <label>
+        Jumlah Operator
+        <input type="number" id="numOperators" min="2" max="10" value="3" />
+      </label>
+      <label>
+        Jumlah Trial (ulangan)
+        <select id="numTrials">
+          <option value="2">2</option>
+          <option value="3" selected>3</option>
+        </select>
+      </label>
+      <label>
+        Multiplier Study Variation
+        <select id="multiplier">
+          <option value="5.15" selected>5.15 (99%)</option>
+          <option value="6">6.00 (99.73%)</option>
+        </select>
+      </label>
+      <label>
+        Toleransi / Spec Range (opsional)
+        <input type="number" id="tolerance" step="any" placeholder="mis. USL−LSL" />
+      </label>
+      <label>
+        Metode
+        <select id="methodSelect">
+          <option value="both" selected>ANOVA + Average &amp; Range</option>
+          <option value="anova">ANOVA saja</option>
+          <option value="average-range">Average &amp; Range saja</option>
+        </select>
+      </label>
+    </div>
+    <div class="btn-row">
+      <button class="btn btn-primary" id="btnGenerate">Buat Tabel Input</button>
+      <button class="btn btn-ghost" id="btnSample">Muat Data Contoh (dummy)</button>
+    </div>
+  </section>
+
+  <section class="card" id="input-card">
+    <h2>2. Data Pengukuran</h2>
+    <div class="tabs" role="tablist">
+      <button class="tab active" data-tab="manual" role="tab">Input Manual</button>
+      <button class="tab" data-tab="csv" role="tab">Upload CSV</button>
+    </div>
+
+    <div class="tab-panel" data-panel="manual">
+      <p class="hint">Isi setiap sel dengan hasil pengukuran. Nama part/operator bisa diklik untuk diganti.</p>
+      <div class="table-scroll">
+        <table id="dataGrid"></table>
+      </div>
+    </div>
+
+    <div class="tab-panel" data-panel="csv" hidden>
+      <p class="hint">
+        Format kolom (long format): <code>Part,Operator,Trial,Value</code> — satu baris per pengukuran.
+      </p>
+      <div class="btn-row">
+        <button class="btn btn-ghost" id="btnTemplate">Unduh Template CSV</button>
+        <input type="file" id="csvFile" accept=".csv,text/csv" />
+      </div>
+      <pre id="csvStatus" class="csv-status"></pre>
+    </div>
+
+    <div class="btn-row">
+      <button class="btn btn-primary" id="btnCompute">Hitung Gage R&amp;R</button>
+    </div>
+    <div id="inputWarnings" class="warnings" hidden></div>
+  </section>
+
+  <section class="card" id="results-card" hidden>
+    <h2>3. Hasil</h2>
+
+    <div class="tabs" role="tablist" id="resultTabs">
+      <button class="tab active" data-result="anova" role="tab">ANOVA</button>
+      <button class="tab" data-result="average-range" role="tab">Average &amp; Range</button>
+    </div>
+
+    <div id="resultAnova" class="result-panel"></div>
+    <div id="resultAverageRange" class="result-panel" hidden></div>
+  </section>
+
+  <section class="card" id="ref-card">
+    <h2>Referensi</h2>
+    <ul class="ref-list">
+      <li>AIAG, <em>Measurement Systems Analysis (MSA) Reference Manual</em>, 4th ed. — sumber utama metode Average &amp; Range dan ANOVA, konstanta K1/K2/K3 (d2, d2*), serta kriteria %GRR (&lt;10% diterima, 10–30% bersyarat, &gt;30% ditolak) dan ndc (≥5 kategori).</li>
+      <li>Aturan pooling interaksi Operator×Part: dilakukan otomatis jika p-value interaksi &gt; 0.25, sesuai rekomendasi AIAG/Minitab.</li>
+      <li>ndc (number of distinct categories) = ⌊1.41 × PV / GRR⌋, berdasarkan Wheeler's Discrimination Ratio.</li>
+    </ul>
+    <p class="hint">
+      Kalkulator ini dibuat untuk keperluan internal; verifikasi hasil terhadap software MSA tervalidasi
+      (mis. Minitab) sebelum dipakai untuk keputusan kualitas kritikal.
+    </p>
+  </section>
+
+</main>
+
+<script src="assets/js/stats.js"></script>
+<script src="assets/js/app.js"></script>
+</body>
+</html>
