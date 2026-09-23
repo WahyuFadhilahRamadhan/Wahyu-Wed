@@ -968,10 +968,14 @@ html {
    per request, with a screenshot reference. Unlike the earlier
    masonry attempt, these cells hold genuinely landscape-shaped source
    photos at close to their own ~3:2 ratio, so object-fit: cover has
-   almost nothing to crop; every other (portrait) cell is untouched. */
+   almost nothing to crop; every other (portrait) cell is untouched.
+   grid-column spans the FULL row (not just half) at every breakpoint
+   so these cells never share a row with the much-taller portrait
+   cells — sharing a row let the row's height follow the portrait
+   neighbor, leaving the landscape image short of it. */
 .gallery-grid .gallery-grid__item:nth-child(1),
 .gallery-grid .gallery-grid__item:nth-child(10) {
-  grid-column: span 2;
+  grid-column: 1 / -1;
   aspect-ratio: 3 / 2;
 }
 
