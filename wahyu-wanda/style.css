@@ -669,11 +669,32 @@
    dark text (the shared component's own default colors) stays legible
    on it regardless of what's behind it. */
 .acara-section .event-card {
-  background: rgba(255, 255, 255, 0.55);
+  background: rgba(255, 255, 255, 0.72);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.65);
+  border: 1px solid rgba(255, 255, 255, 0.75);
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+}
+
+/* The shared component's secondary text color (--color-text-light, a
+   pale brownish-gray meant for a fully solid white card) reads too
+   faint once the card itself is a translucent tint over a busy photo
+   — darken every line to the same strong, uniform color instead of
+   quietly losing the time/address to low contrast. */
+.acara-section .event-card__date,
+.acara-section .event-card__time,
+.acara-section .event-card__venue,
+.acara-section .event-card__address {
+  color: var(--color-text);
+}
+
+.acara-section .event-card__label {
+  font-weight: 700;
+}
+
+.acara-section .event-card__time,
+.acara-section .event-card__address {
+  font-weight: 500;
 }
 
 .acara-section .section__title {
@@ -782,11 +803,23 @@
    boxes and the Acara (lokasi) cards elsewhere on this page. */
 /* Same light frosted treatment as the Acara cards — see the note there. */
 .cta-group .bank-card {
-  background: rgba(255, 255, 255, 0.55);
+  background: rgba(255, 255, 255, 0.72);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.65);
+  border: 1px solid rgba(255, 255, 255, 0.75);
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+}
+
+/* Same fix as the Acara cards — --color-text-light was too faint on a
+   translucent card over a photo. */
+.cta-group .bank-card__name {
+  color: var(--color-text);
+  font-weight: 500;
+}
+
+.cta-group .bank-card__copy {
+  border-width: 2px;
+  font-weight: 600;
 }
 
 .gift-inline {
