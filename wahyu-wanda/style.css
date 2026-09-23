@@ -961,6 +961,20 @@ html {
   border-radius: 0;
 }
 
+/* A couple of the couple's own landscape photos (already used as hero
+   backdrops elsewhere on the page — the cover and the countdown
+   section) get woven back in here as full-width rows, breaking up the
+   portrait grid the way an Instagram gallery mixes orientations —
+   per request, with a screenshot reference. Unlike the earlier
+   masonry attempt, these cells hold genuinely landscape-shaped source
+   photos at close to their own ~3:2 ratio, so object-fit: cover has
+   almost nothing to crop; every other (portrait) cell is untouched. */
+.gallery-grid .gallery-grid__item:nth-child(1),
+.gallery-grid .gallery-grid__item:nth-child(10) {
+  grid-column: span 2;
+  aspect-ratio: 3 / 2;
+}
+
 /* Wide-screen layout — the shared engine keeps every page a narrow
    phone-width "card" even on desktop, which leaves most of a wide
    browser window empty. From tablet-landscape up, this page's own
