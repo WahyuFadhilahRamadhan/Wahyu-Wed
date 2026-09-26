@@ -401,10 +401,15 @@
    width. Checked against the photo's own layout: his face sits
    ~33-45% down, hers ~46-55%. Eyebrow pulled in tight against the
    box row for the same reason as desktop's — otherwise the gap
-   between them re-exposes her eyes. */
+   between them re-exposes her eyes. -16% is the least aggressive
+   pull that still clears their faces with some margin (checked down
+   to -12% before eyebrows started showing) — an earlier, more
+   negative value covered them too but crammed the label right up
+   against the section's top edge and left the row looking stranded
+   near the top instead of balanced in the frame. */
 @media (max-width: 859px) {
   .countdown-section__body {
-    margin-top: -30%;
+    margin-top: -16%;
   }
 
   .countdown-section .eyebrow {
