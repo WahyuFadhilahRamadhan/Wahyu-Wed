@@ -961,20 +961,20 @@ html {
   border-radius: 0;
 }
 
-/* A couple of the couple's own landscape photos (already used as hero
-   backdrops elsewhere on the page — the cover and the countdown
-   section) get woven back in here as full-width rows, breaking up the
-   portrait grid the way an Instagram gallery mixes orientations —
-   per request, with a screenshot reference. Unlike the earlier
-   masonry attempt, these cells hold genuinely landscape-shaped source
-   photos at close to their own ~3:2 ratio, so object-fit: cover has
-   almost nothing to crop; every other (portrait) cell is untouched.
-   grid-column spans the FULL row (not just half) at every breakpoint
-   so these cells never share a row with the much-taller portrait
-   cells — sharing a row let the row's height follow the portrait
-   neighbor, leaving the landscape image short of it. */
-.gallery-grid .gallery-grid__item:nth-child(1),
-.gallery-grid .gallery-grid__item:nth-child(10) {
+/* The cover photo (already used as a hero backdrop elsewhere on the
+   page) gets woven back in here as a full-width row, breaking up the
+   portrait grid the way an Instagram gallery mixes orientations — per
+   request, with a screenshot reference. Unlike the earlier masonry
+   attempt, this cell holds a genuinely landscape-shaped source photo
+   at close to its own ~3:2 ratio, so object-fit: cover has almost
+   nothing to crop; every other (portrait) cell is untouched.
+   grid-column spans the full row at every breakpoint so this cell
+   never shares a row with the much-taller portrait cells — sharing a
+   row let the row's height follow the portrait neighbor, leaving the
+   landscape image short of it. (The countdown photo previously sat
+   here too, at position 10 — it's since been swapped out of the
+   gallery, so only the cover photo keeps this treatment now.) */
+.gallery-grid .gallery-grid__item:nth-child(1) {
   grid-column: 1 / -1;
   aspect-ratio: 3 / 2;
 }
