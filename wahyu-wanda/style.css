@@ -961,6 +961,13 @@ html {
   border-radius: 0;
 }
 
+/* Slower fade + slide-up for each gallery photo than the shared .reveal
+   default (950ms) — per request, so photos ease into view more gently
+   as the grid is scrolled through. */
+.gallery-grid .gallery-grid__item.reveal {
+  transition-duration: 1800ms;
+}
+
 /* The cover photo (already used as a hero backdrop elsewhere on the
    page) gets woven back in here as a full-width row, breaking up the
    portrait grid the way an Instagram gallery mixes orientations — per
