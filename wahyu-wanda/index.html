@@ -318,6 +318,38 @@
   <script src="../assets/js/animations.js?v=20260905"></script>
   <script src="../assets/js/invitation.js?v=20260905"></script>
   <script>
+    // Per-side invite links (?k=1 pihak pria, ?k=2 pihak wanita — kode
+    // pendek, bukan label "sisi=pria" yang kepanjangan) hide the other
+    // family's reception card. Patching fetch here — instead of touching
+    // the shared engine's renderEvent — nulls out the key in data.json's
+    // response before the engine ever sees it; renderEvent hides a card
+    // outright when its event key is falsy (but keeps the key, since it
+    // only loops over Object.keys(data.event) — deleting the key instead
+    // of nulling it would make the loop skip it and leave the card
+    // showing). Links without ?k keep showing both, so old links still work.
+    (function () {
+      var k = new URLSearchParams(window.location.search).get("k");
+      var hideKey = k === "1" ? "resepsiWanita" : k === "2" ? "resepsiPria" : null;
+      if (!hideKey) return;
+      var originalFetch = window.fetch;
+      window.fetch = function (input, init) {
+        var url = typeof input === "string" ? input : input && input.url;
+        if (url && url.indexOf("data.json") !== -1) {
+          return originalFetch(input, init).then(function (res) {
+            return res.json().then(function (data) {
+              if (data.event) data.event[hideKey] = null;
+              return new Response(JSON.stringify(data), {
+                status: res.status,
+                statusText: res.statusText,
+                headers: res.headers,
+              });
+            });
+          });
+        }
+        return originalFetch(input, init);
+      };
+    })();
+
     Mounstory.Invitation.init("data.json");
     var guestNameDisplayEl = document.getElementById("guestNameDisplay");
     if (guestNameDisplayEl) guestNameDisplayEl.textContent = Mounstory.Invitation.getGuestName();
