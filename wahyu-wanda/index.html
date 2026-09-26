@@ -374,6 +374,19 @@
     var guestNameDisplayEl = document.getElementById("guestNameDisplay");
     if (guestNameDisplayEl) guestNameDisplayEl.textContent = Mounstory.Invitation.getGuestName();
 
+    // Prefill the RSVP name from the invite link (?to=) so a guest who
+    // was already greeted by name on the cover doesn't have to type it
+    // again — skipped when there's no real ?to= (getGuestName() falls
+    // back to the generic "Tamu Undangan"), and still editable in case
+    // it needs correcting.
+    (function () {
+      var rsvpNameInput = document.getElementById("rsvpName");
+      var guestName = Mounstory.Invitation.getGuestName();
+      if (rsvpNameInput && guestName && guestName !== "Tamu Undangan") {
+        rsvpNameInput.value = guestName;
+      }
+    })();
+
     // Tanda Kasih / RSVP / Kirim Ucapan share one full-bleed background —
     // toggle it on for as long as any part of that group is on screen.
     (function () {
