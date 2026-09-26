@@ -978,10 +978,12 @@ html {
    grid-column spans the full row at every breakpoint so this cell
    never shares a row with the much-taller portrait cells — sharing a
    row let the row's height follow the portrait neighbor, leaving the
-   landscape image short of it. (The countdown photo previously sat
-   here too, at position 10 — it's since been swapped out of the
-   gallery, so only the cover photo keeps this treatment now.) */
-.gallery-grid .gallery-grid__item:nth-child(1) {
+   landscape image short of it. nth-child(5) tracks the cover photo's
+   position in data.json's gallery array — it moved off position 1
+   when the order was reshuffled per request, so this selector has to
+   move with it or a portrait cell would get stretched into a
+   landscape-shaped hole instead. */
+.gallery-grid .gallery-grid__item:nth-child(5) {
   grid-column: 1 / -1;
   aspect-ratio: 3 / 2;
 }

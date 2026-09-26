@@ -33,7 +33,7 @@
     "resepsiWanita": {
       "label": "Resepsi (Kediaman Wanita)",
       "date": "Sabtu, 17 Oktober 2026",
-      "time": "10.30 – 17.30",
+      "time": "10.00 – 17.30",
       "venueName": "Perumahan Bungo Mas Tahap 1",
       "address": "Blok D No. 4, Koto Tangah, Kota Padang",
       "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Perumahan%20Bungo%20Mas%20Tahap%201%20Blok%20D%20No.%204%2C%20Koto%20Tangah%2C%20Kota%20Padang"
@@ -41,24 +41,24 @@
     "resepsiPria": {
       "label": "Resepsi (Kediaman Pria)",
       "date": "Minggu, 18 Oktober 2026",
-      "time": "10.30 – 17.30",
+      "time": "10.00 – 17.30",
       "venueName": "Perumahan Geri Permai",
       "address": "Blok C No. 27, Lubuk Buaya, Koto Tangah, Kota Padang",
       "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Perumahan%20Geri%20Permai%20Blok%20C%20No.%2027%2C%20Lubuk%20Buaya%2C%20Koto%20Tangah%2C%20Kota%20Padang"
     }
   },
   "gallery": [
-    "images/cover-photo.jpg",
     "images/gallery-wahyu-wanda-1.jpg",
-    "images/gallery-wahyu-wanda-2.jpg",
-    "images/gallery-wahyu-wanda-8.jpg",
-    "images/gallery-wahyu-wanda-3.jpg",
     "images/gallery-wahyu-wanda-4.jpg",
     "images/gallery-wahyu-wanda-9.jpg",
+    "images/gallery-wahyu-wanda-8.jpg",
+    "images/cover-photo.jpg",
     "images/gallery-wahyu-wanda-5.jpg",
-    "images/gallery-wahyu-wanda-11.jpg",
+    "images/gallery-wahyu-wanda-12.jpg",
+    "images/gallery-wahyu-wanda-3.jpg",
+    "images/gallery-wahyu-wanda-2.jpg",
     "images/gallery-wahyu-wanda-6.jpg",
-    "images/gallery-wahyu-wanda-12.jpg"
+    "images/gallery-wahyu-wanda-11.jpg"
   ],
   "gift": {
     "note": "Tanpa mengurangi rasa hormat, bagi tamu yang ingin mengirimkan hadiah kepada kedua mempelai dapat mengirimkannya melalui :",
