@@ -385,6 +385,60 @@
   aspect-ratio: 2000 / 1331;
 }
 
+/* Mobile — this section's height is locked to the photo's own
+   aspect-ratio (no cover-cropping), so it scales in lockstep with
+   viewport width. A percentage margin-top tracks that for
+   positioning (vertical percentages resolve against the containing
+   block's width, the same relationship this section's height has to
+   its own width) — but the shared engine's countdown box size is
+   rem/clamp-based, near-fixed in px, so on a wide "mobile" viewport
+   (e.g. a tablet in portrait, still under the 860px breakpoint) the
+   section grows much taller while the boxes stay the same size,
+   shrinking to a much smaller fraction of the frame and losing
+   coverage (confirmed: fine at phone widths ~360-430px, broken by
+   700px). Sizing the boxes in vw too, like the position offset,
+   keeps them a constant fraction of this section's height at any
+   width. Checked against the photo's own layout: his face sits
+   ~33-45% down, hers ~46-55%. Eyebrow pulled in tight against the
+   box row for the same reason as desktop's — otherwise the gap
+   between them re-exposes her eyes. */
+@media (max-width: 859px) {
+  .countdown-section__body {
+    margin-top: -30%;
+  }
+
+  .countdown-section .eyebrow {
+    margin-bottom: 1.6vw;
+  }
+
+  .countdown-section .countdown {
+    display: flex;
+    justify-content: center;
+    max-width: none;
+    gap: 2.5vw;
+  }
+
+  .countdown-section .countdown__item {
+    flex: 0 0 auto;
+    width: 16vw;
+    aspect-ratio: 2 / 3;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 1.5vw;
+  }
+
+  .countdown-section .countdown__value {
+    font-size: 8vw;
+  }
+
+  .countdown-section .countdown__label {
+    font-size: 2.3vw;
+    margin-top: 1vw;
+  }
+}
+
 @media (min-width: 860px) {
   .section.countdown-section {
     min-height: 100vh;
