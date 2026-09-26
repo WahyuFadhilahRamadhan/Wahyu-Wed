@@ -318,19 +318,39 @@
   <script src="../assets/js/animations.js?v=20260905"></script>
   <script src="../assets/js/invitation.js?v=20260905"></script>
   <script>
-    // Per-side invite links (?k=1 pihak pria, ?k=2 pihak wanita — kode
-    // pendek, bukan label "sisi=pria" yang kepanjangan) hide the other
-    // family's reception card. Patching fetch here — instead of touching
-    // the shared engine's renderEvent — nulls out the key in data.json's
-    // response before the engine ever sees it; renderEvent hides a card
-    // outright when its event key is falsy (but keeps the key, since it
-    // only loops over Object.keys(data.event) — deleting the key instead
-    // of nulling it would make the loop skip it and leave the card
-    // showing). Links without ?k keep showing both, so old links still work.
+    // Per-side invite links — a trailing "." on ?to= (e.g. ?to=Budi.)
+    // marks a pihak pria guest, a trailing "'" (?to=Wanti') marks pihak
+    // wanita, so the link just looks like a normal name link with one
+    // extra character, not an obvious tracking parameter. Two things
+    // need doing: (1) strip that marker so the guest's displayed name
+    // and RSVP form stay clean, and (2) hide the other family's
+    // reception card.
+    //
+    // (1) is done by patching URLSearchParams.prototype.get instead of
+    // reaching into the shared engine: getGuestName() in invitation.js
+    // calls params.get("to") through a closure the exported
+    // Mounstory.Invitation.getGuestName reference can't intercept, and
+    // its render into #guestName happens async on a promise chain this
+    // page doesn't control the timing of — patching the one method it
+    // calls fixes every consumer of ?to= on this page in one place.
+    //
+    // (2) reuses the same trick as before: null out the key in
+    // data.json's response before the engine sees it, since renderEvent
+    // hides a card outright when its event value is falsy (as long as
+    // the key still exists — deleting it instead would make renderEvent's
+    // Object.keys(data.event) loop skip it and leave the card showing).
     (function () {
-      var k = new URLSearchParams(window.location.search).get("k");
-      var hideKey = k === "1" ? "resepsiWanita" : k === "2" ? "resepsiPria" : null;
+      var rawName = new URLSearchParams(window.location.search).get("to") || "";
+      var marker = rawName.slice(-1);
+      var hideKey = marker === "." ? "resepsiWanita" : marker === "'" ? "resepsiPria" : null;
       if (!hideKey) return;
+
+      var originalGet = URLSearchParams.prototype.get;
+      URLSearchParams.prototype.get = function (key) {
+        var value = originalGet.call(this, key);
+        return key === "to" && value ? value.slice(0, -1) : value;
+      };
+
       var originalFetch = window.fetch;
       window.fetch = function (input, init) {
         var url = typeof input === "string" ? input : input && input.url;
