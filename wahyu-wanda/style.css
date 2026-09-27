@@ -761,6 +761,71 @@
   font-weight: 500;
 }
 
+/* Live Streaming — same full-bleed-photo-plus-scrim treatment as every
+   other section on this page (reuses the cover photo rather than a new
+   asset, same as the gallery's full-width row does). The button starts
+   disabled in the markup (data.liveStreaming.url is empty until closer
+   to the day) and gets swapped for a real link by the page's own script
+   once that field is filled in. */
+.livestream-section {
+  position: relative;
+  overflow: hidden;
+  text-align: center;
+}
+
+.livestream-section__photo {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background: url("images/cover-photo.jpg");
+  background-size: cover;
+  background-position: center 25%;
+  background-repeat: no-repeat;
+}
+
+.livestream-section__scrim {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(180deg, rgba(15, 22, 26, 0.5) 0%, rgba(15, 22, 26, 0.25) 45%, rgba(15, 22, 26, 0.55) 100%);
+}
+
+.livestream-section .section__header,
+.livestream-section__desc,
+.livestream-section__btn {
+  position: relative;
+  z-index: 2;
+}
+
+.livestream-section .eyebrow,
+.livestream-section .section__title {
+  color: #fff;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.45);
+}
+
+.livestream-section__desc {
+  max-width: 32rem;
+  margin: 0 auto 1.75rem;
+  color: rgba(255, 255, 255, 0.92);
+  text-shadow: 0 1px 8px rgba(0, 0, 0, 0.4);
+  line-height: 1.6;
+}
+
+.livestream-section__btn.is-disabled {
+  pointer-events: none;
+  opacity: 0.55;
+}
+
+.livestream-section__note {
+  position: relative;
+  z-index: 2;
+  max-width: 26rem;
+  margin: 1rem auto 0;
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.8);
+  text-shadow: 0 1px 6px rgba(0, 0, 0, 0.4);
+}
+
 .acara-section .section__title {
   color: #fff;
   text-shadow: 0 2px 10px rgba(0, 0, 0, 0.45);

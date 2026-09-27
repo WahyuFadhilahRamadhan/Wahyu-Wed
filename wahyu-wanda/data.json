@@ -47,6 +47,10 @@
       "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Perumahan%20Geri%20Permai%20Blok%20C%20No.%2027%2C%20Lubuk%20Buaya%2C%20Koto%20Tangah%2C%20Kota%20Padang"
     }
   },
+  "liveStreaming": {
+    "url": "",
+    "note": "Link akan segera diumumkan, mohon pantau kembali menjelang hari H."
+  },
   "gallery": [
     "images/gallery-wahyu-wanda-1.jpg",
     "images/gallery-wahyu-wanda-4.jpg",

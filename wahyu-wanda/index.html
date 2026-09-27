@@ -192,6 +192,34 @@
         </div>
       </section>
 
+      <!-- Live Streaming — full-bleed photo behind it, same pattern as
+           every other section on this page (reuses the cover photo
+           rather than a new asset). The button starts as a disabled
+           placeholder (data.liveStreaming.url is empty until closer to
+           the day) and turns into a real YouTube link the moment that
+           field gets filled in — see the fetch below, right next to the
+           page's other one-off data.json reads. -->
+      <section class="section livestream-section">
+        <div class="livestream-section__photo bg-reveal"></div>
+        <div class="livestream-section__scrim bg-reveal"></div>
+        <div class="section__header">
+          <p class="eyebrow reveal">Live Streaming</p>
+          <h2 class="section__title reveal reveal-delay-1">Saksikan Secara Langsung</h2>
+        </div>
+        <p class="livestream-section__desc reveal reveal-delay-2">
+          Bagi Bapak/Ibu/Saudara/i yang berhalangan hadir, acara akad dan resepsi dapat
+          disaksikan secara langsung melalui YouTube.
+        </p>
+        <a
+          class="btn btn-primary livestream-section__btn is-disabled reveal reveal-delay-3"
+          id="livestreamBtn"
+          href="#"
+          target="_blank"
+          rel="noopener"
+        >Segera Hadir</a>
+        <p class="livestream-section__note reveal reveal-delay-4" id="livestreamNote"></p>
+      </section>
+
       <!-- Galeri / Tanda Kasih / RSVP+Ucapan share one full-bleed photo
            behind all three — a fixed-position layer toggled by
            #ctaFixedBg's IntersectionObserver (see script at the bottom
@@ -416,6 +444,28 @@
         { threshold: 0 }
       );
       observer.observe(group);
+    })();
+
+    // Live Streaming button — starts as the disabled placeholder already
+    // in the HTML; swapped for a real link the moment data.liveStreaming.url
+    // is filled in (no code change needed later, just edit data.json).
+    (function () {
+      var btn = document.getElementById("livestreamBtn");
+      if (!btn) return;
+      var note = document.getElementById("livestreamNote");
+      fetch("data.json", { cache: "no-store" })
+        .then(function (res) { return res.json(); })
+        .then(function (data) {
+          var live = data.liveStreaming || {};
+          if (live.url) {
+            btn.href = live.url;
+            btn.textContent = "Tonton di YouTube";
+            btn.classList.remove("is-disabled");
+          } else if (live.note && note) {
+            note.textContent = live.note;
+          }
+        })
+        .catch(function () {});
     })();
 
     // RSVP + Wedding Wish combined form — this page-specific handler
