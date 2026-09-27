@@ -318,13 +318,24 @@
   <script src="../assets/js/animations.js?v=20260905"></script>
   <script src="../assets/js/invitation.js?v=20260905"></script>
   <script>
-    // Per-side invite links — a trailing "." on ?to= (e.g. ?to=Budi.)
-    // marks a pihak pria guest, a trailing "'" (?to=Wanti') marks pihak
-    // wanita, so the link just looks like a normal name link with one
-    // extra character, not an obvious tracking parameter. Two things
-    // need doing: (1) strip that marker so the guest's displayed name
-    // and RSVP form stay clean, and (2) hide the other family's
-    // reception card.
+    // Per-side invite links — a "." on ?to= marks a pihak pria guest, a
+    // "'" marks pihak wanita, so the link just looks like a normal name
+    // link with one extra character, not an obvious tracking parameter.
+    // The marker goes at the FRONT of the name (?to=.Budi, ?to='Wanti),
+    // not the end (?to=Budi.) — WhatsApp's (and most chat apps') link
+    // auto-detection trims trailing punctuation like "." and "'" off a
+    // detected URL, treating it as end-of-sentence punctuation, so a
+    // trailing marker silently gets dropped from the link the guest
+    // actually taps (confirmed: reported by a guest, the "." wasn't in
+    // the tapped link). A leading marker sits in the middle of the URL
+    // from the linkifier's point of view, so it's never touched.
+    // Trailing markers are still recognized too, only as a fallback for
+    // any link already sent this way — new links should use the
+    // leading form.
+    //
+    // Two things need doing: (1) strip that marker so the guest's
+    // displayed name and RSVP form stay clean, and (2) hide the other
+    // family's reception card.
     //
     // (1) is done by patching URLSearchParams.prototype.get instead of
     // reaching into the shared engine: getGuestName() in invitation.js
@@ -341,14 +352,17 @@
     // Object.keys(data.event) loop skip it and leave the card showing).
     (function () {
       var rawName = new URLSearchParams(window.location.search).get("to") || "";
-      var marker = rawName.slice(-1);
+      var leadingMarker = rawName.charAt(0);
+      var stripLeading = leadingMarker === "." || leadingMarker === "'";
+      var marker = stripLeading ? leadingMarker : rawName.slice(-1);
       var hideKey = marker === "." ? "resepsiWanita" : marker === "'" ? "resepsiPria" : null;
       if (!hideKey) return;
 
       var originalGet = URLSearchParams.prototype.get;
       URLSearchParams.prototype.get = function (key) {
         var value = originalGet.call(this, key);
-        return key === "to" && value ? value.slice(0, -1) : value;
+        if (key !== "to" || !value) return value;
+        return stripLeading ? value.slice(1) : value.slice(0, -1);
       };
 
       var originalFetch = window.fetch;
