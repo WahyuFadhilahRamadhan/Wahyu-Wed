@@ -333,9 +333,17 @@
     // any link already sent this way — new links should use the
     // leading form.
     //
-    // Two things need doing: (1) strip that marker so the guest's
-    // displayed name and RSVP form stay clean, and (2) hide the other
-    // family's reception card.
+    // A DOUBLE leading "." (?to=..Budi) is a separate marker for links
+    // the groom's own parents send out themselves — per request, gifts
+    // from guests they personally invited should only offer the groom's
+    // bank account, not the bride's, so this variant does everything the
+    // single "." does (hide the resepsi wanita card) plus drops the
+    // bride's entry from the gift section's bank list.
+    //
+    // Three things need doing: (1) strip the marker so the guest's
+    // displayed name and RSVP form stay clean, (2) hide the other
+    // family's reception card, and (3) for the double-dot variant only,
+    // narrow the gift banks list to the groom's account.
     //
     // (1) is done by patching URLSearchParams.prototype.get instead of
     // reaching into the shared engine: getGuestName() in invitation.js
@@ -350,19 +358,35 @@
     // hides a card outright when its event value is falsy (as long as
     // the key still exists — deleting it instead would make renderEvent's
     // Object.keys(data.event) loop skip it and leave the card showing).
+    //
+    // (3) is a plain array filter, not the null-out trick — renderGift
+    // just maps over data.gift.banks, so a shorter array alone renders
+    // fewer bank cards, no missing-key gotcha to work around.
     (function () {
       var rawName = new URLSearchParams(window.location.search).get("to") || "";
-      var leadingMarker = rawName.charAt(0);
-      var stripLeading = leadingMarker === "." || leadingMarker === "'";
-      var marker = stripLeading ? leadingMarker : rawName.slice(-1);
-      var hideKey = marker === "." ? "resepsiWanita" : marker === "'" ? "resepsiPria" : null;
+      var stripLen = 0;
+      var stripTrailing = false;
+      var hideKey = null;
+      var onlyGroomBank = false;
+
+      if (rawName.slice(0, 2) === "..") {
+        hideKey = "resepsiWanita";
+        onlyGroomBank = true;
+        stripLen = 2;
+      } else if (rawName.charAt(0) === "." || rawName.charAt(0) === "'") {
+        hideKey = rawName.charAt(0) === "." ? "resepsiWanita" : "resepsiPria";
+        stripLen = 1;
+      } else if (rawName.slice(-1) === "." || rawName.slice(-1) === "'") {
+        hideKey = rawName.slice(-1) === "." ? "resepsiWanita" : "resepsiPria";
+        stripTrailing = true;
+      }
       if (!hideKey) return;
 
       var originalGet = URLSearchParams.prototype.get;
       URLSearchParams.prototype.get = function (key) {
         var value = originalGet.call(this, key);
         if (key !== "to" || !value) return value;
-        return stripLeading ? value.slice(1) : value.slice(0, -1);
+        return stripTrailing ? value.slice(0, -1) : value.slice(stripLen);
       };
 
       var originalFetch = window.fetch;
@@ -372,6 +396,14 @@
           return originalFetch(input, init).then(function (res) {
             return res.json().then(function (data) {
               if (data.event) data.event[hideKey] = null;
+              if (onlyGroomBank && data.gift && Array.isArray(data.gift.banks) && data.groom) {
+                // Bank accountName is a plain name ("Wahyu Fadhilah
+                // Ramadhan") without the academic title data.groom.fullName
+                // carries ("..., S.ST"), so match by prefix, not equality.
+                data.gift.banks = data.gift.banks.filter(function (bank) {
+                  return data.groom.fullName.indexOf(bank.accountName) === 0;
+                });
+              }
               return new Response(JSON.stringify(data), {
                 status: res.status,
                 statusText: res.statusText,
