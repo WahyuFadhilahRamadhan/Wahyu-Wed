@@ -28,7 +28,7 @@
       "time": "09.30 s.d. Selesai",
       "venueName": "Perumahan Bungo Mas Tahap 1",
       "address": "Blok D No. 4, Koto Tangah, Kota Padang",
-      "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Perumahan%20Bungo%20Mas%20Tahap%201%20Blok%20D%20No.%204%2C%20Koto%20Tangah%2C%20Kota%20Padang"
+      "mapsUrl": "https://www.google.com/maps/search/?api=1&query=-0.864972,100.363417"
     },
     "resepsiWanita": {
       "label": "Resepsi (Kediaman Wanita)",
@@ -36,7 +36,7 @@
       "time": "10.00 – 17.30",
       "venueName": "Perumahan Bungo Mas Tahap 1",
       "address": "Blok D No. 4, Koto Tangah, Kota Padang",
-      "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Perumahan%20Bungo%20Mas%20Tahap%201%20Blok%20D%20No.%204%2C%20Koto%20Tangah%2C%20Kota%20Padang"
+      "mapsUrl": "https://www.google.com/maps/search/?api=1&query=-0.864972,100.363417"
     },
     "resepsiPria": {
       "label": "Resepsi (Kediaman Pria)",
@@ -44,7 +44,7 @@
       "time": "10.00 – 17.30",
       "venueName": "Perumahan Geri Permai",
       "address": "Blok C No. 27, Lubuk Buaya, Koto Tangah, Kota Padang",
-      "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Perumahan%20Geri%20Permai%20Blok%20C%20No.%2027%2C%20Lubuk%20Buaya%2C%20Koto%20Tangah%2C%20Kota%20Padang"
+      "mapsUrl": "https://www.google.com/maps/search/?api=1&query=-0.816889,100.317222"
     }
   },
   "gallery": [
