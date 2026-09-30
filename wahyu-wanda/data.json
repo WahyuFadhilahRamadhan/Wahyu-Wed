@@ -5,7 +5,7 @@
     "musicSrc": "audio/endless-love.mp3"
   },
   "integrations": {
-    "webhookUrl": ""
+    "webhookUrl": "https://script.google.com/macros/s/AKfycbwBs-B6vUgaMF_xRhPZWOAVGMaUFrtLhoz2uBk69ZU3gNzwrQIjYQJsQnf_6o_IGaHP/exec"
   },
   "groom": {
     "fullName": "Wahyu Fadhilah Ramadhan, S.ST",
