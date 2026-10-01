@@ -54,7 +54,7 @@
     linear-gradient(180deg, rgba(18, 26, 18, 0.55) 0%, rgba(18, 26, 18, 0.12) 30%, rgba(18, 26, 18, 0.18) 60%, rgba(14, 20, 14, 0.72) 100%),
     url("images/cover-photo.jpg");
   background-size: cover;
-  background-position: 48% 35%;
+  background-position: 50% 35%;
   background-repeat: no-repeat;
 }
 
