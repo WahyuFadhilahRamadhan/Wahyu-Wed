@@ -33,7 +33,7 @@
     "resepsiWanita": {
       "label": "Resepsi (Kediaman Wanita)",
       "date": "Sabtu, 17 Oktober 2026",
-      "time": "10.00 – 17.30",
+      "time": "10.00 WIB s/d selesai",
       "venueName": "Perumahan Bungo Mas Tahap 1",
       "address": "Blok D No. 4, Koto Tangah, Kota Padang",
       "mapsUrl": "https://www.google.com/maps/search/?api=1&query=-0.864972,100.363417"
@@ -41,7 +41,7 @@
     "resepsiPria": {
       "label": "Resepsi (Kediaman Pria)",
       "date": "Minggu, 18 Oktober 2026",
-      "time": "10.00 – 17.30",
+      "time": "10.00 WIB s/d selesai",
       "venueName": "Perumahan Geri Permai",
       "address": "Blok C No. 27, Lubuk Buaya, Koto Tangah, Kota Padang",
       "mapsUrl": "https://www.google.com/maps/search/?api=1&query=-0.816889,100.317222"
